@@ -34,7 +34,6 @@ class Habits(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
-    type = db.Column(db.String(120), unique=True, nullable=False)
     description = db.Column(db.String(120), unique=True, nullable=False)
     duration = db.Column(db.DateTime, unique=False, nullable=False)
     score = db.Column(db.Integer, unique=False)
@@ -47,7 +46,6 @@ class Habits(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "type": self.type,
             "description": self.description,
             "duration": self.duration,
             "score": self.score
