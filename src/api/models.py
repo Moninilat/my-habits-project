@@ -12,10 +12,10 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     creation = db.Column(db.Date, unique=False, nullable=False)
-
+    user_habits_list = db.relationship("User_habits_list", backref="user")
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.first_name
 
     def serialize(self):
         return {
@@ -23,7 +23,8 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
-            "creation": self.creation.strftime('%Y-%m-%DT')
+            "creation": self.creation.strftime('%Y-%m-%DT'),
+            "user_habits_list": [habit.serialize() for habit in self.user_habits_list]
             # do not serialize the password, its a security breach
         }
     
@@ -61,10 +62,10 @@ class User_habits_list(db.Model):
     habits_id = db.Column(db.Integer, db.ForeignKey(Habits.id))
     duration = db.Column(db.DateTime, unique=False, nullable=False)
     completed = db.Column(db.Boolean, unique=False)
-
+    habits = db.relationship("Habits", backref="User_habits_list")
 
     def __repr__(self):
-        return '<User_habits_list %r>' % self.name
+        return '<User_habits_list %r>' % self.habits_id
 
     def serialize(self):
         return {
