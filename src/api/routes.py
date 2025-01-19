@@ -32,7 +32,7 @@ def signup():
    user = User.query.filter_by(email=request_body["email"]).first()
    if user:
       return jsonify ({"msg":"User already registered"}), 400
-   new_user = User(email=request_body["email"], password=request_body["password"])
+   new_user = User(first_name=request_body["first_name"], last_name=request_body["last_name"], email=request_body["email"], password=request_body["password"], creation=request_body["creation"])
    db.session.add(new_user)
    db.session.commit()
 

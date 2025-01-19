@@ -57,8 +57,8 @@ class User_habits_list(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeingKey=User.id)   
-    habits_id = db.Column(db.Integer, ForeingKey=Habits.id)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id))   
+    habits_id = db.Column(db.Integer, db.ForeignKey(Habits.id))
     duration = db.Column(db.DateTime, unique=False, nullable=False)
     completed = db.Column(db.Boolean, unique=False)
 
