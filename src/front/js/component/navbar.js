@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     const handleResize = () => {
-        setIsMobile(window.innerWidth <= 800);
+        setIsMobile(window.innerWidth <= 768);
     };
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export const Navbar = () => {
             {isMobile ? (
                 <div className="burger-menu">
                     <button className="burger-button">
-                        <i className="fas fa-bars"></i>
+                        &#9776; {/* Icono de menú hamburguesa */}
                     </button>
                     <div className="burger-content">
                         <Link to="/">Inicio</Link>
