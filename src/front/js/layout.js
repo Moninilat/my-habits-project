@@ -4,7 +4,7 @@ import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./Views/Home";
 import injectContext from "./store/appContext";
-
+import DateCalendarViews from "./Views/Habit_Tracker";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -22,8 +22,7 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<DateCalendarViews />} path="/habit-tracker" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
