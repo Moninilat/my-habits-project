@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BackendURL } from "./component/backendURL";
 
-import { Home } from "./Views/Home";
+import { Home } from "./Views/Home.js";
 import injectContext from "./store/appContext";
 import DateCalendarViews from "./Views/Habit_Tracker";
 import { Navbar } from "./component/navbar";

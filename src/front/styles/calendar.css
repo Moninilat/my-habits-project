@@ -1,0 +1,62 @@
+.calendar {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.week-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.week-title {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(251, 118, 118);
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.fa-solid {
+    color: rgb(251, 118, 118);
+}
+
+.day {
+    text-align: center;
+}
+
+.day-name {
+    font-size: 0.9em;
+    color: #f08c82;
+    margin-bottom: 5px;
+}
+
+.date {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1rem;
+    border-radius: 50%;
+    color: black;
+    background-color: #d4edda; /* Default green */
+}
+
+.green {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.red {
+    background-color: #f8d7da;
+    color: #721c24;
+}
