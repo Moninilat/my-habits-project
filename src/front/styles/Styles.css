@@ -1,4 +1,8 @@
 
+
+/*--------- Navbar -----------*/
+
+
 .navbar {
 
     display: flex;
@@ -9,15 +13,16 @@
     height: 92px;
     flex-direction: row;
     justify-content: flex-start;
+    align-content: center;
 
 }
 
-.title {
+.s-title {
     font-size: 1.2rem;
     font-weight: bold;
     color: #FB7676;
+    margin: auto;
     text-align: center;
-    padding-left: 30px;
 }
 
 
@@ -34,7 +39,23 @@
     padding: 25px;
 }
 
+.burger-button {
+    border: none;
+    background-color: white;
+}
 
+.burguer-button-icon {
+    color: #FB7676;
+    font-size: 2rem;
+}
+
+.close-button {
+
+    border: none;
+    background-color: white;
+    padding-top: 10px;
+
+}
 
 .burger-content {
     display: flex;
@@ -63,9 +84,10 @@
 
 .burger-content > ul > li > a {
     
-    color: #FB7676;
+    color: #2c2c2c;
     font-weight: bold;
     text-decoration: none;
+    padding-left: 10px;
 }
 
 .burger-content > ul > li > i {
@@ -76,10 +98,15 @@
 
 .logout-menu {
     display: flex;
-    width: 100%;
+    width: 90%;
     align-items: center;
     padding-left: 2.5rem;
-    justify-content: space-between;
+}
+
+.logout-menu > a{
+    text-decoration: none;
+    color: #2c2c2c;
+    padding-left: 10px;
 }
 
 
@@ -116,5 +143,26 @@
     color: #FB7676;
     font-weight: bold;
     text-decoration: none;
-    margin-left: 5rem;
+    padding-left: 20px;
 }
+
+.logout-button{
+
+    width: 100px;
+    background-color: #FB7676;
+    border-radius: 30px;
+    padding: 10px;
+    border: none;
+    margin-left: 20px;
+}
+
+.logout-button > a {
+
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+

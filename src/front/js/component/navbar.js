@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Styles.css";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import BathroomOutlinedIcon from '@mui/icons-material/BathroomOutlined';
+import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 export const Navbar = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
@@ -23,33 +29,33 @@ export const Navbar = () => {
                 <>
                 <div className="burger-menu">
                     <button className="burger-button" onClick={() => setIsOpen(true)}>
-                        <i className="fas fa-bars"></i>
+                        <MenuIcon />
                     </button>
                     <div className="burger-content-container" style={{ display: isOpen ? "block" : "none" }}>
                         <button className="close-button" onClick={() => setIsOpen(false)}>
-                            <i class="fa-solid fa-x"></i>
+                            <CloseIcon />
                         </button>
                         <div className="burger-content" >
                            <ul>
                                 <li>
-                                    <i class="fa-solid fa-house"></i><Link to="/">Mis hábitos</Link>
+                                    <BathroomOutlinedIcon /><Link to="/mis-habitos">Mis hábitos</Link>
                                 </li>
                                 <li>
-                                    <i class="fa-solid fa-chart-column"></i><Link to="/about">Habit Tracker</Link>
+                                    <InsertChartOutlinedIcon /><Link to="/habit-tracker">Habit Tracker</Link>
                                 </li>
                                 <li>
-                                    <i class="fa-regular fa-address-card"></i><Link to="/contact">Perfil</Link>
+                                    <AccountCircleOutlinedIcon /><Link to="/perfil">Perfil</Link>
                                 </li>
                            </ul>
                            
                             <div className="logout-menu">
-                                    <Link to="/contact">Logout</Link><i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <LogoutOutlinedIcon /><Link to="/logout">Logout</Link>
                             </div>
                           
                         </div>
                     </div>
                 </div>
-                <div className="title" >
+                <div className="s-title" >
                     Proyecto Ninja
                 </div>
                 </>
@@ -60,9 +66,10 @@ export const Navbar = () => {
                         <i class="fa-brands fa-google"></i><span className="complete-menu-title">Proyecto Ninja</span>
                     </div>
                     <div className="menu">
-                        <Link to="/">Mis hábitos</Link>
-                        <Link to="/about">Habit Tracker</Link>
-                        <Link to="/contact">Perfil</Link>
+                        <Link to="/mis-habitos">Mis hábitos</Link>
+                        <Link to="/habit-tracker">Habit Tracker</Link>
+                        <Link to="/perfil">Perfil</Link>
+                        <button className="logout-button"><Link to="/logout">Logout</Link></button>
                     </div>
                 </div>
             
