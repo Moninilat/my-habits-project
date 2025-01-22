@@ -1,0 +1,9 @@
+.habitcard {
+    width: 540px;
+    height: 49px;
+    border-radius: 6px;
+    background-color: rgb(243, 243, 243);
+    padding: 10px;
+    justify-content: space-between;
+    margin: 7px;
+}
