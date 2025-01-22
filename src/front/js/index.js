@@ -11,3 +11,15 @@ import Layout from "./layout";
 
 const root = createRoot(document.querySelector("#app"));
 root.render(<Layout />);
+
+
+import { StyledEngineProvider } from '@mui/material/styles';
+import Habit_tracker from './Views/Habit_Tracker';
+
+ReactDOM.createRoot(document.querySelector("#root")).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <Habit_tracker />
+    </StyledEngineProvider>
+  </React.StrictMode>
+);

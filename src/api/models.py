@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-
+from datetime import date
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -13,6 +13,8 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     creation = db.Column(db.Date, unique=False, nullable=False)
     user_habits_list = db.relationship("User_habits_list", backref="user")
+    habit_records = db.relationship("Habit_records", backref="user_records")
+    score = db.Column(db.Integer, unique=False)
 
     def __repr__(self):
         return '<User %r>' % self.first_name
@@ -25,7 +27,7 @@ class User(db.Model):
             "email": self.email,
             "creation": self.creation.strftime('%Y-%m-%DT'),
             "user_habits_list": [habit.serialize() for habit in self.user_habits_list]
-            # do not serialize the password, its a security breach
+            #habit_records
         }
     
 
@@ -36,9 +38,9 @@ class Habits(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
     description = db.Column(db.String(120), unique=True, nullable=False)
-    duration = db.Column(db.DateTime, unique=False, nullable=False)
     score = db.Column(db.Integer, unique=False)
 
+    
 
     def __repr__(self):
         return '<Habits %r>' % self.name
@@ -48,10 +50,31 @@ class Habits(db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
-            "duration": self.duration,
             "score": self.score
-            # do not serialize the password, its a security breach
+            
         }
+    
+class Habit_records(db.Model):
+    __tablename__ = 'habit_records'
+
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date, default=date.today)
+    user_id = db.Column(db.Integer, db.ForeignKey("User.id"))   
+    habits_id = db.Column(db.Integer, db.ForeignKey("Habits.id"))
+    habits=db.relationship("Habits", backref="habit_records")
+
+    def __repr__(self):
+        return '<habit_records %r>' % self.habits_id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "date": self.date,
+                       
+        }
+
+
+
 
 class User_habits_list(db.Model):
     __tablename__ = 'User_habits_list'
@@ -60,9 +83,8 @@ class User_habits_list(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))   
     habits_id = db.Column(db.Integer, db.ForeignKey(Habits.id))
-    duration = db.Column(db.DateTime, unique=False, nullable=False)
-    completed = db.Column(db.Boolean, unique=False)
     habits = db.relationship("Habits", backref="User_habits_list")
+    
 
     def __repr__(self):
         return '<User_habits_list %r>' % self.habits_id
