@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import "../../styles/calendar.css";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 
 export const Calendar = () => (
     <div className="calendar">
     <div className="week-nav">
-        <btn classNameName="arrowback"><ArrowBackIosNew /></btn>
+        <btn className="btn"><i className="fa-solid fa-angle-left"></i></btn>
         <div className="week-title">19 - 25 Junio</div>
-        <btn classNameName="arrowforward"><ArrowForwardIos /></btn>
+        <btn className="btn"><i className="fa-solid fa-angle-right"></i></btn>
     </div>
     <div className="days">
         <div className="day">

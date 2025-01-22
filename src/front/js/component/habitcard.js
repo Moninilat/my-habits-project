@@ -4,7 +4,7 @@ import "../../styles/habitcard.css"
 export const HabitCard = () => (
     <div className="habitcard d-flex space-between">
         <div className="habit">
-            <p>habit</p>
+            <p>Habit</p>
         </div>
         <div className="habit">
             <p>0/8</p>

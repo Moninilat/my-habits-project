@@ -6,6 +6,7 @@ import { Diversity1Outlined } from "@mui/icons-material";
 import { Navbar } from "../component/navbar";
 import { Calendar } from "../component/calendar";
 import { HabitCard } from "../component/habitcard";
+import { NewHabitCard } from "../component/newhabitcard";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -14,6 +15,7 @@ export const Home = () => {
 		<div>
 			<Calendar />
 			<HabitCard />
+			<NewHabitCard />
 		</div>
 	);
 }

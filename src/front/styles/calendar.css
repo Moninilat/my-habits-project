@@ -20,18 +20,14 @@
     color: rgb(251, 118, 118);
 }
 
-.arrowback {
-    color: rgb(251, 118, 118);
-}
-
-.arrowforward {
-    color: rgb(251, 118, 118);
-}
-
 .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
+}
+
+.fa-solid {
+    color: rgb(251, 118, 118);
 }
 
 .day {
