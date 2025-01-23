@@ -1,8 +1,8 @@
-.new_habit_component {
+.small_habit_component {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 400px; 
+    width: 180px; 
     padding: 15px 20px;
     background-color: #f9f9f9;
     border-radius: 15px; 
@@ -11,25 +11,27 @@
     margin: 15px;
   }
   
-.new_habit_title {
+.small_habit_title {
     font-size: 16px;
     font-weight: bold;
     color: #333;
   }
   
-.new_habit_box {
+.small_habit_box {
     display: flex;
   }
 
-.new_habit_status {
+.small_habit_status {
     font-size: 14px;
     color: #666; 
     margin-right: 5px;
   }
   
-.new_habit_button {
+.small_habit_button {
     width: 20px; 
     height: 20px;
     border-radius: 50%;
     cursor: pointer;
+    justify-content: center;
+    font-size: 15px;
   }
