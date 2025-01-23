@@ -2,9 +2,10 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, User_habit_list, Habit_records, Habits
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+from datetime import date
 
 api = Blueprint('api', __name__)
 
@@ -32,7 +33,7 @@ def signup():
    user = User.query.filter_by(email=request_body["email"]).first()
    if user:
       return jsonify ({"msg":"User already registered"}), 400
-   new_user = User(first_name=request_body["first_name"], last_name=request_body["last_name"], email=request_body["email"], password=request_body["password"], creation=request_body["creation"])
+   new_user = User(first_name=request_body["first_name"], last_name=request_body["last_name"], email=request_body["email"], password=request_body["password"])
    db.session.add(new_user)
    db.session.commit()
 
@@ -53,13 +54,15 @@ def login():
   
 #    token = create_access_token(identity=user.email)
 #    return jsonify({"msg":"logged", "token": token})
+   
 
 @api.route('/user/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
     request_body = request.get_json()
     email = request_body.get("email")
     password = request_body.get("password")
-
+    first_name = request_body.get("first_name")
+    last_name = request_body.get("last_name")
     user = User.query.get(user_id)
     if not user:
         return jsonify({"msg": "User not found"}), 404
@@ -68,6 +71,10 @@ def update_user(user_id):
         user.email = email
     if password:
         user.password = password
+    if first_name:
+        user.first_name = first_name
+    if last_name:
+        user.last_name = last_name
 
     db.session.commit()
     return jsonify({"msg": "User updated successfully"}), 200
@@ -84,3 +91,88 @@ def delete_user(user_id):
     return jsonify({"msg": "User deleted successfully"}), 200
 
 
+#endpoint para añadir/eliminar hábito de usuario
+
+@api.route("/user/<int:id>/habits", methods=["POST", "GET", "DELETE"])
+def manage_user_habits():
+    if request.method == "POST": 
+        request_body = request.get_json()
+        exist = User_habit_list.query.filter_by(user_id=request_body["user_id"], habit_id=request_body["habit_id"]).first()
+        if exist:
+            return jsonify({"msg": "Habit already added"}), 400
+        
+       
+        new_habit = User_habit_list(user_id=request_body["user_id"], habit_id=request_body["habit_id"])
+        db.session.add(new_habit)
+        db.session.commit()
+        return jsonify(new_habit.serialize()), 200
+    
+    if request.method == "GET": 
+        User_habit_list = User_habit_list.query.all()
+        return jsonify([habit.serialize() for habit in User_habit_list]), 200
+    
+    if request.method == "DELETE":
+        request_body = request.get_json()
+        habit = User_habit_list.query.filter_by(user_id=request_body["user_id"], habit_id=request_body["habit_id"]).first()
+        if habit:
+            db.session.delete(habit)
+            db.session.commit()
+            return jsonify({"msg": "Habit deleted"}), 200
+        else:
+            return jsonify({"msg": "Habit not found"}), 404
+
+
+#endpoint para devolver el ranking de los usuarios -> Devuélveme todos los usuarios ordenados por score
+@api.route('/ranking', methods=['GET'])
+def get_user_ranking():
+    users = User.query.order_by(User.score.desc()).all()
+    ranking = [user.serialize() for user in users]
+    return jsonify({"ranking": ranking}), 200
+    
+
+#endpoint que devuelva el listado de hábitos para pintar en la home
+@api.route('/habits', methods=['GET'])
+def get_all_habits():
+    habits = Habits.query.all()
+    habits_list = [habit.serialize() for habit in habits]
+    return jsonify({"habits": habits_list}), 200
+    
+
+
+#endpoint para el hábito completado por el usuario
+
+@api.route('/complete_habit', methods=['POST'])
+def complete_habit():
+    request_body = request.get_json()
+    user_id = request_body.get('user_id')
+    habit_id = request_body.get('habit_id')
+    is_done = request_body.get("is_done")
+    
+    if not user_id or not habit_id:
+        return jsonify({"msg": "user_id y habit_id son requeridos"}), 400
+    
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"msg": "Usuario no encontrado"}), 404
+    
+    habit = Habits.query.get(habit_id)
+    if not habit:
+        return jsonify({"msg": "Hábito no encontrado"}), 404
+    
+    # Verificar si el hábito está en el listado de hábitos del usuario
+    user_habit = User_habit_list.query.filter_by(user_id=request_body["user_id"], habits_id=request_body["habit_id"]).first()
+    if not user_habit:
+        return jsonify({"error": "El hábito no pertenece al usuario"}), 400
+    
+    habit_record = HabitRecord(
+        user_id=user.id,
+        habits_id=habit.id,
+        date=date.today()
+    )
+    db.session.add(habit_record)
+    if is_done:
+        user.score = (user.score) + (habit.score)
+
+    db.session.commit()
+    
+    return jsonify({"message": "Hábito completado con éxito", "habit_record": habit_record.serialize(), "new_score": user.score}), 201
