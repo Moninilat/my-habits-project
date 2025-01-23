@@ -1,4 +1,6 @@
 
+/*------- Login ---------*/
+
 #login-form {
 
     display: flex;
@@ -16,7 +18,8 @@ input {
     border: 1px solid #fb7676;
     border-radius: 30px;
     padding-left: 30px;
-    margin: 15px;
+    margin-inline: 15px;
+    margin-block: 10px;
     font-weight: bold;
     font-style: italic;
     color: #fb7676;
@@ -50,5 +53,57 @@ input:focus{
     background-color: #2c2c2c;
     color: white;
     cursor: pointer;
+}
+
+
+
+/*--------- Sign up ----------*/
+
+
+
+.signup-container{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-container > h5 {
+
+    padding-inline: 25px;
+    word-wrap: break-word;
+    text-align: center;
+
+}
+
+.visibility {
+    position: absolute;
+    z-index: 10003;
+    transform: translateX(-180%);
+    background: none;
+    border: none;
+    padding-top: 30px;
+   
+}
+
+.css-1umw9bq-MuiSvgIcon-root {
+
+    color: #fb7676;
+}
+
+.terms{
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-inline: 15px;
+    word-wrap: break-word;
+}
+.terms-box {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }
 

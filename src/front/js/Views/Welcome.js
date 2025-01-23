@@ -16,9 +16,12 @@ export const Welcome = () => {
   const openSignUpModal = () => { setSignUpModal(true) };
   const closeSignUpModal = () => { setSignUpModal(false) };
 
+  // <SignUp />
+
+
   return (
-    <SignUp />
-    /* <div className="container">
+    
+    <div className="container">
       <div></div>
       <h1>Bienvenid@ a tu habbit tracker</h1>
       <div className="accesos">
@@ -34,8 +37,11 @@ export const Welcome = () => {
       </div>
       <div className="acceso-google">
         <p>O si lo prefieres:</p>
-        <button className="google">Google</button>
+        <button className="google" onClick="actions.google">Google</button>
       </div>
+
+
+{/* MODAL --- LOGIN */}
 
       <div className="modal-login"  
         isOpen={loginModal}
@@ -49,7 +55,21 @@ export const Welcome = () => {
           <Login loginAction={""}/>
         </div>
       </div>
+
+
+{/* MODAL --- SIGNUP */}
+
+      <div className="signup-login"  
+        isOpen={signUpModal}
+        style={signUpModal ? {display: "flex"} : {display: "none"}}
+        onRequestClose={closeSignUpModal}
+        >
+        
+        <div className='wrapper'>
+          <CloseIcon className="close" onClick={closeSignUpModal}/>
+          <SignUp loginAction={""}/>
+        </div>
+      </div>
     </div>
-    </> */
   );
 }
