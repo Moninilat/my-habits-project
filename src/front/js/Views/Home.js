@@ -7,12 +7,14 @@ import { Navbar } from "../component/navbar";
 import { Calendar } from "../component/calendar";
 import { HabitCard } from "../component/habitcard";
 import { NewHabitCard } from "../component/newhabitcard";
+import { Login } from "../component/Login-form";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div>
+			
 			<Calendar />
 			<HabitCard />
 			<NewHabitCard />
