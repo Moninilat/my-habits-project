@@ -21,8 +21,11 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                     <Navbar />
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Welcome />} path="/welcome" />
+                        <Route element={<Welcome />} path="/" />
+                        <Route element={<Home />} path="/home" />
+                        {/* <Route element={<Mis-habitos />} path="/mis-habitos" />
+                        <Route element={<Ranking />} path="/ranking" />
+                        <Route element={<Perfil />} path="/<int:id>/perfil" /> */}
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

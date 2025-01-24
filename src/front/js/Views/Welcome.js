@@ -57,7 +57,7 @@ export const Welcome = () => {
       </div>
 
 
-{/* MODAL --- SIGNUP */}
+{/* MODAL --------------- SIGNUP */}
 
       <div className="signup-login"  
         isOpen={signUpModal}
