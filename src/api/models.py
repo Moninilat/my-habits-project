@@ -83,7 +83,7 @@ class User_habit_list(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))   
     habits_id = db.Column(db.Integer, db.ForeignKey(Habits.id))
     habits = db.relationship("Habits", backref="User_habit_list")
-    is_done = db.Column(db.Boolean, nullable=False)
+    
 
     def __repr__(self):
         return '<User_habit_list %r>' % self.habits_id
@@ -93,7 +93,7 @@ class User_habit_list(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "habits_id": self.habits_id,
-            "is_done":self.is_done
+            "habit": self.habits.serialize() if self.habits else None
              # do not serialize the password, its a security breach
         }
     

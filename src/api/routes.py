@@ -91,29 +91,29 @@ def delete_user(user_id):
     return jsonify({"msg": "User deleted successfully"}), 200
 
 
-#endpoint para añadir/eliminar hábito de usuario
+#endpoint para añadir/eliminar hábito de usuario, el usuario lo sacaremos del token
 
-@api.route("/user/<int:id>/habits", methods=["POST", "GET", "DELETE"])
-def manage_user_habits():
+@api.route("/user/<int:user_id>/habits", methods=["POST", "GET", "DELETE"])
+def manage_user_habits(user_id):
     if request.method == "POST": 
         request_body = request.get_json()
-        exist = User_habit_list.query.filter_by(user_id=request_body["user_id"], habit_id=request_body["habit_id"]).first()
+        exist = User_habit_list.query.filter_by(user_id=user_id, habits_id=request_body["habit_id"]).first()
         if exist:
             return jsonify({"msg": "Habit already added"}), 400
         
        
-        new_habit = User_habit_list(user_id=request_body["user_id"], habit_id=request_body["habit_id"])
+        new_habit = User_habit_list(user_id=user_id, habits_id=request_body["habit_id"])
         db.session.add(new_habit)
         db.session.commit()
         return jsonify(new_habit.serialize()), 200
     
     if request.method == "GET": 
-        User_habit_list = User_habit_list.query.all()
-        return jsonify([habit.serialize() for habit in User_habit_list]), 200
+        user_habit_list = User_habit_list.query.filter_by(user_id=user_id).all()
+        return jsonify([habit.serialize() for habit in user_habit_list]), 200
     
     if request.method == "DELETE":
         request_body = request.get_json()
-        habit = User_habit_list.query.filter_by(user_id=request_body["user_id"], habit_id=request_body["habit_id"]).first()
+        habit = User_habit_list.query.filter_by(user_id=user_id, habits_id=request_body["habit_id"]).first()
         if habit:
             db.session.delete(habit)
             db.session.commit()
@@ -146,7 +146,7 @@ def complete_habit():
     request_body = request.get_json()
     user_id = request_body.get('user_id')
     habit_id = request_body.get('habit_id')
-    is_done = request_body.get("is_done")
+    
     
     if not user_id or not habit_id:
         return jsonify({"msg": "user_id y habit_id son requeridos"}), 400
@@ -164,15 +164,16 @@ def complete_habit():
     if not user_habit:
         return jsonify({"error": "El hábito no pertenece al usuario"}), 400
     
-    habit_record = HabitRecord(
+    habit_record = Habit_records(
         user_id=user.id,
         habits_id=habit.id,
         date=date.today()
     )
     db.session.add(habit_record)
-    if is_done:
-        user.score = (user.score) + (habit.score)
+    
 
     db.session.commit()
     
-    return jsonify({"message": "Hábito completado con éxito", "habit_record": habit_record.serialize(), "new_score": user.score}), 201
+    return jsonify({"message": "Hábito completado con éxito", "habit_record": habit_record.serialize() }), 201
+
+#encriptar la contraseña con flask y crear el token
