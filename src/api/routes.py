@@ -139,7 +139,7 @@ def get_all_habits():
     
 
 
-#endpoint para el hábito completado por el usuario
+#endpoint para el hábito completado por el usuario, el usuario hay que buscarlo con el token
 
 @api.route('/complete_habit', methods=['POST'])
 def complete_habit():
@@ -156,6 +156,7 @@ def complete_habit():
         return jsonify({"msg": "Usuario no encontrado"}), 404
     
     habit = Habits.query.get(habit_id)
+
     if not habit:
         return jsonify({"msg": "Hábito no encontrado"}), 404
     
@@ -169,6 +170,9 @@ def complete_habit():
         habits_id=habit.id,
         date=date.today()
     )
+    serialize_user=user.serialize()
+    serialize_habit=habit.serialize()
+    user.score=serialize_user["score"]+serialize_habit["score"]
     db.session.add(habit_record)
     
 

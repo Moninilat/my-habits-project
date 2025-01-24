@@ -13,7 +13,7 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     user_habit_list = db.relationship("User_habit_list", backref="user")
     habit_records = db.relationship("Habit_records", backref="user_records")
-    score = db.Column(db.Integer, unique=False)
+    score = db.Column(db.Integer, unique=False, default=0)
 
     def __repr__(self):
         return '<User %r>' % self.first_name
@@ -24,8 +24,10 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
+            "score": self.score,
             "user_habit_list": [habit.serialize() for habit in self.user_habit_list],
-            "habit_records": [habit.serialize() for habit in self.habit_records]
+            "habit_records": [habit.serialize() for habit in self.habit_records],
+
         }
     
 
@@ -98,4 +100,4 @@ class User_habit_list(db.Model):
         }
     
 
-    #añadir un campo de si está hecho y si el usuario lo hizo se ponga como True para que se guarde lo que el usuario ha hecho en la BBDD
+    
