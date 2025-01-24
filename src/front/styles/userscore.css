@@ -1,0 +1,51 @@
+.user_score_component {
+    display: flex;
+    justify-content: space-between;
+    width: 400px; 
+    align-items: center;
+    font-family: Arial, sans-serif;
+    color: #d57373; 
+    margin: 15px;
+  }
+
+.user_score_box {
+    display: flex;
+   
+}
+
+.user_score_circle {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+.user_score_text {
+    margin-left: 10px; 
+  }
+  
+.user_score_name {
+    font-size: 16px; 
+    font-weight: bold;
+  }
+  
+.user_score_city {
+    font-size: 14px; 
+  }
+
+.user_score_pill {
+    border: 1px solid #d57373;
+    width: 65px;
+    height: 40px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+p{
+    margin: auto;
+    font-size: 10px;
+}
+
+h5 {
+    margin-bottom:0px;
+    margin-right: 3px;
+}
