@@ -7,14 +7,13 @@ class User(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(120), unique=True, nullable=False)
-    last_name = db.Column(db.String(120), unique=True, nullable=False)
+    first_name = db.Column(db.String(120), nullable=False)
+    last_name = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    creation = db.Column(db.Date, unique=False, nullable=False)
-    user_habits_list = db.relationship("User_habits_list", backref="user")
+    user_habit_list = db.relationship("User_habit_list", backref="user")
     habit_records = db.relationship("Habit_records", backref="user_records")
-    score = db.Column(db.Integer, unique=False)
+    score = db.Column(db.Integer, unique=False, default=0)
 
     def __repr__(self):
         return '<User %r>' % self.first_name
@@ -25,9 +24,10 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
-            "creation": self.creation.strftime('%Y-%m-%DT'),
-            "user_habits_list": [habit.serialize() for habit in self.user_habits_list]
-            #habit_records
+            "score": self.score,
+            "user_habit_list": [habit.serialize() for habit in self.user_habit_list],
+            "habit_records": [habit.serialize() for habit in self.habit_records],
+
         }
     
 
@@ -62,6 +62,7 @@ class Habit_records(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"))   
     habits_id = db.Column(db.Integer, db.ForeignKey("Habits.id"))
     habits=db.relationship("Habits", backref="habit_records")
+    
 
     def __repr__(self):
         return '<habit_records %r>' % self.habits_id
@@ -76,25 +77,27 @@ class Habit_records(db.Model):
 
 
 
-class User_habits_list(db.Model):
-    __tablename__ = 'User_habits_list'
+class User_habit_list(db.Model):
+    __tablename__ = 'User_habit_list'
 
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))   
     habits_id = db.Column(db.Integer, db.ForeignKey(Habits.id))
-    habits = db.relationship("Habits", backref="User_habits_list")
+    habits = db.relationship("Habits", backref="User_habit_list")
     
 
     def __repr__(self):
-        return '<User_habits_list %r>' % self.habits_id
+        return '<User_habit_list %r>' % self.habits_id
 
     def serialize(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
             "habits_id": self.habits_id,
-            "duration": self.duration,
-            "completed": self.completed
-            # do not serialize the password, its a security breach
+            "habit": self.habits.serialize() if self.habits else None
+             # do not serialize the password, its a security breach
         }
+    
+
+    
