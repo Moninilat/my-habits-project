@@ -6,6 +6,8 @@ from api.models import db, User, User_habit_list, Habit_records, Habits
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from datetime import date
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+
 
 api = Blueprint('api', __name__)
 
@@ -52,8 +54,8 @@ def login():
    if not user:
       return jsonify ({"msg":"Email and password are incorrect"}), 401
   
-#    token = create_access_token(identity=user.email)
-#    return jsonify({"msg":"logged", "token": token})
+   token = create_access_token(identity=user.email)
+   return jsonify({"msg":"logged", "token": token})
    
 
 @api.route('/user/<int:user_id>', methods=['PUT'])
@@ -93,7 +95,7 @@ def delete_user(user_id):
 
 #endpoint para añadir/eliminar hábito de usuario, el usuario lo sacaremos del token
 
-@api.route("/user/<int:user_id>/habits", methods=["POST", "GET", "DELETE"])
+@api.route("/user/habits", methods=["POST", "GET", "DELETE"])
 def manage_user_habits(user_id):
     if request.method == "POST": 
         request_body = request.get_json()
@@ -108,6 +110,13 @@ def manage_user_habits(user_id):
         return jsonify(new_habit.serialize()), 200
     
     if request.method == "GET": 
+        @jwt_required()
+        def validate_token():
+            token_id = get_jwt_identity()
+            user=User.query.filter_by(id = token_id).first()
+            if user is None:
+                return jsonify({"msg":"user not found"}),404
+            return jsonify({"msg":"User authenticated"}),200
         user_habit_list = User_habit_list.query.filter_by(user_id=user_id).all()
         return jsonify([habit.serialize() for habit in user_habit_list]), 200
     
