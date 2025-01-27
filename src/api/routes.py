@@ -40,7 +40,8 @@ def signup():
    db.session.add(new_user)
    db.session.commit()
 
-   return jsonify({"msg":"User created"}), 200
+   token = create_access_token(identity=user.email)
+   return jsonify({"msg":"User created", "token": token}), 200
 
 @api.route('/login', methods=['POST'])
 def login():
@@ -56,7 +57,7 @@ def login():
       return jsonify ({"msg":"Email and password are incorrect"}), 401
   
    token = create_access_token(identity=user.email)
-   return jsonify({"msg":"logged", "token": token})
+   return jsonify({"msg":"logged", "token": token}), 200
    
 
 @api.route('/user/', methods=['PUT'])
