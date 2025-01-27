@@ -164,29 +164,30 @@ def get_all_habits():
     
 
 
-#endpoint para el hábito completado por el usuario, el usuario hay que buscarlo con el token
+#endpoint para el hábito completado por el usuario, al usuario lo buscamos con el token
 
 @api.route('/complete_habit', methods=['POST'])
+@jwt_required()
 def complete_habit():
+    token_email = get_jwt_identity()
+    user=User.query.filter_by(email = token_email).first()
+    if user is None:
+         return jsonify({"msg":"user not found"}),404
     request_body = request.get_json()
-    user_id = request_body.get('user_id')
     habit_id = request_body.get('habit_id')
     
     
-    if not user_id or not habit_id:
-        return jsonify({"msg": "user_id y habit_id son requeridos"}), 400
+    if not habit_id:
+        return jsonify({"msg": "Se requiere el habit_id"}), 400
     
-    user = User.query.get(user_id)
-    if not user:
-        return jsonify({"msg": "Usuario no encontrado"}), 404
-    
+     
     habit = Habits.query.get(habit_id)
 
     if not habit:
         return jsonify({"msg": "Hábito no encontrado"}), 404
     
     # Verificar si el hábito está en el listado de hábitos del usuario
-    user_habit = User_habit_list.query.filter_by(user_id=request_body["user_id"], habits_id=request_body["habit_id"]).first()
+    user_habit = User_habit_list.query.filter_by(user_id=user.id, habits_id=habit_id).first()
     if not user_habit:
         return jsonify({"error": "El hábito no pertenece al usuario"}), 400
     existin_record = Habit_records.query.filter_by(user_id=user.id, habits_id=habit.id, date=date.today()).first()
