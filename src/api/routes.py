@@ -85,6 +85,8 @@ def update_user():
     db.session.commit()
     return jsonify({"msg": "User updated successfully"}), 200
 
+
+
 #veficar esta ruta si nos puede dar problemas, habría que poner el is_active, mejor deshabilitarlo
 @api.route('/user/', methods=['DELETE'])
 @jwt_required()
@@ -92,12 +94,20 @@ def delete_user():
     token_email = get_jwt_identity()
     user=User.query.filter_by(email = token_email).first()
     if user is None:
-         return jsonify({"msg":"user not found"}),404
+         return jsonify({"msg":"User not found"}),404
    
     db.session.delete(user)
     db.session.commit()
     return jsonify({"msg": "User deleted successfully"}), 200
 
+@api.route('/user/', methods=['GET'])
+@jwt_required()
+def get_user():
+    token_email = get_jwt_identity()
+    user=User.query.filter_by(email = token_email).first()
+    if user is None:
+         return jsonify({"msg":"User not found"}),404
+    return jsonify(user.serialize()), 200
 
 #endpoint para añadir/eliminar hábito de usuario, el usuario lo sacaremos del token
 
