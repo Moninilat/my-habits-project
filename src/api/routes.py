@@ -7,10 +7,13 @@ from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from datetime import date
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
-from flask_bcrypt import Bcrypt
+import bcrypt 
+
+salt = bcrypt.gensalt()
 
 
 api = Blueprint('api', __name__)
+
 
 # Allow CORS requests to this API
 CORS(api)
@@ -27,7 +30,6 @@ def handle_hello():
 
 
 
-
 @api.route('/signup', methods=['POST'])
 def signup():
  
@@ -36,30 +38,42 @@ def signup():
    user = User.query.filter_by(email=request_body["email"]).first()
    if user:
       return jsonify ({"msg":"User already registered"}), 400
-   new_user = User(first_name=request_body["first_name"], last_name=request_body["last_name"], email=request_body["email"], password=request_body["password"])
+   
+   request_body = request.get_json()
+   password= request_body.get("password")
+   pw_hash = bcrypt.hashpw(password.encode("utf-8"), salt)
+   new_user = User(first_name=request_body["first_name"], last_name=request_body["last_name"], email=request_body["email"], password=pw_hash.decode("utf-8"))
    db.session.add(new_user)
    db.session.commit()
 
-   token = create_access_token(identity=user.email)
+   token = create_access_token(identity=new_user.email)
+   print(token)
    return jsonify({"msg":"User created", "token": token}), 200
 
 @api.route('/login', methods=['POST'])
 def login():
    request_body = request.get_json()
    email = request_body.get("email")
-   password= request_body.get("password") 
+   password= request_body.get("password")
+   
+   
+
 
    if not email or not password:
       return jsonify({"msg": "All fields are required"}), 400
-   user = User.query.filter_by(email=email, password=password).first()
+   user = User.query.filter_by(email=email).first()
+   
 
    if not user:
       return jsonify ({"msg":"Email and password are incorrect"}), 401
-  
-   token = create_access_token(identity=user.email)
-   return jsonify({"msg":"logged", "token": token}), 200
    
-
+   if bcrypt.checkpw(password.encode("utf-8"), user.password.encode("utf-8")):
+       token = create_access_token(identity=user.email)
+       return jsonify({"msg":"logged", "token": token}), 200
+   
+   return jsonify ({"msg":"Email and password are incorrect"}), 401
+   
+#endpoint para que el usuario modifique sus datos
 @api.route('/user/', methods=['PUT'])
 @jwt_required()
 def update_user():
@@ -87,14 +101,22 @@ def update_user():
 
 
 
-#veficar esta ruta si nos puede dar problemas, habría que poner el is_active, mejor deshabilitarlo
+#veficar esta ruta si nos puede dar problemas, habría que eliminar en cascada
 @api.route('/user/', methods=['DELETE'])
 @jwt_required()
 def delete_user():
     token_email = get_jwt_identity()
+
     user=User.query.filter_by(email = token_email).first()
     if user is None:
          return jsonify({"msg":"User not found"}),404
+   
+    habit_records = Habit_records.query.filter_by(user_id=user.id).all()
+    for record in habit_records:
+        db.session.delete(record)
+    user_habits = User_habit_list.query.filter_by(user_id=user.id).all()
+    for habit in user_habits:
+        db.session.delete(habit)
    
     db.session.delete(user)
     db.session.commit()
@@ -186,7 +208,7 @@ def complete_habit():
     if not habit:
         return jsonify({"msg": "Hábito no encontrado"}), 404
     
-    # Verificar si el hábito está en el listado de hábitos del usuario
+    # Verificamos si el hábito está en el listado de hábitos del usuario
     user_habit = User_habit_list.query.filter_by(user_id=user.id, habits_id=habit_id).first()
     if not user_habit:
         return jsonify({"error": "El hábito no pertenece al usuario"}), 400
@@ -208,4 +230,4 @@ def complete_habit():
     
     return jsonify({"message": "Hábito completado con éxito", "habit_record": habit_record.serialize() }), 201
 
-#encriptar la contraseña con flask y crear el token
+#falta encriptar la contraseña
