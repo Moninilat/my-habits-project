@@ -56,14 +56,10 @@ def login():
    email = request_body.get("email")
    password= request_body.get("password")
    
-   
-
-
    if not email or not password:
       return jsonify({"msg": "All fields are required"}), 400
    user = User.query.filter_by(email=email).first()
    
-
    if not user:
       return jsonify ({"msg":"Email and password are incorrect"}), 401
    
@@ -73,6 +69,7 @@ def login():
    
    return jsonify ({"msg":"Email and password are incorrect"}), 401
    
+
 #endpoint para que el usuario modifique sus datos
 @api.route('/user/', methods=['PUT'])
 @jwt_required()
@@ -102,7 +99,7 @@ def update_user():
 
 
 
-#eliminar usuario, elmina en cacada, primero los records, luego su listado y por último el usuario
+#endpoint para eliminar usuario, elimina en cascada, primero los records, luego su listado y por último el usuario
 @api.route('/user/', methods=['DELETE'])
 @jwt_required()
 def delete_user():
@@ -123,6 +120,7 @@ def delete_user():
     db.session.commit()
     return jsonify({"msg": "User deleted successfully"}), 200
 
+#endpoint para traerte al usuario con el token
 @api.route('/user/', methods=['GET'])
 @jwt_required()
 def get_user():
@@ -186,7 +184,6 @@ def get_all_habits():
     return jsonify({"habits": habits_list}), 200
     
 
-
 #endpoint para el hábito completado por el usuario, al usuario lo buscamos con el token
 
 @api.route('/complete_habit', methods=['POST'])
@@ -231,4 +228,3 @@ def complete_habit():
     
     return jsonify({"message": "Hábito completado con éxito", "habit_record": habit_record.serialize() }), 201
 
-#falta encriptar la contraseña
