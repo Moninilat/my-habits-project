@@ -90,7 +90,8 @@ def update_user():
     if email:
         user.email = email
     if password:
-        user.password = password
+        pw_hash = bcrypt.hashpw(password.encode("utf-8"), salt)
+        user.password = pw_hash.decode("utf-8")
     if first_name:
         user.first_name = first_name
     if last_name:
@@ -101,7 +102,7 @@ def update_user():
 
 
 
-#veficar esta ruta si nos puede dar problemas, habría que eliminar en cascada
+#eliminar usuario, elmina en cacada, primero los records, luego su listado y por último el usuario
 @api.route('/user/', methods=['DELETE'])
 @jwt_required()
 def delete_user():
