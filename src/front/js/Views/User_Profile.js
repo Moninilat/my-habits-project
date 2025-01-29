@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
+import Button from '@mui/material/Button';
+
 
 export const UserProfile = () => {
     const [user, setUser] = useState({});
@@ -29,7 +32,7 @@ console.log(user);
     }
         const handleLogout = () => {
         localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/");
     };
 
 useEffect(()=>{
@@ -45,21 +48,21 @@ useEffect(()=>{
                     <div className="profile-image"></div>
                     <div className="profile-info">
                         <h2>{user.first_name}</h2>
-                        <p className="profile-phrase">Frase perfil</p>
+                        <h5 className="profile-phrase">“Frase de perfil”</h5>
                     </div>
                 </div>
 
-                <div className="profile-options">
+                <div className="profile-options"  style={{ display: "flex", flexDirection: "column", gap: "10px"}}>
                     <Link to="/profile-details" className="profile-option">Datos de perfil</Link>
                     <Link to="/change-password" className="profile-option">Contraseña</Link>
                     <Link to="/support" className="profile-option">Soporte</Link>
-                    <Link to="/delete-account" className="profile-option delete-option">Eliminar cuenta</Link>
+                    <Link to="/delete-account" className="profile-option delete-option">Eliminar cuenta<HeartBrokenIcon /></Link>
                 </div>
             </div>
 
             <div className="logout">
-                <LogoutIcon />
-                <Link to="/logout">Cerrar sesión</Link>
+            <Button href="#text-buttons"onClick={handleLogout}>Cerrar sesión <LogoutIcon /></Button>
+               
             </div>
         </div>
     );

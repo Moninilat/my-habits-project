@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import "../../styles/Log-in.css";
+import { useNavigate } from "react-router-dom";
 
 export const Login = ({ loginAction }) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
   const loginUser = async () => {
     const response = await fetch(`${process.env.BACKEND_URL}/api/login`, {
       method: "POST",
@@ -23,8 +25,8 @@ export const Login = ({ loginAction }) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    // loginAction(username, password);
-    loginUser()
+     loginUser()
+     navigate("/home")
   }
 
   return (
