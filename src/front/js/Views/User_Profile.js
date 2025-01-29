@@ -8,36 +8,47 @@ import Button from '@mui/material/Button';
 
 export const UserProfile = () => {
     const [user, setUser] = useState({});
+    const token = localStorage.getItem("token");
     const navigate = useNavigate()
-console.log(user);
+    const [response, setresponse] = useState(null)
 
-    const getUser = async () => {
-
-       const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
+    const validateToken = async () => {
+        const resp = await fetch(`${process.env.BACKEND_URL}api/private`, {
             method: "GET",
             headers: {
-                "Content-type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`
-            },
-            
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            }
+
         })
 
-        if (!response.ok) {
-            throw ("Error al obtener los datos del usuario");
-        }else {
-            const data=await response.json()
-            console.log(data);
-            setUser(data)
-        }
+        if (!resp.ok) {
+            navigate("/")
+        } else {
+            const data = await resp.json();
+            setresponse(data)
+        };
+
     }
-        const handleLogout = () => {
+
+
+
+    useEffect(() => {
+
+        if (!token) {
+            navigate("/")
+        }
+        validateToken()
+
+    }, [])
+
+
+    const handleLogout = () => {
         localStorage.removeItem("token");
         navigate("/");
     };
 
-useEffect(()=>{
-    getUser()
-}, [])
+    
 
     return (
         <div className="profile-container">
@@ -52,7 +63,7 @@ useEffect(()=>{
                     </div>
                 </div>
 
-                <div className="profile-options"  style={{ display: "flex", flexDirection: "column", gap: "10px"}}>
+                <div className="profile-options" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                     <Link to="/profile-details" className="profile-option">Datos de perfil</Link>
                     <Link to="/change-password" className="profile-option">Contraseña</Link>
                     <Link to="/support" className="profile-option">Soporte</Link>
@@ -61,8 +72,8 @@ useEffect(()=>{
             </div>
 
             <div className="logout">
-            <Button href="#text-buttons"onClick={handleLogout}>Cerrar sesión <LogoutIcon /></Button>
-               
+                <Button href="#text-buttons" onClick={handleLogout}>Cerrar sesión <LogoutIcon /></Button>
+
             </div>
         </div>
     );

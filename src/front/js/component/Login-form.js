@@ -26,7 +26,7 @@ export const Login = ({ loginAction }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
      loginUser()
-     navigate("/home")
+     navigate("/")
   }
 
   return (
