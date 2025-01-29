@@ -29,20 +29,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 							method: 'GET',
 							headers: {
 								'Content-Type': 'application/json',
-								'Authorization': `Bearer ${token}`
 							}
 						}
 					)
-					if (!user.ok) return Throw('error get user')
-					console.log('user', user)
-					const userData = await user.json()
-					setStore({ user: userData });
-					return
+					if (!resp.ok) {
+						throw new Error("Error al obtener la lista de usuarios");
+					}
 
-				} catch {
-					console.log('error')
+					const data = await resp.json();
+					console.log("Lista de usuarios:", data);
+					
+					setStore({ habits: data.user });
+				} catch (error) {
+					console.log("Error al obtener los usuarios", error);
 				}
 			},
+
 			getHabits: async () => {
 				try {
 					const resp = await fetch(`${process.env.BACKEND_URL}/api/habits`, {
