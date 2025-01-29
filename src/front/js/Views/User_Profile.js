@@ -8,47 +8,37 @@ import Button from '@mui/material/Button';
 
 export const UserProfile = () => {
     const [user, setUser] = useState({});
-    const token = localStorage.getItem("token");
     const navigate = useNavigate()
-    const [response, setresponse] = useState(null)
+    console.log(user);
 
-    const validateToken = async () => {
-        const resp = await fetch(`${process.env.BACKEND_URL}api/private`, {
+    const getUser = async () => {
+
+        const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token
-            }
+                "Content-type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
 
         })
 
-        if (!resp.ok) {
-            navigate("/")
+        if (!response.ok) {
+            // throw ("Error al obtener los datos del usuario")
+            navigate("/");
         } else {
-            const data = await resp.json();
-            setresponse(data)
-        };
-
-    }
-
-
-
-    useEffect(() => {
-
-        if (!token) {
-            navigate("/")
+            const data = await response.json()
+            console.log(data);
+            setUser(data)
         }
-        validateToken()
-
-    }, [])
-
-
+    }
     const handleLogout = () => {
         localStorage.removeItem("token");
         navigate("/");
     };
 
-    
+    useEffect(() => {
+        getUser()
+    }, [])
 
     return (
         <div className="profile-container">
