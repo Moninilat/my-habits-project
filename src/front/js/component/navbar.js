@@ -37,9 +37,7 @@ export const Navbar = () => {
                         </button>
                         <div className="burger-content" >
                            <ul>
-                                <li>
-                                    <BathroomOutlinedIcon /><Link to="/mis-habitos">Mis hábitos</Link>
-                                </li>
+                                
                                 <li>
                                     <InsertChartOutlinedIcon /><Link to="/ranking">Ranking</Link>
                                 </li>
@@ -66,8 +64,7 @@ export const Navbar = () => {
                         <i class="fa-brands fa-google"></i><span className="complete-menu-title">Proyecto Ninja</span>
                     </div>
                     <div className="menu">
-                        <Link to="/mis-habitos">Mis hábitos</Link>
-                        <Link to="/habit-tracker">Ranking</Link>
+                        <Link to="/ranking"></Link>
                         <Link to="/perfil">Perfil</Link>
                         <button className="logout-button"><Link to="/logout">Logout</Link></button>
                     </div>
