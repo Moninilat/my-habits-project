@@ -22,7 +22,7 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                     <Navbar />
                     <Routes>
-                        <Route element={<Welcome />} path="/" />
+                        <Route element={<Welcome />} path="/welcome" />
                         <Route element={<Home />} path="/home" />
                         <Route element={<Ranking />} path="/ranking" />
                         {/* <Route element={<Mis-habitos />} path="/mis-habitos" />
