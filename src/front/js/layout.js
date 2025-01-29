@@ -8,6 +8,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Welcome } from "./Views/Welcome.js";
 import { Ranking } from "./Views/Ranking.js";
+import { UserProfile } from "./Views/User_Profile.js"
 
 //create your first component
 const Layout = () => {
@@ -22,7 +23,7 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                     <Navbar />
                     <Routes>
-                        <Route element={<Welcome />} path="/welcome" />
+                        <Route element={<Welcome />} path="/" />
                         <Route element={<Home />} path="/home" />
                         <Route element={<Ranking />} path="/ranking" />
                         <Route element={<UserProfile />} path="/perfil" />
