@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../../styles/Styles.css";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import BathroomOutlinedIcon from '@mui/icons-material/BathroomOutlined';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -11,9 +10,16 @@ import { Context } from "../store/appContext";
 
 
 export const Navbar = () => {
+
+    const navigate = useNavigate();
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
     const [isOpen, setIsOpen] = useState(false);
-    const { store, actions } = useContext(Context);
+
+    const handleNavigate = (e) => {
+        e.preventDefault();
+         navigate("/home")
+      }
+
     const handleResize = () => {
         setIsMobile(window.innerWidth <= 800);
     };
@@ -40,10 +46,7 @@ export const Navbar = () => {
                         <div className="burger-content" >
                            <ul>
                                 <li>
-                                    <BathroomOutlinedIcon /><Link to="/mis-habitos">Mis hábitos</Link>
-                                </li>
-                                <li>
-                                    <InsertChartOutlinedIcon /><Link to="/habit-tracker">Habit Tracker</Link>
+                                    <InsertChartOutlinedIcon /><Link to="/ranking">Ranking</Link>
                                 </li>
                                 <li>
                                     <AccountCircleOutlinedIcon /><Link to="/perfil">Perfil</Link>
@@ -65,11 +68,14 @@ export const Navbar = () => {
             ) : (
                 <div className="complete-menu">
                     <div className="logo">
-                        <i className="fa-brands fa-google"></i><span className="complete-menu-title">{store.user.first_name}</span>
+                        <i class="fa-brands fa-google"
+                           onClick={handleNavigate}
+                           style={{cursor:"pointer"}}
+                           ></i><span className="complete-menu-title">Proyecto Ninja</span>
                     </div>
                     <div className="menu">
-                        <Link to="/Home">Home</Link>
-                        <Link to="/Ranking">Ranking</Link>
+                        <Link to="/ranking">Ranking</Link>
+                        <Link to="/perfil">Perfil</Link>
                         <button className="logout-button"><Link to="/logout">Logout</Link></button>
                     </div>
                 </div>

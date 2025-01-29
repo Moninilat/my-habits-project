@@ -8,7 +8,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Welcome } from "./Views/Welcome.js";
 import { Ranking } from "./Views/Ranking.js";
-import { User_Profile } from "./Views/User_Profile.js";
+import { UserProfile } from "./Views/User_Profile.js";
 
 
 //create your first component
@@ -27,7 +27,7 @@ const Layout = () => {
                         <Route element={<Welcome />} path="/" />
                         <Route element={<Home />} path="/home" />
                         <Route element={<Ranking />} path="/ranking" />
-                        {/* <Route element={<User_Profile />} path="/<int:id>/perfil" /> */}
+                        <Route element={<UserProfile />} path="/perfil" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
