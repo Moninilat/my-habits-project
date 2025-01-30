@@ -1,16 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			user: 
-				{
-					"id": 1,
-					"first_name": "Erik",
-					"last_name": "Martin",
-					"email": "test@gmail.com",
-					"score": 20,
-					"city": "Mataró"
-				},
-
+			user: null,
 			ranking: [],
 			habits: [],
 			user_habits: []
@@ -21,10 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// user_habits: []
 		},
 		actions: {
-			getUser: async () => {
-				const token = localStorage.getItem('token');
+			getUser: async () => { 
 				try {
-					const user = await fetch(`${process.env.BACKEND_URL}api/user`,
+					const resp = await fetch(`${process.env.BACKEND_URL}api/user/`,
 						{
 							method: 'GET',
 							headers: {
@@ -37,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 					const data = await resp.json();
-					console.log("Lista de usuarios:", data);
+					console.log("usuarios:", data);
 					
 					setStore({ habits: data.user });
 				} catch (error) {

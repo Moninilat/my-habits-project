@@ -24,6 +24,8 @@ const injectContext = PassedComponent => {
 		useEffect(() => {
 
 			state.actions.getHabits();
+			state.actions.getUser();
+			
 
 			/**
 			 * EDIT THIS!

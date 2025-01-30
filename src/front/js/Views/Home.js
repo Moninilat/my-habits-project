@@ -10,7 +10,8 @@ export const Home = () => {
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
-        actions.getHabits(); 
+        actions.getHabits();
+        actions.getUser();
     }, []);
 
     return (
