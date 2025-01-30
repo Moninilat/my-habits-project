@@ -6,6 +6,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { Context } from "../store/appContext";
+
 
 export const Navbar = () => {
 
