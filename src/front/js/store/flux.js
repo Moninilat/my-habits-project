@@ -167,7 +167,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error al obtener los hábitos", error);
 				}
+			},
+			login: (token) => {
+				localStorage.setItem("token", token)
+				setStore({
+					token:token
+				})
+			},
+			logout: () => {
+				localStorage.removeItem("token")
+				setStore({
+					token:null
+				})
+			},
+			updateToken:()=>{
+				console.log(localStorage.getItem("token"));
+				
+				if (localStorage.getItem("token")){
+					setStore({token:localStorage.getItem("token")})
+				}
+				console.log(getStore().token);
+				
 			}
+
+
 		}
 	}
 };
