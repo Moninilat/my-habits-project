@@ -1,12 +1,10 @@
 import "../../styles/smallhabit.css";
-import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../store/appContext";
+import React from "react";
 
-export const SmallHabit = () => {
-    const { store, actions } = useContext(Context);
+export const SmallHabit = ({ habit }) => {
     return (
         <div className="small_habit_component">
-            <div className="small_habit_title">{store.habits.name}</div>
+            <div className="small_habit_title">{habit.name}</div>
             <div className="small_habit_box">
                 <div className="small_habit_button"><i className="fa-solid fa-plus"></i></div>
             </div>

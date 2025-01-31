@@ -25,7 +25,8 @@ const injectContext = PassedComponent => {
 
 			state.actions.getHabits();
 			state.actions.getUser();
-			state.actions.updateToken()
+			state.actions.getUserHabits();
+			state.actions.updateToken();
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

@@ -1,11 +1,11 @@
 import "../../styles/habitcard.css";
 import React from "react";
 
-export const HabitCard = ({ habit }) => {
-    console.log("Habit props:", habit);
+export const HabitCard = ({ userhabit }) => {
+    console.log("Habit props:", userhabit);
     return (
         <div className="habit_component">
-            <div className="habit_title">{habit.name}</div>
+            <div className="habit_title">{userhabit.name}</div>
             <div className="habit_box">
                 <div className="habit_status">¿Completo?</div>
                 <div className="habit_button"></div>

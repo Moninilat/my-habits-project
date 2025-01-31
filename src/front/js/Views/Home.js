@@ -12,19 +12,25 @@ export const Home = () => {
     useEffect(() => {
         actions.getHabits();
         actions.getUser();
+        actions.getUserHabits();
     }, []);
 
     return (
         <div>
-            <SmallHabit />
+          
+            {/* <User user={store.user} />  */}
+
             {
                 store.habits.map((habit, index) => {
-                    return <HabitCard key={index} habit={habit} />;
+                    return <SmallHabit key={index} habit={habit} />;
                 })
             }
-            <NewHabitCard />
-            <User />
-            <UserScore />
+
+            {/* {
+                store.user_habits.map((user_habits, index) => {
+                    return <HabitCard key={index} user_habit={user_habits} />;
+                })
+            } */}
         </div>
     );
 }
