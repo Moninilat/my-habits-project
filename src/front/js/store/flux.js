@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			googleLogin: async () => {
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}/api/google-login`, {
+					const resp = await fetch(`${process.env.BACKEND_URL}api/google-login`, {
 						method: "GET"
 					});
 
@@ -128,7 +128,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getHabits: async () => {
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}/api/habits`, {
+					const resp = await fetch(`${process.env.BACKEND_URL}api/habits`, {
 						method: "GET",
 						headers: {
 							"Content-Type": "application/json"
@@ -154,7 +154,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					try {
 
-						const resp = await fetch(`${process.env.BACKEND_URL}/api/user/habits`, {
+						const resp = await fetch(`${process.env.BACKEND_URL}api/user/habits`, {
 							method: "GET",
 							headers: {
 								Authorization: `Bearer ${token}`
@@ -179,7 +179,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const userHabits = store.user_habits || [];
 				if (!userHabits.includes(habit)) {
-					fetch(`${process.env.BACKEND_URL}/api/user/habits`, {
+					fetch(`${process.env.BACKEND_URL}api/user/habits`, {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
