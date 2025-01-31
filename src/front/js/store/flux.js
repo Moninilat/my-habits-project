@@ -14,24 +14,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			getUser: async () => { 
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}api/user/`,
-						{
-							method: 'GET',
-							headers: {
-								'Content-Type': 'application/json',
-							}
+					const resp = await fetch(`${process.env.BACKEND_URL}api/user/`, {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${localStorage.getItem('token')}`
 						}
-					)
+					});
 					if (!resp.ok) {
 						throw new Error("Error al obtener la lista de usuarios");
 					}
 
 					const data = await resp.json();
-					console.log("usuarios:", data);
+					console.log("usuario:", data);
 					
-					setStore({ habits: data.user });
+					setStore({ user: data });
 				} catch (error) {
-					console.log("Error al obtener los usuarios", error);
+					console.log("Error al obtener el usuario", error);
 				}
 			},
 
@@ -163,9 +162,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const data = await resp.json();
 					console.log("Hábitos del usuario:", data);
-					setStore({ habits: data });
+					setStore({ user_habits: data.user_habits });
 				} catch (error) {
-					console.log("Error al obtener los hábitos", error);
+					console.log("Error al obtener los hábitos del usuario", error);
 				}
 			},
 			login: (token) => {

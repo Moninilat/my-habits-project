@@ -100,7 +100,7 @@ export const Navbar = () => {
                 <div className="complete-menu">
                     <div className="logo">
                         <i className="fa-brands fa-google"
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate("/home")}
                             style={{ cursor: "pointer" }}
                         ></i>
                         <span className="complete-menu-title">Proyecto Ninja</span>
