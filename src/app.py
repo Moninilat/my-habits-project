@@ -74,3 +74,8 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0  # avoid cache memory
     return response
+
+
+if __name__ == '__main__':
+    PORT = int(os.environ.get('PORT', 3001))
+    app.run(host='0.0.0.0.', port=3000, debug=True)

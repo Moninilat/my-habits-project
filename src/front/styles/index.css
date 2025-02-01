@@ -1,3 +1,8 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
+
+
+.main-container {
+
+    height: 100vh;
+    /* display: flex;
+    flex-direction: column; */
+}

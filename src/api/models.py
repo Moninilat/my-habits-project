@@ -5,13 +5,12 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__ = 'User'
 
-
+#agregar ciudad y género
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(120), nullable=False)
     last_name = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(1000), unique=False, nullable=False)
-    
     user_habit_list = db.relationship("User_habit_list", backref="user")
     habit_records = db.relationship("Habit_records", backref="user_records")
     score = db.Column(db.Integer, unique=False, default=0)

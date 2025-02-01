@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import "../../styles/welcome.css";
 import { Login } from '../component/Login-form';
 import { SignUp } from '../component/Sign-up-form';
-import CloseIcon from '@mui/icons-material/Close';
+import { GoogleLogin } from "../component/googlelogin.js";
+import { Modal } from "../component/modal.js";
 
 
 export const Welcome = () => {
@@ -20,56 +21,57 @@ export const Welcome = () => {
 
 
   return (
-    
-    <div className="container">
-      <div></div>
+
+    <div className="welcome-cont">
       <h1>Bienvenid@ a tu rastreador de hábitos</h1>
       <div className="accesos">
-          <div className="login">
-            <p>¿Ya tienes cuenta?</p>
-            <button className="Login" onClick={openLoginModal}>Inicia sesión</button>
-          </div>
-          <div className="divider"></div>
-          <div className="signup">
-            <p>¿Eres nuevo?</p>
-            <button className="sign-up" onClick={openSignUpModal}>Regístrate</button>
-          </div>
+        <div className="login">
+          <p>¿Ya tienes cuenta?</p>
+          <button className="Login" onClick={openLoginModal}>Inicia sesión</button>
+        </div>
+        <div className="divider"></div>
+        <div className="signup">
+          <p>¿Eres nuevo?</p>
+          <button className="sign-up" onClick={openSignUpModal}>Regístrate</button>
+        </div>
       </div>
       <div className="acceso-google">
-        <p>O si lo prefieres:</p>
-        <button className="google" onClick="actions.google">Google</button>
+        <GoogleLogin
+          onSuccess={credentialResponse => {
+            console.log(credentialResponse);
+            fetch(`${process.env.BACKEND_URL}api/auth/google`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(credentialResponse)
+            })
+              .then(response => response.json())
+              .then(data => console.log('Datos enviados al backend:', data))
+              .catch(error => console.error('Error al enviar los datos al backend:', error));
+          }}
+          onError={() => console.log('Login Failed')}
+        />
       </div>
 
 
-{/* MODAL --- LOGIN */}
-
-      <div className="modal-login"  
+      {/* MODAL --- LOGIN */}
+      <Modal
+        className="modal-login"
         isOpen={loginModal}
-        style={loginModal ? {display: "flex"} : {display: "none"}}
-        onRequestClose={closeLoginModal}
-        >
-        
-        <div className='wrapper'>
-          <CloseIcon className="close" onClick={closeLoginModal}/>
-          <h5>Accede con tu cuenta</h5>
-          <Login loginAction={""}/>
-        </div>
-      </div>
+        close={closeLoginModal}
+        title="Bienvenid@ de nuevo"
+      >
+        <Login />
+      </Modal>
 
-
-{/* MODAL --------------- SIGNUP */}
-
-      <div className="signup-login"  
+      {/* MODAL --- SIGNUP */}
+      <Modal
+        className="modal-signup"
         isOpen={signUpModal}
-        style={signUpModal ? {display: "flex"} : {display: "none"}}
-        onRequestClose={closeSignUpModal}
-        >
-        
-        <div className='wrapper'>
-          <CloseIcon className="close" onClick={closeSignUpModal}/>
-          <SignUp loginAction={""}/>
-        </div>
-      </div>
+        close={closeSignUpModal}
+        title="Vamos a necesitar que nos cuentes más de ti"
+      >
+        <SignUp />
+      </Modal>
     </div>
   );
-}
+};
