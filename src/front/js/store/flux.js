@@ -12,7 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// user_habits: []
 		},
 		actions: {
-			login: async (email, password) => {
+			login: async (email, password, navigate) => {
 				try {
 					const resp = await fetch(`${process.env.BACKEND_URL}api/login`, {
 						method: "POST",
@@ -37,12 +37,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const actions = getActions();
 					actions.getUser();
-
+					navigate("/home")
 					setStore({
 						token: token
 					})
 				} catch (error) {
 					console.log("Error al iniciar sesión", error);
+					alert("Error al iniciar sesión")
 				}
 			},
 
@@ -63,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error", error);
 				}
 
-				
+
 			},
 			getRanking: () => {
 				try {
@@ -78,12 +79,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 						return resp.json();
 					})
-					.then(respJson => {
-						const store = getStore();
-						const rankingList = respJson.ranking;
-						setStore({ ranking: rankingList });
-						console.log(rankingList)
-					})
+						.then(respJson => {
+							const store = getStore();
+							const rankingList = respJson.ranking;
+							setStore({ ranking: rankingList });
+							console.log(rankingList)
+						})
 				} catch {
 					(err => console.error(err))
 				}
@@ -100,17 +101,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			signUp: async (email, password) => {
+			signUp: async (dataUser, navigate) => {
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}/api/signup`, {
+					const resp = await fetch(`${process.env.BACKEND_URL}api/signup`, {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json"
 						},
-						body: JSON.stringify({
-							email,
-							password
-						})
+						body: JSON.stringify(dataUser)
 					});
 
 					if (!resp.ok) {
@@ -119,6 +117,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const data = await resp.json();
 					console.log("Usuario registrado exitosamente", data);
+					const token = data.token;
+					if (!token) {
+						"No se recibió el token"
+					};
+					localStorage.setItem("token", token)
+
+					const actions = getActions();
+					actions.getUser();
+					navigate("/home")
+					setStore({
+						token: token
+					})
 				} catch (error) {
 					console.log("Error en el registro", error);
 				}

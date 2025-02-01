@@ -10,6 +10,8 @@ class User(db.Model):
     first_name = db.Column(db.String(120), nullable=False)
     last_name = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    city = db.Column(db.String(120), nullable=False)
+    gender = db.Column(db.String(15), nullable=False)
     password = db.Column(db.String(1000), unique=False, nullable=False)
     user_habit_list = db.relationship("User_habit_list", backref="user")
     habit_records = db.relationship("Habit_records", backref="user_records")
@@ -24,6 +26,8 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
+            "city":self.city,
+            "gender":self.gender,
             "score": self.score,
             "user_habit_list": [habit.serialize() for habit in self.user_habit_list],
             "habit_records": [habit.serialize() for habit in self.habit_records],

@@ -59,7 +59,7 @@ def signup():
    request_body = request.get_json()
    password= request_body.get("password")
    pw_hash = bcrypt.hashpw(password.encode("utf-8"), salt)
-   new_user = User(first_name=request_body["first_name"], last_name=request_body["last_name"], email=request_body["email"], password=pw_hash.decode("utf-8"))
+   new_user = User(first_name=request_body["first_name"], last_name=request_body["last_name"], email=request_body["email"], city=request_body["city"], gender=request_body["gender"], password=pw_hash.decode("utf-8"))
    db.session.add(new_user)
    db.session.commit()
 
