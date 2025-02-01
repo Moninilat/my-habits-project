@@ -79,16 +79,16 @@ export const UserProfile = () => {
 
                 <div className='wrapper'>
                     <CloseIcon className="close" onClick={() => setmodalDelete(false)} />
-                    <h5>Accede con tu cuenta</h5>
+                    <h5>¿Confirmas que quieres eliminar tu cuenta? perderás todo el progreso obtenido</h5>
                     <form id="delete-form" onSubmit={handleDeleteAccount}>
 
                         <input
                             type="password"
-                            placeholder="Password"
+                            placeholder="Ingresa tu contraseña"
                             requiered
                         />
 
-                        <button className="submit-button" type="submit">Login</button>
+                        <button className="submit-button" type="submit">Confirmar eliminación</button>
                     </form>
                 </div>
             </div>

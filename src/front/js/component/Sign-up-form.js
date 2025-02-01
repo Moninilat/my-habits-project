@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import "../../styles/Log-in.css";
+import "../../styles/login.css";
 import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/Visibility';
-
 export const SignUp = () => {
 
 const [firstName, setfirstName] = useState("");
@@ -11,9 +9,14 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState('');
 const [showPassword, setShowPassword] = useState(false);
+const [showPasswordA, setShowPasswordA] = useState(false);
+const [showPasswordB, setShowPasswordB] = useState(false);
 
-const toggleShowPassword = () => {
-  setShowPassword(!showPassword);
+const toggleShowPasswordA = () => {
+  setShowPasswordA(!showPasswordA);
+};
+const toggleShowPasswordB = () => {
+  setShowPasswordB(!showPasswordB);
 };
 
 
@@ -27,74 +30,66 @@ const handleSubmit = (e) => {
   loginAction(firstName, lastName, email, password);
 }
 
-  return (
-    <div className="signup-container">
-    <h5>Vamos a necesitar que nos cuentes más de ti</h5>
-    <form id="login-form" onSubmit={handleSubmit}>
-        
-        <input 
-          type="text" 
-          placeholder="First Name..." 
-          // value={""}
-          onChange={(e) => setfirstName(e.target.value)}
-          pattern="[A-Za-z]{3-16}"
-          required
-        />
+return (
+  <div className="signup-box">
+  <form id="signup-form" onSubmit={handleSubmit}>
+      
+      <input 
+        type="text" 
+        placeholder="First Name..." 
+        // value={""}
+        onChange={(e) => setfirstName(e.target.value)}
+        pattern="[A-Za-z]{3-16}"
+        required
+      />
 
-        
-        <input 
-          type="text" 
-          placeholder="Last Name..." 
-          // value={""}
-          onChange={(e) => setLastName(e.target.value)}
-          pattern="[A-Za-z]{3-16}"
-          required
-        />
+      
+      <input 
+        type="text" 
+        placeholder="Last Name..." 
+        // value={""}
+        onChange={(e) => setLastName(e.target.value)}
+        pattern="[A-Za-z]{3-16}"
+        required
+      />
 
-        
-        <input 
-          type="text" 
-          placeholder="Email..." 
-          // value={""}
-          onChange={(e) => setEmail(e.target.value)}
-          pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
-          required
-        />
-        
-        <div className='password-container'>
-        
-        <input 
-          type={showPassword ? "text" : "password"} 
-          placeholder="Password..." 
-          // value={"lastName"}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-            <button type="button" className='visibility' onClick={toggleShowPassword}>
-            {showPassword ? <VisibilityOff /> : <Visibility />}
-            </button>
-        </div>
+      
+      <input 
+        type="text" 
+        placeholder="Email..." 
+        // value={""}
+        onChange={(e) => setEmail(e.target.value)}
+        pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+        required
+      />
+      
+      <div className='password-box'>
+      
+      <input 
+        type={showPasswordA ? "text" : "password"} 
+        placeholder="Password..." 
+        // value={"lastName"}
+        onChange={(e) => setPassword(e.target.value)}
+        pattern="[A-Za-z][0-9]{3-16}"
+        required
+      />
+      <Visibility className='visibility' onClick={toggleShowPasswordA} />
+      </div>
+      <div className='password-box'>
 
-        <div className='password-container'>
-
-        <input 
-          type={showPassword ? "text" : "password"} 
-          placeholder="Confirm Password..." 
-          // value={"lastName"}
-          onChange={(e) => setConfirmPassword(e.target.value).setUsername(e.target.value)}
-          required
-        />
-            <button type="button" className='visibility' onClick={toggleShowPassword}>
-            {showPassword ? <VisibilityOff /> : <Visibility />}
-            </button>
-        </div>
-
-        <div className='terms'>
-          <input type='checkbox' id='terms' className="terms-box" name='terms' value='terms' required />
-          <label for='terms'>Acepto los términos y condiciones</label>
-        </div>
-        <button className="submit-button" type="submit">Login</button>
-      </form>
-    </div>
-  )
+      <input 
+        type={showPasswordB ? "text" : "password"} 
+        placeholder="Confirm Password..." 
+        // value={"lastName"}
+        onChange={(e) => setConfirmPassword(e.target.value).setUsername(e.target.value)}
+        required
+      >
+      </input>
+      <Visibility className="visibility" onClick={toggleShowPasswordB} />
+      </div>
+      <button className="signup-submit-button" type="submit">Signup</button>
+    </form>
+    
+  </div>
+)
 }

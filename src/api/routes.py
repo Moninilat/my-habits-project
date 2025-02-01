@@ -28,6 +28,23 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+@api.route('/signup/google', methods=['POST'])
+def signup_google():
+ 
+    request_body = request.get_json()
+    print(request_body)
+    user = User.query.filter_by(first_name=request_body["name"], email=request_body["email"], google_id=request_body["google_id"]).first()
+    if user:
+       return jsonify ({"msg":"User already registered"}), 400
+   
+    request_body = request.get_json()
+    new_user = User(first_name=request_body["name"], email=request_body["email"], google_id=request_body["google_id"])
+    db.session.add(new_user)
+    db.session.commit()
+
+    token = create_access_token(identity=new_user.email)
+    print(token)
+    return jsonify({"msg":"User created", "token": token}), 200
 
 
 @api.route('/signup', methods=['POST'])
@@ -49,6 +66,8 @@ def signup():
    token = create_access_token(identity=new_user.email)
    print(token)
    return jsonify({"msg":"User created", "token": token}), 200
+
+
 
 @api.route('/login', methods=['POST'])
 def login():

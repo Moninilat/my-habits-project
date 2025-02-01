@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../styles/Styles.css";
+import "../../styles/navbar.css";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
