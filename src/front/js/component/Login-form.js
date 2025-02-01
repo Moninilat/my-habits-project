@@ -18,8 +18,8 @@ const { store, actions} = useContext(Context)
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    actions.login(email, password)
-     navigate("/home")
+    actions.login(email, password, navigate)
+     
   }
   return (
 

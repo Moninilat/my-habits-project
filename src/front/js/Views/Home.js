@@ -5,11 +5,15 @@ import { HabitCard } from "../component/habitcard";
 import { NewHabitCard } from "../component/newhabitcard";
 import { User } from "../component/user";
 import { UserScore } from "../component/userscore";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
     const { store, actions } = useContext(Context);
-
+    const navigate = useNavigate()
     useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            navigate("/")
+        }
         actions.getHabits();
         actions.getUser();
         actions.getUserHabits();
@@ -17,7 +21,7 @@ export const Home = () => {
 
     return (
         <div>
-          
+
             {/* <User user={store.user} />  */}
 
             {
