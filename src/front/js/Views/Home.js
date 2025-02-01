@@ -22,7 +22,12 @@ export const Home = () => {
     return (
         <div>
 
-            {/* <User user={store.user} />  */}
+            {
+                store.user.map((user, index) => {
+                    return <User key={index} user={user} />;
+                })
+            }
+
 
             {
                 store.habits.map((habit, index) => {
@@ -34,7 +39,7 @@ export const Home = () => {
                 store.user_habits.map((user_habits, index) => {
                     return <HabitCard key={index} user_habit={user_habits} />;
                 })
-            } */}
+            }  */}
         </div>
     );
 }

@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			user: null,
+			user: [],
 			ranking: [],
 			habits: [],
 			user_habits: []
@@ -193,6 +193,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const resp = await fetch(`${process.env.BACKEND_URL}api/user/habits`, {
 							method: "GET",
 							headers: {
+								"Content-Type": "application/json",
 								Authorization: `Bearer ${token}`
 							}
 						});
