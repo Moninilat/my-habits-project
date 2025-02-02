@@ -244,8 +244,6 @@ def complete_habit():
     serialize_habit=habit.serialize()
     user.score=serialize_user["score"]+serialize_habit["score"]
     db.session.add(habit_record)
-    
-
     db.session.commit()
     
     return jsonify({"message": "Hábito completado con éxito", "habit_record": habit_record.serialize() }), 201
