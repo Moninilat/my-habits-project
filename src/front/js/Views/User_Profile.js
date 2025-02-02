@@ -16,7 +16,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
 import { Modal } from "../component/modal";
-import "../../styles/deleteProfile.css";
+import "../../styles/userProfile.css";
 
 export const UserProfile = () => {
     const { store, actions } = useContext(Context);
@@ -28,7 +28,9 @@ export const UserProfile = () => {
     const user = store.user;
     const navigate = useNavigate()
     console.log(user);
+    const [modalSupport, setModalSupport] = useState(false)
     const [modalDelete, setmodalDelete] = useState(false)
+    
     if (!user) return null;
     const handleLogout = () => {
         actions.logout()
@@ -42,15 +44,32 @@ export const UserProfile = () => {
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
-            <Modal className="modalDeleteUser" isOpen={modalDelete} close={() => { setmodalDelete(false) }} title="¿Confirmas que quieres eliminar tu cuenta? perderás todo el progreso obtenido">
-                <form id="delete-form" onSubmit={handleDeleteAccount}>
+            {/* --------Modal para modificar los datos de perfil del usuario-------- */}
 
+            {/* --------Modal para modificar la contraseña del usuario-------- */}
+
+
+
+            {/* --------Modal para soporte-------- */}
+            <Modal
+                className="modalDeleteUser"
+                isOpen={modalSupport} close={() => { setModalSupport(false) }}
+                title="Si necesitas ayuda, envíanos un correo a ermomageeks@gmail.com y te responderemos lo antes posible.">
+                
+            </Modal>
+
+
+            {/* --------Modal para eliminar el usuario-------- */}
+            <Modal
+                className="modalDeleteUser"
+                isOpen={modalDelete} close={() => { setmodalDelete(false) }}
+                title="¿Confirmas que quieres eliminar tu cuenta? perderás todo el progreso obtenido">
+                <form id="delete-form" onSubmit={handleDeleteAccount}>
                     <input
                         type="password"
                         placeholder="Ingresa tu contraseña"
                         requiered
                     />
-
                     <button className="submit-button" type="submit">Confirmar eliminación</button>
                 </form>
             </Modal>
@@ -77,7 +96,7 @@ export const UserProfile = () => {
                     Cambiar contraseña <LockResetIcon sx={{ marginLeft: 1 }} />
                 </Button>
 
-                <Button onClick={() => navigate("/support")} className="profile-option">
+                <Button onClick={() => setModalSupport(true)}>
                     Soporte <SupportAgentIcon sx={{ marginLeft: 1 }} />
                 </Button>
 
