@@ -27,7 +27,7 @@ setUserAvat(avatar)
                 <img src={userAvatar} className="user_score_circle"></img>
                 <div className="user_text">
                     <div className="user_score_name">{props.name}</div>
-                    <div className="user_score_city">{}</div>
+                    <div className="user_score_city">{props.city}</div>
                 </div>
             </div>
             <div>

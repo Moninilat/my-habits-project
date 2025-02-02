@@ -1,55 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.carousel-container {
-    overflow-x: auto; 
-    width: 85%;
-    padding: 20px 0;
-    
-  }
-  
-  .carousel {
-    display: flex;
-    flex-wrap: nowrap; 
-    gap: 20px; 
-    padding: 0 20px;
-  }
-  
-  .card {
-    flex: 0 0 auto; 
-    width: 250px; 
-    background-color: #222;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.05); 
-    border: 1px solid rgb(255,232,31);
-  }
-  
-  .card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-  }
-  
-  .caption {
-    padding: 10px;
-    font-size: 14px;
-    color: #ddd;
-  }
-  
-  
-  .carousel-container::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  .carousel-container::-webkit-scrollbar-thumb {
-    background: #444;
-    border-radius: 4px;
-  }
-  
-  .carousel-container::-webkit-scrollbar-thumb:hover {
-    background: #666;
-  }
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+  color: #333;
+}
+
+.containerr {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Estilos del encabezado */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Secciones de carrusel */
+.carousel-section {
+  margin-bottom: 40px;
+}
+
+.carousel-section h2 {
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+/* Carruseles horizontales */
+.carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  /* Para asegurar que siempre se vea la barra de scroll,
+     podemos forzar la aparición de la misma en Firefox con scrollbar-width */
+  scrollbar-width: auto; /* Firefox */
+}
+
+/* Forzamos la visibilidad del scrollbar en Webkit */
+.carousel::-webkit-scrollbar {
+  height: 12px; /* Mayor altura para que sea más visible */
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+/* Tarjetas base para los componentes */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;  /* Ancho fijo para todas las tarjetas */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-shrink: 0; /* Evita que se reduzcan al hacer scroll */
+}
+
+/* Ejemplo: estilos específicos para UserScore (Ranking) */
+.user-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.user-score-number {
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Estilos para HabitCard (Mis Hábitos) */
+.habit-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+/* Sección de pequeños hábitos (grilla) */
+.small-habits-section {
+  margin-bottom: 40px;
+}
+
+.small-habits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.small-habit {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  flex: 1 1 150px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Mensaje para cuando no existen hábitos */
+.no-habits {
+  margin-top: 20px;
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
