@@ -34,10 +34,9 @@ export const UserProfile = () => {
         actions.logout()
         navigate("/");
     };
-    const handleDeleteAccount = (e) => {
+const handleDeleteAccount = (e) => {
         actions.deleteAccount(e);
     };
-
 
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
