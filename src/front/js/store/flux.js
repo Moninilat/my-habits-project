@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			user: null,
+			user_picture_profile:[],
 			ranking: [],
 			habits: [],
 			user_habits: []
