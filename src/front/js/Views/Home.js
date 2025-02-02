@@ -22,6 +22,7 @@ export const Home = () => {
     }, []);
 
     return (
+      <div className="home">
             <div className="containerr">
               {/* Sección Ranking con carrusel */}
               <section className="carousel-section">
@@ -63,6 +64,7 @@ export const Home = () => {
                   )}
                 </div>
               </section>
+            </div>
             </div>
           );
         
