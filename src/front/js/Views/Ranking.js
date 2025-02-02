@@ -11,6 +11,9 @@ export const Ranking = () => {
   
 
    useEffect(() => {
+      if (!localStorage.getItem("token")) {
+      navigate("/")
+  }
           actions.getRanking();
       }, []);
 
