@@ -195,6 +195,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const resp = await fetch(`${process.env.BACKEND_URL}api/user/habits`, {
 							method: "GET",
 							headers: {
+								"Content-Type": "application/json",
 								Authorization: `Bearer ${token}`
 							}
 						});

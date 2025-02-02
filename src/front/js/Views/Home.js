@@ -6,6 +6,7 @@ import { NewHabitCard } from "../component/newhabitcard";
 import { User } from "../component/user";
 import { UserScore } from "../component/userscore";
 import { useNavigate } from "react-router-dom";
+import "../../styles/home.css";
 
 export const Home = () => {
     const { store, actions } = useContext(Context);
@@ -17,24 +18,52 @@ export const Home = () => {
         actions.getHabits();
         actions.getUser();
         actions.getUserHabits();
+        actions.getRanking();
     }, []);
 
     return (
-        <div>
+            <div className="containerr">
+              {/* Sección Ranking con carrusel */}
+              <section className="carousel-section">
+                <h2>Ranking</h2>
+                <div className="carousel ranking-carousel">
+                  {store.ranking.map((user) => (
+                    <UserScore
+                      key={`${user.id}-${user.name}`}
+                      name={user.first_name}
+                      city={user.city}
+                      score={user.score}
+                    />
+                  ))}
+                </div>
+              </section>
+        
+             
+        
+              {/* Sección Habits*/}
+              <section className="small-habits-section">
+                <h2>Pequeños Hábitos</h2>
+                <div className="small-habits">
+                  {store.habits.map((habit, index) => (
+                    <SmallHabit key={index} habit={habit} />
+                  ))}
+                </div>
+              </section>
 
-            {/* <User user={store.user} />  */}
-
-            {
-                store.habits.map((habit, index) => {
-                    return <SmallHabit key={index} habit={habit} />;
-                })
-            }
-
-            {/* {
-                store.user_habits.map((user_habits, index) => {
-                    return <HabitCard key={index} user_habit={user_habits} />;
-                })
-            } */}
-        </div>
-    );
+               {/* Sección user_habits */}
+               <section className="carousel-section">
+                <h2>Mis Hábitos</h2>
+                <div className="carousel habits-carousel">
+                  {store.user_habits && store.user_habits.length > 0 ? (
+                    store.user_habits.map((user_habit, index) => (
+                      <HabitCard key={index} user_habit={user_habit} />
+                    ))
+                  ) : (
+                    <div className="no-habits">¡Empieza a añadir tus hábitos!</div>
+                  )}
+                </div>
+              </section>
+            </div>
+          );
+        
 }
