@@ -30,7 +30,7 @@ setUserAvat(avatar)
                     <div className="user_score_city">{props.city}</div>
                 </div>
             </div>
-            <div>
+            <div className="user_score_space">
                 <div className="user_score_pill">
                     <h5>{props.score}</h5>
                     <p>puntos</p>
