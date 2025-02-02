@@ -8,7 +8,12 @@
     flex-direction: column;
     align-items: center;
     height: 600px;
+    bottom: 100px;
+    z-index: -1000;
     justify-content: center;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
 }
 
 .welcome-body {
