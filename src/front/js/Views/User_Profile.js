@@ -15,9 +15,16 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
+import { Modal } from "../component/modal";
+import "../../styles/deleteProfile.css";
 
 export const UserProfile = () => {
     const { store, actions } = useContext(Context);
+    useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            navigate("/")
+        }
+    }, [])
     const user = store.user;
     const navigate = useNavigate()
     console.log(user);
@@ -27,40 +34,27 @@ export const UserProfile = () => {
         actions.logout()
         navigate("/");
     };
-    const handleDeleteAccount =()=>{
-        actions.deleteAccount();
+    const handleDeleteAccount = (e) => {
+        actions.deleteAccount(e);
     };
-
-
-
-    
 
 
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
+            <Modal className="modalDeleteUser" isOpen={modalDelete} close={() => { setmodalDelete(false) }} title="¿Confirmas que quieres eliminar tu cuenta? perderás todo el progreso obtenido">
+                <form id="delete-form" onSubmit={handleDeleteAccount}>
 
-            <div className="modal-login"
-                isOpen={modalDelete}
-                style={modalDelete ? { display: "flex" } : { display: "none" }}
+                    <input
+                        type="password"
+                        placeholder="Ingresa tu contraseña"
+                        requiered
+                    />
 
-            >
-
-                <div className='wrapper'>
-                    <CloseIcon className="close" onClick={() => setmodalDelete(false)} />
-                    <h5>¿Confirmas que quieres eliminar tu cuenta? perderás todo el progreso obtenido</h5>
-                    <form id="delete-form" onSubmit={handleDeleteAccount}>
-
-                        <input
-                            type="password"
-                            placeholder="Ingresa tu contraseña"
-                            requiered
-                        />
-
-                        <button className="submit-button" type="submit">Confirmar eliminación</button>
-                    </form>
-                </div>
-            </div>
+                    <button className="submit-button" type="submit">Confirmar eliminación</button>
+                </form>
+            </Modal>
+            
 
             <div className="profile-card">
                 <div className="profile-header">

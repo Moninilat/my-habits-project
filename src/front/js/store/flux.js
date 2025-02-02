@@ -268,11 +268,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error al eliminar la cuenta:", error);
 					alert("Error al eliminar la cuenta.");
 				}
-			}
+			},
 
+			updateUser: async (e) => {
+				e.preventDefault();
+				console.log(e);
+				const password = e.target.elements[0].value;
+
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${localStorage.getItem("token")}`
+						},
+						body: JSON.stringify({
+							password
+						})
+
+					});
+
+				}
+				catch (error) {
+					console.error("Error al eliminar la cuenta:", error);
+					alert("Error al eliminar la cuenta.");
+				}
+			},
 
 		}
-	}
-};
+	};
+
+}
 
 export default getState;
