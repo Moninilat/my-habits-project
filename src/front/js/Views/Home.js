@@ -41,14 +41,14 @@ export const Home = () => {
              
         
               {/* Sección Habits*/}
-              <section className="small-habits-section">
-                <h2>Pequeños Hábitos</h2>
-                <div className="small-habits">
-                  {store.habits.map((habit, index) => (
-                    <SmallHabit key={index} habit={habit} />
-                  ))}
-                </div>
-              </section>
+              <section className="carousel-section">
+        <h2>Recomendaciones</h2>
+        <div className="carousel small-habits-carousel">
+          {store.habits.map((habit, index) => (
+            <SmallHabit key={index} habit={habit} />
+          ))}
+        </div>
+      </section>
 
                {/* Sección user_habits */}
                <section className="carousel-section">

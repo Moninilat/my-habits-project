@@ -33,6 +33,9 @@
 .user_score_city {
     font-size: 14px; 
   }
+.user_score_space {
+    margin-left: 20px;
+  }
 
 .user_score_pill {
     border: 1px solid #d57373;
