@@ -66,6 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			},
+
 			getRanking: () => {
 				try {
 					fetch(`${process.env.BACKEND_URL}api/ranking`, {
@@ -91,6 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			},
+
 			updateToken: () => {
 				console.log(localStorage.getItem("token"));
 
@@ -227,7 +229,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-
 			logout: () => {
 				localStorage.removeItem("token")
 				setStore({
@@ -236,6 +237,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
+			deleteAccount: async (e) => {
+				e.preventDefault();
+				console.log(e);
+				const password = e.target.elements[0].value;
+
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
+						method: "DELETE",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${localStorage.getItem("token")}`
+
+						},
+						body: JSON.stringify({
+							password
+						})
+
+					});
+
+					if (response.ok) {
+						alert("Cuenta eliminada con éxito.");
+						localStorage.removeItem("token"); // Eliminar el token
+						setmodalDelete(false)
+						navigate("/"); // Redirigir a la página de inicio
+					} else {
+						alert("Error al eliminar la cuenta.");
+					}
+				} catch (error) {
+					console.error("Error al eliminar la cuenta:", error);
+					alert("Error al eliminar la cuenta.");
+				}
+			}
 
 
 		}
