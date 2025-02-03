@@ -101,17 +101,19 @@ def update_user():
     
     first_name = request_body.get("first_name")
     last_name = request_body.get("last_name")
-        
+    city = request_body.get("city")     
     if first_name:
         user.first_name = first_name
     if last_name:
         user.last_name = last_name
+    if city:
+        user.city = city
 
     db.session.commit()
     return jsonify({"msg": "User updated successfully"}), 200
 
 #endpoint para modificar la contraseña del usuario
-@api.route('/user/', methods=['PATCH'])
+@api.route('/user', methods=['PATCH'])
 @jwt_required()
 def update_password():
     token_email = get_jwt_identity()
@@ -233,13 +235,12 @@ def complete_habit():
     if user is None:
          return jsonify({"msg":"user not found"}),404
     request_body = request.get_json()
+    
     habit_id = request_body.get('habit_id')
-    
-    
+      
     if not habit_id:
         return jsonify({"msg": "Se requiere el habit_id"}), 400
-    
-     
+         
     habit = Habits.query.get(habit_id)
 
     if not habit:

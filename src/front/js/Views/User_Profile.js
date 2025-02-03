@@ -30,15 +30,23 @@ export const UserProfile = () => {
     console.log(user);
     const [modalSupport, setModalSupport] = useState(false)
     const [modalDelete, setmodalDelete] = useState(false)
-    
+    const [modalChangePasword, setModalChangePasword] = useState(false)
     if (!user) return null;
     const handleLogout = () => {
         actions.logout()
         navigate("/");
     };
-const handleDeleteAccount = (e) => {
+    const handleDeleteAccount = (e) => {
         actions.deleteAccount(e);
     };
+
+    const handleUpdatePassword = (e) => {
+        e.preventDefault();
+        const password = e.target.elements["password"].value;
+        const newPassword = e.target.elements["newPassword"].value;
+        console.log(e);
+        actions.updatePassword(password, newPassword);
+    }
 
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
@@ -48,19 +56,39 @@ const handleDeleteAccount = (e) => {
             {/* --------Modal para modificar la contraseña del usuario-------- */}
 
 
+            <Modal
+                className="modalUser"
+                isOpen={modalChangePasword} close={() => { setModalChangePasword(false) }}>
+                <form id="delete-form" onSubmit={handleUpdatePassword}>
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Ingresa tu contraseña actual"
+                        requiered
+                    />
+                    <input
+                        name="newPassword"
+                        type="password"
+                        placeholder="Ingresa tu nueva contraseña"
+                        requiered
+                    />
+
+                    <button className="submit-button" type="submit">Confirmar cambiar contraseña</button>
+                </form>
+            </Modal>
 
             {/* --------Modal para soporte-------- */}
             <Modal
-                className="modalDeleteUser"
+                className="modalUser"
                 isOpen={modalSupport} close={() => { setModalSupport(false) }}
                 title="Si necesitas ayuda, envíanos un correo a ermomageeks@gmail.com y te responderemos lo antes posible.">
-                
+
             </Modal>
 
 
             {/* --------Modal para eliminar el usuario-------- */}
             <Modal
-                className="modalDeleteUser"
+                className="modalUser"
                 isOpen={modalDelete} close={() => { setmodalDelete(false) }}
                 title="¿Confirmas que quieres eliminar tu cuenta? perderás todo el progreso obtenido">
                 <form id="delete-form" onSubmit={handleDeleteAccount}>
@@ -72,7 +100,7 @@ const handleDeleteAccount = (e) => {
                     <button className="submit-button" type="submit">Confirmar eliminación</button>
                 </form>
             </Modal>
-            
+
 
             <div className="profile-card">
                 <div className="profile-header">
@@ -91,7 +119,7 @@ const handleDeleteAccount = (e) => {
                     Datos de perfil <AssignmentIndIcon sx={{ marginLeft: 1 }} />
                 </Button>
 
-                <Button onClick={() => navigate("/change-password")} className="profile-option">
+                <Button onClick={() => setModalChangePasword(true)} className="profile-option">
                     Cambiar contraseña <LockResetIcon sx={{ marginLeft: 1 }} />
                 </Button>
 
