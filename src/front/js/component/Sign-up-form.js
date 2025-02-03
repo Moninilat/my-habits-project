@@ -32,20 +32,20 @@ export const SignUp = () => {
   const toggleShowPasswordA = () => setShowPasswordA(!showPasswordA);
   const toggleShowPasswordB = () => setShowPasswordB(!showPasswordB);
 
-  const handleImageUpload = (e) => { 
-  const file = e.target.files[0];
-  if (file) {
-    setUserProfilePicture(file);
-    actions.handleImageUpload(file); 
-  }
-};
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUserProfilePicture(file);
+      actions.handleImageUpload(file);
+    }
+  };
 
-const handleDeletePicture = () => {
-  actions.handleDeletePicture(); 
-  setUserProfilePicture(""); 
-  const fileInput = document.querySelector("input[name='file-loader']");
-  if (fileInput) fileInput.value = "";
-};
+  const handleDeletePicture = () => {
+    actions.handleDeletePicture();
+    setUserProfilePicture("");
+    const fileInput = document.querySelector("input[name='file-loader']");
+    if (fileInput) fileInput.value = "";
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,94 +61,95 @@ const handleDeletePicture = () => {
     <div className="signup-box">
       <form id="signup-form" onSubmit={handleSubmit}>
         <input
-          type="text" 
-          name="first_name" 
-          placeholder="Nombre..." 
-          value={data.first_name} 
-          onChange={handleChange} 
+          type="text"
+          name="first_name"
+          placeholder="Nombre..."
+          value={data.first_name}
+          onChange={handleChange}
           required />
 
-        <input 
-        type="text" 
-        name="last_name" 
-        placeholder="Apellido..." 
-        value={data.last_name} 
-        onChange={handleChange} 
-        required />
+        <input
+          type="text"
+          name="last_name"
+          placeholder="Apellido..."
+          value={data.last_name}
+          onChange={handleChange}
+          required />
 
-        <input 
-        type="email" 
-        name="email" 
-        placeholder="Correo electrónico..." 
-        value={data.email} 
-        onChange={handleChange} 
-        required 
+        <input
+          type="email"
+          name="email"
+          placeholder="Correo electrónico..."
+          value={data.email}
+          onChange={handleChange}
+          required
         />
 
         <div className='password-box'>
-          <input 
-          type={showPasswordA ? "text" : "password"} 
-          name="password" placeholder="Contraseña..." 
-          value={data.password} onChange={handleChange} 
-          required 
+          <input
+            type={showPasswordA ? "text" : "password"}
+            name="password" placeholder="Contraseña..."
+            value={data.password} onChange={handleChange}
+            required
           />
           <Visibility className='visibility' onClick={toggleShowPasswordA} />
         </div>
 
         <div className='password-box'>
-          <input 
-          type={showPasswordB ? "text" : "password"} 
-          name="repeatPassword" 
-          placeholder="Confirmar contraseña..." 
-          value={data.repeatPassword} 
-          onChange={handleChange} 
-          required />
+          <input
+            type={showPasswordB ? "text" : "password"}
+            name="repeatPassword"
+            placeholder="Confirmar contraseña..."
+            value={data.repeatPassword}
+            onChange={handleChange}
+            required />
           <Visibility className="visibility" onClick={toggleShowPasswordB} />
         </div>
 
-        <input type="text" 
-        name="city" 
-        placeholder="Ciudad..." 
-        value={data.city} 
-        onChange={handleChange} 
-        required 
+        <input type="text"
+          name="city"
+          placeholder="Ciudad..."
+          value={data.city}
+          onChange={handleChange}
+          required
         />
 
-        <div>
-          <FormLabel>Género</FormLabel>
-          <RadioGroup 
-          onChange={handleChange} 
-          value={data.gender} 
-          name="gender">
-
-            <FormControlLabel 
-            value="female" 
-            control={<Radio />} 
-            label="Femenino" />
-            <FormControlLabel 
-            value="male" 
-            control={<Radio />} 
-            label="Masculino" />
-
+        <div className='gender'>
+          <RadioGroup
+            onChange={handleChange}
+            value={data.gender}
+            name="gender">
+              <FormControlLabel
+                value="female"
+                control={<Radio />}
+                label="Soy mujer" />
+              <FormControlLabel
+                value="male"
+                control={<Radio />}
+                label="Soy hombre" />
+              <FormControlLabel
+                value="male"
+                control={<Radio />}
+                label="Prefiero no decirlo" />
           </RadioGroup>
         </div>
 
         <div className='profile-picture'>
-          {store.userProfilePicture && <img src={store.userProfilePicture} 
-          alt="Perfil" 
-          style={{ width: "90px", height: "90px", cursor:"pointer" }}
-          onClick={handleDeletePicture}
-        />}
+          {store.userProfilePicture && <img src={store.userProfilePicture}
+            alt="Perfil"
+            style={{ width: "90px", height: "90px", cursor: "pointer" }}
+            onClick={handleDeletePicture}
+          />}
 
-        <div className="file-loader" id='file-loader'>
-          <input 
-          name='file-loader'
-          type="file"
-          className='file-loader' 
-          accept="image/*" 
-          onChange={handleImageUpload} 
-          />
-        </div>
+          <div className="file-loader" id='file-loader'>
+            <input
+              name='file-loader'
+              type="file"
+              className='file-loader'
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+          </div>
 
         </div>
 

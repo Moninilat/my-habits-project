@@ -42,6 +42,7 @@ const handleDeleteAccount = (e) => {
 
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
+            <img src={store.userProfilePicture}/>
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
             {/* --------Modal para modificar los datos de perfil del usuario-------- */}
 
