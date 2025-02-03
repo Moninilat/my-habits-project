@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			user: null,
+			user_picture_profile:[],
 			ranking: [],
 			habits: [],
 			user_habits: []
@@ -269,11 +270,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error al eliminar la cuenta:", error);
 					alert("Error al eliminar la cuenta.");
 				}
-			}
+			},
 
+			updateUser: async (e, data) => {
+				e.preventDefault();
+				console.log(e);
+				const password = e.target.elements[0].value;
+
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
+						method: "PUT",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${localStorage.getItem("token")}`
+						},
+						body: JSON.stringify({
+							password,
+							data
+						})
+
+					});
+
+				}
+				catch (error) {
+					console.error("Error al modificar los datos del usuario.", error);
+					alert("Error al modificar los datos del usuario.");
+				}
+			},
 
 		}
-	}
-};
+	};
+
+}
 
 export default getState;

@@ -1,7 +1,8 @@
 .ranking-wrap{
 
     width: 100%;
-    height: 100%;
+    height: fit-content;
+    overflow: hidden;
 
 }
 
@@ -16,6 +17,7 @@
 }
 
 
+
 .ranking-box {
 
     width: 85%;
@@ -25,9 +27,8 @@
     flex-direction: column;
     align-items: center;
     
-    
-
 }
+
 
 .ranking-items{
 
@@ -40,6 +41,15 @@
 }
 
 @media (min-width: 600px) {
+
+    .ranking-box-cont {
+
+        height: 385px;
+        overflow: scroll;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+    
+    }
 
     .ranking-box {
 

@@ -33,6 +33,7 @@ input:focus{
     outline: none;
 }
 
+
 .submit-button{
 
     width: 250px;
@@ -136,6 +137,67 @@ input:focus{
     color: white;
     cursor: pointer;
 }
+
+.profile-picture{
+
+    display: flex ;
+    width: 250px;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.profile-picture > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-right: 10px;
+}
+
+.file-loader{
+    display: flex;
+    justify-self: end;
+    border: none;
+    border-radius: 0;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.file-loader::before {
+    color: #FB7676;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 60px;
+    border: 1px solid #fb7676;
+    border-radius: 30px;
+    border-radius: 30px;
+    content: 'Carga tu foto';
+  }
+  
+  .file-loader input[type="file"] {
+    opacity: 0;
+    width: 150px;
+    height: 60px;
+    position: fixed;
+  }
+  
+
+.active {
+    display: contents;
+}
+
+.hidden {
+    display: none;
+  }
 
 
 
