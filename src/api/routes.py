@@ -98,16 +98,10 @@ def update_user():
     if user is None:
          return jsonify({"msg":"user not found"}),404
     request_body = request.get_json()
-    email = request_body.get("email")
-    password = request_body.get("password")
+    
     first_name = request_body.get("first_name")
     last_name = request_body.get("last_name")
         
-    if email:
-        user.email = email
-    if password:
-        pw_hash = bcrypt.hashpw(password.encode("utf-8"), salt)
-        user.password = pw_hash.decode("utf-8")
     if first_name:
         user.first_name = first_name
     if last_name:
@@ -116,7 +110,32 @@ def update_user():
     db.session.commit()
     return jsonify({"msg": "User updated successfully"}), 200
 
+#endpoint para modificar la contraseña del usuario
+@api.route('/user/', methods=['PATCH'])
+@jwt_required()
+def update_password():
+    token_email = get_jwt_identity()
+    user = User.query.filter_by(email=token_email).first()
 
+    if not user:
+        return jsonify({"msg": "Usuario no encontrado"}), 404
+
+    request_body = request.get_json()
+    current_password = request_body.get("current_password")  
+    new_password = request_body.get("new_password")  
+
+    
+    if not current_password or not new_password:
+        return jsonify({"msg": "Debes ingresar tu contraseña actual y una nueva"}), 400
+
+    if not bcrypt.checkpw(current_password.encode("utf-8"), user.password.encode("utf-8")):
+        return jsonify({"msg": "La contraseña actual es incorrecta"}), 401
+
+    pw_hash = bcrypt.hashpw(new_password.encode("utf-8"), bcrypt.gensalt())
+    user.password = pw_hash.decode("utf-8")
+
+    db.session.commit()
+    return jsonify({"msg": "Contraseña actualizada correctamente"}), 200
 
 #endpoint para eliminar usuario, elimina en cascada, primero los records, luego su listado y por último el usuario
 @api.route('/user/', methods=['DELETE'])
@@ -153,7 +172,6 @@ def get_user():
     return jsonify(user.serialize()), 200
 
 #endpoint para añadir/eliminar hábito de usuario, el usuario lo sacaremos del token
-
 @api.route("/user/habits", methods=["POST", "GET", "DELETE"])
 @jwt_required()
 def manage_user_habits():
@@ -207,7 +225,6 @@ def get_all_habits():
     
 
 #endpoint para el hábito completado por el usuario, al usuario lo buscamos con el token
-
 @api.route('/complete_habit', methods=['POST'])
 @jwt_required()
 def complete_habit():
