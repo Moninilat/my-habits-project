@@ -31,6 +31,7 @@ export const Ranking = () => {
             <UserScore 
               key={`${user.id} + ${user.name}`}
               name={user.first_name}
+              city={user.city}
               score={user.score}
             />
           )

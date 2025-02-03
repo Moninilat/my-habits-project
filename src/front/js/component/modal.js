@@ -8,8 +8,10 @@ export const Modal = (props) => {
   return (
     <div className={props.className} style={{ display: "flex" }}>
       <div className='wrapper'>
-        <CloseIcon className="close" onClick={props.close} />
-        <h5>{props.title}</h5>
+        <div className="signup-header">
+          <CloseIcon className="close" onClick={props.close} />
+          <h5>{props.title}</h5>
+        </div>
         {props.children}
       </div>
     </div>

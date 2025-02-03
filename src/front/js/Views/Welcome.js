@@ -4,6 +4,7 @@ import { Login } from '../component/Login-form';
 import { SignUp } from '../component/Sign-up-form';
 import { GoogleLogin } from "../component/googlelogin.js";
 import { Modal } from "../component/modal.js";
+import { Calendar } from "../../img/Calendar.png";
 
 
 export const Welcome = () => {
@@ -23,8 +24,12 @@ export const Welcome = () => {
   return (
 
     <div className="welcome-cont">
-      <h1>Bienvenid@ a tu rastreador de hábitos</h1>
-      <div className="accesos">
+      <div className="Hero-img">
+        <img src="Calendar.png"/>
+      </div>
+      <div className='access-control'>
+        <h1>Bienvenid@ a tu rastreador de hábitos</h1>
+        <div className="accesos">
         <div className="login">
           <p>¿Ya tienes cuenta?</p>
           <button className="Login" onClick={openLoginModal}>Inicia sesión</button>
@@ -34,8 +39,8 @@ export const Welcome = () => {
           <p>¿Eres nuevo?</p>
           <button className="sign-up" onClick={openSignUpModal}>Regístrate</button>
         </div>
-      </div>
-      <div className="acceso-google">
+        </div>
+        <div className="acceso-google">
         {/* <GoogleLogin
           onSuccess={credentialResponse => {
             console.log(credentialResponse);
@@ -50,6 +55,7 @@ export const Welcome = () => {
           }}
           onError={() => console.log('Login Failed')}
         /> */}
+        </div>
       </div>
 
 

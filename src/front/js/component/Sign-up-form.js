@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
-import "../../styles/login.css";
+import "../../styles/signup.css";
 import Visibility from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom';
 import Radio from '@mui/material/Radio';

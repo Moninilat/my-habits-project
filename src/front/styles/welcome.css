@@ -1,4 +1,6 @@
-
+:root {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+}
 
 .welcome-cont {
 
@@ -14,6 +16,7 @@
     width: 100%;
     height: fit-content;
     overflow: hidden;
+    background-color: white;
 }
 
 .welcome-body {
@@ -23,6 +26,21 @@
     justify-content: center;
     align-items: center;
 
+}
+
+.Hero-img > img {
+
+    width: auto;
+    height: 300px;
+
+}
+
+.access-control{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -101,7 +119,7 @@ h1 {
     align-items: center;
     align-self: center;
     width: 90%;
-    height: 700px;
+    height: 580px;
     position: relative;
     background-color: white;
     z-index: 1001;
@@ -113,15 +131,26 @@ h1 {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     align-self: center;
     width: 90%;
-    height: 700px;
+    max-height: 580px;
     position: relative;
     background-color: white;
     z-index: 1001;
     border-radius: 15px;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 35px;
+}
+
+.signup-header {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
 }
 
 
@@ -138,31 +167,55 @@ h1 {
 }
 
 
-@media (min-width: 1000px) {
+@media (min-width: 1100px) {
 
-    .modal-signup > .wrapper {
+    .welcome-cont {
 
-        width: 850px;
-
+        display: flex;
+        padding: 30px;
+        text-align: center;
+        flex-direction: row-reverse;
+        align-items: center;
+        height: 600px;
+        justify-content: center;
+        width: 100%;
+        height: fit-content;
+        overflow: hidden;
+        background-color: white;
     }
 
-    .modal-login > .wrapper {
+    .welcome-body {
 
-        width: 65%;
-
-    }
-
-  }
-
-  @media (min-width: 600px) {
-
-
-    .modal-login > .wrapper {
-
-        max-width: 500px;
-
-    }
-
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     
+    }
+
+    .access-control{
+
+        padding-inline: 70px
+        ;
+    }
+
+    .Hero-img > img {
+
+        width: auto;
+        height: 600px;
+    
+    }
+  }
+
+  @media (min-width: 700px){
+
+    .modal-login > .wrapper{
+
+        width: 60%;
+        height: 580px;
+
+    }
 
   }
+
+

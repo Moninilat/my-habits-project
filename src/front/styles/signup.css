@@ -1,0 +1,162 @@
+/*--------- Sign up ----------*/
+
+
+#signup-form {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    
+
+}
+
+
+.signup-box{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+.signup-title {
+
+    word-wrap: break-word;
+    text-align: center;
+    padding-inline: 50px;
+
+}
+
+.password-box{
+
+    align-self: center;
+
+}
+
+.visibility {
+    position: absolute;
+    transform: translate(-250%, 30px);
+   
+}
+
+.css-1umw9bq-MuiSvgIcon-root {
+
+    color: #fb7676;
+}
+
+.terms{
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-inline: 15px;
+    word-wrap: break-word;
+}
+.terms-box {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.signup-submit-button{
+
+    width: 250px;
+    height: 60px;
+    border: none;
+    border-radius: 30px;
+    background-color: #fb7676;
+    color: white;
+    margin: 15px;
+    font-weight: bold ;
+}
+
+.signup-submit-button:hover{
+
+    background-color: #2c2c2c;
+    color: white;
+    cursor: pointer;
+}
+
+.profile-picture{
+
+    display: flex ;
+    width: 250px;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.profile-picture > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-right: 10px;
+}
+
+.file-loader{
+    display: flex;
+    justify-self: end;
+    border: none;
+    border-radius: 0;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.file-loader::before {
+    color: #FB7676;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 60px;
+    border: 1px solid #fb7676;
+    border-radius: 30px;
+    border-radius: 30px;
+    content: 'Carga tu foto';
+  }
+  
+  .file-loader input[type="file"] {
+    opacity: 0;
+    width: 150px;
+    height: 60px;
+    position: fixed;
+  }
+  
+
+.active {
+    display: contents;
+}
+
+.hidden {
+    display: none;
+  }
+
+
+
+@media (min-width: 800px) {
+
+
+
+    #signup-form {
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        margin-top: 50px;
+
+    
+    }
+
+   
+  }
