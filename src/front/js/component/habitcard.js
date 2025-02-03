@@ -7,7 +7,7 @@ export const HabitCard = ({ user_habit }) => {
             <div className="habit_title">{user_habit.habit.name}</div>
             <div className="habit_box">
                 <div className="habit_status">¿Completo?</div>
-                <div className="habit_button"></div>
+                <button className="habit_button"></button>
             </div> 
         </div>
     );

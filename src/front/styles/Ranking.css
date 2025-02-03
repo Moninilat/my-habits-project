@@ -45,6 +45,7 @@
     width: 150px;
     display: flex;
     align-items: center;
+    margin-right: 25px;
 }
 
 .user_score_component:nth-child(-n+3) .user_score_name{
