@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../store/appContext';
-import "../../styles/login.css";
+import "../../styles/signup.css";
 import Visibility from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom';
 import Radio from '@mui/material/Radio';
@@ -22,10 +22,8 @@ export const SignUp = () => {
   const [showPasswordA, setShowPasswordA] = useState(false);
   const [showPasswordB, setShowPasswordB] = useState(false);
   const { store, actions } = useContext(Context);
-  const [userPicture, setUserPicture] = useState(localStorage.getItem("image") || "");
+  const [userProfilePicture, setUserProfilePicture] = useState("")
   const navigate = useNavigate();
-
-  
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -34,24 +32,20 @@ export const SignUp = () => {
   const toggleShowPasswordA = () => setShowPasswordA(!showPasswordA);
   const toggleShowPasswordB = () => setShowPasswordB(!showPasswordB);
 
-  
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setUserPicture(imageUrl);
-      localStorage.setItem("image", imageUrl);
-      store.user_picture_profile(userPicture)
-
-  };
+  const handleImageUpload = (e) => { 
+  const file = e.target.files[0];
+  if (file) {
+    setUserProfilePicture(file);
+    actions.handleImageUpload(file); 
   }
-  const handleDeletePicture = () => {
-    localStorage.removeItem("image");
-    setUserPicture("");
-  };
+};
 
-
+const handleDeletePicture = () => {
+  actions.handleDeletePicture(); 
+  setUserProfilePicture(""); 
+  const fileInput = document.querySelector("input[name='file-loader']");
+  if (fileInput) fileInput.value = "";
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -139,9 +133,8 @@ export const SignUp = () => {
           </RadioGroup>
         </div>
 
-        {/* Subida de imagen */}
         <div className='profile-picture'>
-          {userPicture && <img src={userPicture} 
+          {store.userProfilePicture && <img src={store.userProfilePicture} 
           alt="Perfil" 
           style={{ width: "90px", height: "90px", cursor:"pointer" }}
           onClick={handleDeletePicture}
