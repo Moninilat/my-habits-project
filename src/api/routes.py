@@ -33,12 +33,21 @@ def signup_google():
  
     request_body = request.get_json()
     print(request_body)
-    user = User.query.filter_by(first_name=request_body["name"], email=request_body["email"], google_id=request_body["google_id"]).first()
+
+    first_name=request_body["name"]
+    email=request_body["email"] 
+    google_id=request_body["google_id"]
+
+    if not email or not google_id or not first_name: 
+        return jsonify({"msg": "All fields are required"}), 400;
+
+    user = User.query.filter_by(email=email, google_id=google_id).first()
     if user:
-       return jsonify ({"msg":"User already registered"}), 400
-   
-    request_body = request.get_json()
-    new_user = User(first_name=request_body["name"], email=request_body["email"], google_id=request_body["google_id"])
+        token = create_access_token(identity=user.email)
+        print(token)
+        return jsonify({"msg":"User created", "token": token}), 200
+    
+    new_user = User(first_name=first_name, email=email, google_id=google_id)
     db.session.add(new_user)
     db.session.commit()
 

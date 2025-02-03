@@ -9,7 +9,7 @@ export const GoogleLogin = () => {
 
   const navigate = useNavigate();
   const [googleUser, setGoogleUser] = useState("");
-  const [userData, setUserData] = useState([""]);
+  const [userData, setUserData] = useState(null);
 
   
   const signUp = useGoogleLogin({
@@ -67,10 +67,6 @@ useEffect(() => {
 }, [userData]);
 
 
-{
-  console.log(userData)
-}
-  
 
   return (
           <div className="shadow-2xl">
