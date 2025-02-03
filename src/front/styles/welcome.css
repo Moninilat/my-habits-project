@@ -118,12 +118,13 @@ h1 {
     justify-content: center;
     align-items: center;
     align-self: center;
-    width: 90%;
+    max-width: 90%;
     height: 580px;
     position: relative;
     background-color: white;
     z-index: 1001;
     border-radius: 15px;
+    padding: 10%;
 }
 
 
@@ -207,7 +208,7 @@ h1 {
     }
   }
 
-  @media (min-width: 700px){
+  /* @media (min-width: 700px){
 
     .modal-login > .wrapper{
 
@@ -216,6 +217,6 @@ h1 {
 
     }
 
-  }
+  } */
 
 
