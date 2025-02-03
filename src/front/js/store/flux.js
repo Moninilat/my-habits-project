@@ -207,7 +207,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						const data = await resp.json();
 						console.log("Hábitos del usuario:", data);
-						setStore({ user_habits: data.user_habits });
+						setStore({ user_habits: data });
 					} catch (error) {
 						console.log("Error al obtener los hábitos del usuario(token)", error);
 					}
