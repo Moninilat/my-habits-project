@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			user: null,
-			userProfilePicture:[],
+			userProfilePicture: [],
 			ranking: [],
 			habits: [],
 			user_habits: []
@@ -279,7 +279,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			updateUser: async (e, data) => {
 				e.preventDefault();
 				console.log(e);
-				const password = e.target.elements[0].value;
 
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
@@ -289,8 +288,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: `Bearer ${localStorage.getItem("token")}`
 						},
 						body: JSON.stringify({
-							password,
-							data
+							"first_name": data.first_name,
+							"last_name": data.last_name
 						})
 
 					});
@@ -302,20 +301,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-				handleImageUpload: (file) => {
-					const imageUrl = URL.createObjectURL(file); 
-					
-					// Almacenar la imagen en el store
-					setStore({ userProfilePicture: imageUrl });
-	
-					// Guardar en localStorage
-					localStorage.setItem("image", imageUrl);
-				},
-	
-				handleDeletePicture: () => {
-					// Eliminar la imagen del store y localStorage
-					setStore({ userProfilePicture: "" });
-					localStorage.removeItem("image");
+			
+			updatePassword: async (currentPassword, newPassword) => {
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
+						method: "PATCH",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${localStorage.getItem("token")}`
+						},
+						body: JSON.stringify({
+							"current_password": currentPassword,
+							"new_password": newPassword
+						})
+					});
+			
+					if (response.ok) {			
+					alert("Contraseña cambiada con éxito");
+					}else {
+						alert("Error al cambiar la contraseña.");
+					}
+				} catch (error) {
+					console.error("Error al cambiar la contraseña:", error);
+					alert(error.message);
+				}
+			},
+
+
+			handleImageUpload: (file) => {
+				const imageUrl = URL.createObjectURL(file);
+
+				// Almacenar la imagen en el store
+				setStore({ userProfilePicture: imageUrl });
+
+				// Guardar en localStorage
+				localStorage.setItem("image", imageUrl);
+			},
+
+			handleDeletePicture: () => {
+				// Eliminar la imagen del store y localStorage
+				setStore({ userProfilePicture: "" });
+				localStorage.removeItem("image");
 			},
 			filterHabits: () => {
 				const store = getStore();

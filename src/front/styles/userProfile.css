@@ -8,7 +8,7 @@
 
 /* ---------- Modals -----------*/
 
-.modalDeleteUser {
+.modalUser {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,7 +24,7 @@
 
 
 
-.modalDeleteUser .wrapper {
+.modalUser .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,7 +55,7 @@
 
 @media (min-width: 1000px) {
 
-        .modalDeleteUser > .wrapper {
+        .modalUser > .wrapper {
 
         width: 50%;
 
@@ -65,7 +65,7 @@
 
   @media (min-width: 600px) {
 
-    .modalDeleteUser > .wrapper {
+    .modalUser > .wrapper {
 
         max-width: 500px;
 
