@@ -5,8 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userProfilePicture: [],
 			ranking: [],
 			habits: [],
-			user_habits: []
-
+			user_habits: [],
+			
+			
 			// user: null,
 			// ranking: [],
 			// habits: [],
@@ -85,11 +86,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const store = getStore();
 							const rankingList = respJson.ranking;
 							setStore({ ranking: rankingList });
-							console.log(rankingList)
+						
 						})
 				} catch {
 					(err => console.error(err))
 				}
+				
 
 
 			},
@@ -217,6 +219,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addHabit: (habit) => {
 				const token = localStorage.getItem('token');
 				const store = getStore();
+				console.log(habit);
 				const userHabits = store.user_habits || [];
 				if (!userHabits.includes(habit)) {
 					fetch(`${process.env.BACKEND_URL}api/user/habits`, {
@@ -227,12 +230,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify({ habit_id: habit.id })
 					});
-					setStore({ user_habits: [...userHabits, habit] });
+				const newHabits = store.habits.filter(h => h.id !== habit.id)
+				setStore({ habits: [...newHabits] });
+					setStore({ user_habits: [...userHabits, {habit}] });
 				}
 			},
 
 			logout: () => {
 				localStorage.removeItem("token")
+
 				setStore({
 					token: null,
 					user: null
@@ -335,6 +341,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ userProfilePicture: "" });
 				localStorage.removeItem("image");
 			},
+			filterHabits: () => {
+				const store = getStore();
+				const newHabits = store.habits.filter(habit => !store.user_habits.some(user_habit => user_habit.habit.id === habit.id));
+				setStore({ habits: [...newHabits] });
+			}
 		}
 	};
 

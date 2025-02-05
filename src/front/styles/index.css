@@ -1,8 +1,9 @@
 
-
 .main-container {
 
     height: 100vh;
     background-color: white;
-
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    grid-template-rows: 90px 1fr 50px;
 }

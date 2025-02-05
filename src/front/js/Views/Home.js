@@ -19,6 +19,7 @@ export const Home = () => {
     actions.getUser();
     actions.getUserHabits();
     actions.getRanking();
+    actions.filterHabits();
   }, []);
 
   return (
@@ -34,6 +35,7 @@ export const Home = () => {
                 name={user.first_name}
                 city={user.city}
                 score={user.score}
+                gender={user.gender}
               />
             ))}
           </div>

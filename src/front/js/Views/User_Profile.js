@@ -2,9 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from "react-router-dom";
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
-import Button from '@mui/material/Button';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
@@ -16,6 +14,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
 import { Modal } from "../component/modal";
+import { Forms } from "../../img/Forms.png"
 import "../../styles/userProfile.css";
 
 export const UserProfile = () => {
@@ -72,6 +71,7 @@ export const UserProfile = () => {
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
             <img src={store.userProfilePicture} />
+
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
 
             {/* --------Modal para modificar los datos de perfil del usuario-------- */}
@@ -159,17 +159,19 @@ export const UserProfile = () => {
 
             <div className="profile-card">
                 <div className="profile-header">
-                    <div className="profile-image"></div>
                     <div className="profile-info">
 
                         <h5 className="profile-phrase">“Frase de perfil”</h5>
                     </div>
                 </div>
-
-
             </div>
+            <div className="profile-elements">
+            <div className="profile-options">
+                <div className="profile-items" onClick={() => navigate("/profile-details")}> 
+                <AssignmentIndIcon /> Datos de perfil 
+                </div>
 
-            <div className="profile-options" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <div className="profile-options" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 <Button onClick={() => setModalChangeData(true)} className="profile-option">
                     Datos de perfil <AssignmentIndIcon sx={{ marginLeft: 1 }} />
                 </Button>
@@ -182,14 +184,20 @@ export const UserProfile = () => {
                     Soporte <SupportAgentIcon sx={{ marginLeft: 1 }} />
                 </Button>
 
-                <Button onClick={() => setmodalDelete(true)}>
-                    Eliminar cuenta <HeartBrokenIcon sx={{ marginLeft: 1 }} />
-                </Button>
 
-                <Button onClick={handleLogout}>
-                    Cerrar sesión <LogoutIcon sx={{ marginLeft: 1 }} />
-                </Button>
+                <div className="profile-items" onClick={() => setModalSupport(true)}>
+                <SupportAgentIcon /> Soporte 
+                </div>
 
+                <div className="profile-items" onClick={() => setmodalDelete(true)}>
+                <HeartBrokenIcon /> Eliminar cuenta 
+                </div>
+
+                <div className="profile-items" onClick={handleLogout}>
+                <LogoutIcon /> Cerrar sesión 
+                </div>
+            </div>
+            <div className="profile-img"><img src="Forms.png" style={{width: "350px"}}/></div>
             </div>
         </div>
     );
