@@ -80,11 +80,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const store = getStore();
 							const rankingList = respJson.ranking;
 							setStore({ ranking: rankingList });
-							console.log(rankingList)
+						
 						})
 				} catch {
 					(err => console.error(err))
 				}
+				
 
 
 			},
@@ -269,9 +270,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			updateUser: async (e, data) => {
-				e.preventDefault();
-				console.log(e);
+			updateUser: async (user, setModalChangeData) => {
 
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
@@ -280,13 +279,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Content-Type": "application/json",
 							Authorization: `Bearer ${localStorage.getItem("token")}`
 						},
-						body: JSON.stringify({
-							"first_name": data.first_name,
-							"last_name": data.last_name
-						})
+						body: JSON.stringify(user)
 
 					});
-
+					setModalChangeData(false)
+					alert("Usuario actualizado con éxito")
 				}
 				catch (error) {
 					console.error("Error al modificar los datos del usuario.", error);
@@ -294,7 +291,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
+
 			updatePassword: async (currentPassword, newPassword) => {
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/api/user/`, {
@@ -308,10 +305,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"new_password": newPassword
 						})
 					});
-			
-					if (response.ok) {			
-					alert("Contraseña cambiada con éxito");
-					}else {
+
+					if (response.ok) {
+						alert("Contraseña cambiada con éxito");
+					} else {
 						alert("Error al cambiar la contraseña.");
 					}
 				} catch (error) {

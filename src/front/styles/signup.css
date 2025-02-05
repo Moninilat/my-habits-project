@@ -8,13 +8,13 @@
     justify-content: center;
     align-items: center;
     margin-top: 25px;
-    
+
 
 }
 
 
-.signup-box{
-    
+.signup-box {
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +30,7 @@
 
 }
 
-.password-box{
+.password-box {
 
     align-self: center;
 
@@ -39,7 +39,7 @@
 .visibility {
     position: absolute;
     transform: translate(-250%, 30px);
-   
+
 }
 
 .css-1umw9bq-MuiSvgIcon-root {
@@ -47,8 +47,8 @@
     color: #fb7676;
 }
 
-.terms{
-    
+.terms {
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -56,13 +56,14 @@
     margin-inline: 15px;
     word-wrap: break-word;
 }
+
 .terms-box {
     width: 20px;
     height: 20px;
     margin-right: 10px;
 }
 
-.signup-submit-button{
+.signup-submit-button {
 
     width: 250px;
     height: 60px;
@@ -71,19 +72,19 @@
     background-color: #fb7676;
     color: white;
     margin: 15px;
-    font-weight: bold ;
+    font-weight: bold;
 }
 
-.signup-submit-button:hover{
+.signup-submit-button:hover {
 
     background-color: #2c2c2c;
     color: white;
     cursor: pointer;
 }
 
-.profile-picture{
+.profile-picture {
 
-    display: flex ;
+    display: flex;
     width: 250px;
     grid-template-columns: 100px 1fr;
     align-items: center;
@@ -91,14 +92,14 @@
 
 }
 
-.profile-picture > img {
+.profile-picture>img {
     width: 100px;
     height: 100px;
     border-radius: 100px;
     margin-right: 10px;
 }
 
-.file-loader{
+.file-loader {
     display: flex;
     justify-self: end;
     border: none;
@@ -124,15 +125,15 @@
     border-radius: 30px;
     border-radius: 30px;
     content: 'Carga tu foto';
-  }
-  
-  .file-loader input[type="file"] {
+}
+
+.file-loader input[type="file"] {
     opacity: 0;
     width: 150px;
     height: 60px;
     position: fixed;
-  }
-  
+}
+
 
 .active {
     display: contents;
@@ -140,7 +141,21 @@
 
 .hidden {
     display: none;
-  }
+}
+
+.css-1mac7pt-MuiFormGroup-root {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
 
 
 
@@ -153,10 +168,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         justify-items: center;
-        margin-top: 50px;
+        margin-top: 30px;
 
-    
+
     }
 
-   
-  }
+
+}

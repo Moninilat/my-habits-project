@@ -9,6 +9,7 @@ import { Footer } from "./component/footer";
 import { Welcome } from "./Views/Welcome.js";
 import { Ranking } from "./Views/Ranking.js";
 import { UserProfile } from "./Views/User_Profile.js";
+import { NotFound } from "./Views/404.js";
 import "../styles/index.css"
 
 //create your first component
@@ -28,7 +29,7 @@ const Layout = () => {
                         <Route element={<Home />} path="/home" />
                         <Route element={<Ranking />} path="/ranking" />
                         <Route element={<UserProfile />} path="/perfil" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route element={<NotFound />} path="/404" />
                     </Routes>
                     <Footer />
             </BrowserRouter>

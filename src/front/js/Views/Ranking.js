@@ -8,16 +8,14 @@ import { Context } from "../store/appContext";
 export const Ranking = () => {
 
   const { store, actions} = useContext(Context);
-  
-
    useEffect(() => {
       if (!localStorage.getItem("token")) {
       navigate("/")
   }
-          actions.getRanking();
+          actions.getRanking();         
       }, []);
-
-      console.log(store.ranking)
+      
+      
   return (
     <div className="ranking-wrap">
       <div className='ranking-img-header'>
@@ -28,16 +26,19 @@ export const Ranking = () => {
         {
         store.ranking.map((user) => {
           return(
-            <UserScore 
+             <UserScore 
               key={`${user.id} + ${user.name}`}
               name={user.first_name}
               city={user.city}
               score={user.score}
+              gender={user.gender}
             />
+            
           )
         
         })
         }
+        
         <UserScore/>
         <UserScore/>
         <UserScore/>
