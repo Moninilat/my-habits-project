@@ -6,11 +6,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			ranking: [],
 			habits: [],
 			user_habits: []
-
-			// user: null,
-			// ranking: [],
-			// habits: [],
-			// user_habits: []
 		},
 		actions: {
 			login: async (email, password, navigate) => {
@@ -228,8 +223,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify({ habit_id: habit.id })
 					});
-				const newHabits = store.habits.filter(h => h.id !== habit.id)
-				setStore({ habits: [...newHabits] });
 					setStore({ user_habits: [...userHabits, {habit}] });
 				}
 			},
