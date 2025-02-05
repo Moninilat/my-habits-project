@@ -24,9 +24,15 @@ export const UserProfile = () => {
             navigate("/")
         }
     }, [])
-    const user = store.user;
+    const [user, setUser] = useState({
+        first_name: "",
+        last_name: "",
+        city: ""
+    })
+    // const user = store.user;
     const navigate = useNavigate()
     console.log(user);
+    const [modalChangeData, setModalChangeData] = useState(false)
     const [modalSupport, setModalSupport] = useState(false)
     const [modalDelete, setmodalDelete] = useState(false)
     const [modalChangePasword, setModalChangePasword] = useState(false)
@@ -46,14 +52,64 @@ export const UserProfile = () => {
         console.log(e);
         actions.updatePassword(password, newPassword);
     }
+    const handleChangeData = (e) => {
+        e.preventDefault()
+        actions.updateUser(user, setModalChangeData)
+    }
+    const handleChange = (e) => {
+        console.log(e);
+        
+        setUser({
+            ...user, [e.target.name]: e.target.value            
+        })
+    }
+
+    useEffect(() => {
+        setUser(store.user)
+    }, [])
 
     return (
-        <div className="profile-container">
+        <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
+            <img src={store.userProfilePicture} />
+
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
+
             {/* --------Modal para modificar los datos de perfil del usuario-------- */}
 
-            {/* --------Modal para modificar la contraseña del usuario-------- */}
+            <Modal
+                className="modalUser"
+                isOpen={modalChangeData} close={() => { setModalChangeData(false) }}>
+                <form id="delete-form" onSubmit={handleChangeData}>
+                    <input
+                        name="first_name"
+                        value={user.first_name}
+                        type="text"
+                        placeholder="Nombre"
+                        onChange={handleChange}
+                        requiered
+                    />
+                    <input
+                        name="last_name"
+                        value={user.last_name}
+                        type="text"
+                        placeholder="Apellido"
+                        onChange={handleChange}
+                        requiered
+                    />
+                    <input
+                        name="city"
+                        value={user.city}
+                        type="text"
+                        placeholder="City"
+                        onChange={handleChange}
+                        requiered
+                    />
 
+                    <button className="submit-button" type="submit">Confirmar</button>
+                </form>
+            </Modal>
+
+            {/* --------Modal para modificar la contraseña del usuario-------- */}
 
             <Modal
                 className="modalUser"
@@ -115,9 +171,19 @@ export const UserProfile = () => {
                 <AssignmentIndIcon /> Datos de perfil 
                 </div>
 
-                <div className="profile-items" onClick={() => navigate("/change-password")}>
-                <LockResetIcon /> Cambiar contraseña 
-                </div>
+                <div className="profile-options" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <Button onClick={() => setModalChangeData(true)} className="profile-option">
+                    Datos de perfil <AssignmentIndIcon sx={{ marginLeft: 1 }} />
+                </Button>
+
+                <Button onClick={() => setModalChangePasword(true)} className="profile-option">
+                    Cambiar contraseña <LockResetIcon sx={{ marginLeft: 1 }} />
+                </Button>
+
+                <Button onClick={() => setModalSupport(true)}>
+                    Soporte <SupportAgentIcon sx={{ marginLeft: 1 }} />
+                </Button>
+
 
                 <div className="profile-items" onClick={() => setModalSupport(true)}>
                 <SupportAgentIcon /> Soporte 
