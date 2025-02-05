@@ -19,6 +19,7 @@ export const Home = () => {
     actions.getUser();
     actions.getUserHabits();
     actions.getRanking();
+    actions.filterHabits();
   }, []);
 
   return (
