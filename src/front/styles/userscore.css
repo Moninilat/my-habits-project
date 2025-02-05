@@ -1,7 +1,6 @@
 .user_score_component {
   display: flex;
       justify-content: space-between;
-      width: 100%;
       align-items: center;
       font-family: Arial, sans-serif;
       color: #d57373;
@@ -16,22 +15,22 @@
 
 
 .user_score_circle {
-    width: 50px; 
+    width: 50px;
     height: 50px;
     border-radius: 50%;
   }
   
 .user_score_text {
-    margin-left: 10px; 
+    margin-left: 10px;
   }
   
 .user_score_name {
-    font-size: 16px; 
+    font-size: 16px;
     font-weight: bold;
   }
   
 .user_score_city {
-    font-size: 14px; 
+    font-size: 14px;
   }
 .user_score_space {
     margin-left: 20px;
