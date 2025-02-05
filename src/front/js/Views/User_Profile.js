@@ -14,7 +14,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
 import { Modal } from "../component/modal";
-import { Forms } from "../../img/Forms.png"
+import { FormsImg } from "../../img/FormsImg.png"
 import "../../styles/userProfile.css";
 
 export const UserProfile = () => {
@@ -24,18 +24,23 @@ export const UserProfile = () => {
             navigate("/")
         }
     }, [])
+
     const [user, setUser] = useState({
         first_name: "",
         last_name: "",
         city: ""
     })
-    // const user = store.user;
+
+    useEffect(() => {
+        setUser(store.user)
+    }, [])
+
     const navigate = useNavigate()
-    console.log(user);
     const [modalChangeData, setModalChangeData] = useState(false)
     const [modalSupport, setModalSupport] = useState(false)
     const [modalDelete, setmodalDelete] = useState(false)
     const [modalChangePasword, setModalChangePasword] = useState(false)
+
     if (!user) return null;
     const handleLogout = () => {
         actions.logout()
@@ -64,13 +69,10 @@ export const UserProfile = () => {
         })
     }
 
-    useEffect(() => {
-        setUser(store.user)
-    }, [])
+    
 
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
-            <img src={store.userProfilePicture} />
 
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
 
@@ -166,38 +168,39 @@ export const UserProfile = () => {
                 </div>
             </div>
             <div className="profile-elements">
-            <div className="profile-options">
-                <div className="profile-items" onClick={() => navigate("/profile-details")}> 
-                <AssignmentIndIcon /> Datos de perfil 
+                <div className="profile-options">
+
+                    <div 
+                        className="profile-items" 
+                        onClick={() => setModalChangeData(true)}>
+                        <AssignmentIndIcon  /> Datos de perfil 
+                    </div>
+
+                    <div 
+                        onClick={() => setModalChangePasword(true)} 
+                        className="profile-items">
+                        <LockResetIcon />Cambiar contraseña 
+                    </div>
+
+                    <div 
+                        className="profile-items" 
+                        onClick={() => setModalSupport(true)}>
+                        <SupportAgentIcon /> Soporte 
+                    </div>
+
+                    <div 
+                        className="profile-items" 
+                        onClick={() => setmodalDelete(true)}>
+                    <HeartBrokenIcon /> Eliminar cuenta 
+                    </div>
+
+                    <div 
+                        className="profile-items" 
+                        onClick={handleLogout}>
+                    <LogoutIcon /> Cerrar sesión 
+                    </div>
                 </div>
-
-                <div className="profile-options" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                <Button onClick={() => setModalChangeData(true)} className="profile-option">
-                    Datos de perfil <AssignmentIndIcon sx={{ marginLeft: 1 }} />
-                </Button>
-
-                <Button onClick={() => setModalChangePasword(true)} className="profile-option">
-                    Cambiar contraseña <LockResetIcon sx={{ marginLeft: 1 }} />
-                </Button>
-
-                <Button onClick={() => setModalSupport(true)}>
-                    Soporte <SupportAgentIcon sx={{ marginLeft: 1 }} />
-                </Button>
-
-
-                <div className="profile-items" onClick={() => setModalSupport(true)}>
-                <SupportAgentIcon /> Soporte 
-                </div>
-
-                <div className="profile-items" onClick={() => setmodalDelete(true)}>
-                <HeartBrokenIcon /> Eliminar cuenta 
-                </div>
-
-                <div className="profile-items" onClick={handleLogout}>
-                <LogoutIcon /> Cerrar sesión 
-                </div>
-            </div>
-            <div className="profile-img"><img src="Forms.png" style={{width: "350px"}}/></div>
+                <div className="profile-img"><img src="FormsImg.png" style={{width: "350px"}}/></div>
             </div>
         </div>
     );

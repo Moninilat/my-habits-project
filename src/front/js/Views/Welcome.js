@@ -41,7 +41,7 @@ export const Welcome = () => {
         </div>
         </div>
         <div className="acceso-google">
-        {/* <GoogleLogin
+        <GoogleLogin
           onSuccess={credentialResponse => {
             console.log(credentialResponse);
             fetch(`${process.env.BACKEND_URL}api/signup/google`, {
@@ -54,7 +54,7 @@ export const Welcome = () => {
               .catch(error => console.error('Error al enviar los datos al backend:', error));
           }}
           onError={() => console.log('Login Failed')}
-        /> */}
+        />
         </div>
       </div>
 
