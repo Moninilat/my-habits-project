@@ -15,11 +15,22 @@
 }
 
 
-.user_score_circle {
-    width: 50px; 
-    height: 50px;
+.user_score_circle_male {
+    width: 70px; 
+    height: 70px;
     border-radius: 50%;
+    background-image: url("https://cdn-icons-png.flaticon.com/512/236/236831.png");
+    background-size:cover;
+    background-repeat: no-repeat;
   }
+
+.user_score_circle_female {
+  width: 70px; 
+  height: 70px;
+  border-radius: 50%;
+  background-image: url("https://cdn-icons-png.flaticon.com/128/6833/6833595.png");
+  background-size: cover;
+}
   
 .user_score_text {
     margin-left: 10px; 
@@ -33,6 +44,10 @@
 .user_score_city {
     font-size: 14px; 
   }
+
+  .user_score_gender {
+    font-size: 14px; 
+}
 .user_score_space {
     margin-left: 20px;
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { useGoogleLogin } from "@react-oauth/google";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../styles/googleLogin.css"
 
 
 
@@ -72,10 +73,10 @@ useEffect(() => {
           <div className="shadow-2xl">
             <button
               type="button"
-              className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
+              className="Google-login"
               onClick={() => signUp()}
-            >
-              Sign in with Google
+            ><img src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA" alt="Logo_google" style={{width:"25px", height:"25px", marginRight:"10px"}}/>
+              Google
             </button>
           </div>
   );

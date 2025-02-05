@@ -5,8 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userProfilePicture:[],
 			ranking: [],
 			habits: [],
-			user_habits: []
-
+			user_habits: [],
+			
+			
 			// user: null,
 			// ranking: [],
 			// habits: [],
@@ -85,11 +86,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const store = getStore();
 							const rankingList = respJson.ranking;
 							setStore({ ranking: rankingList });
-							console.log(rankingList)
+						
 						})
 				} catch {
 					(err => console.error(err))
 				}
+				
 
 
 			},
@@ -296,22 +298,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error al modificar los datos del usuario.", error);
 					alert("Error al modificar los datos del usuario.");
 				}
-			},
-
-				handleImageUpload: (file) => {
-					const imageUrl = URL.createObjectURL(file); 
-					
-					// Almacenar la imagen en el store
-					setStore({ userProfilePicture: imageUrl });
-	
-					// Guardar en localStorage
-					localStorage.setItem("image", imageUrl);
-				},
-	
-				handleDeletePicture: () => {
-					// Eliminar la imagen del store y localStorage
-					setStore({ userProfilePicture: "" });
-					localStorage.removeItem("image");
 			},
 		}
 	};

@@ -85,6 +85,14 @@ export const SignUp = () => {
           required
         />
 
+         <input type="text"
+          name="city"
+          placeholder="Ciudad..."
+          value={data.city}
+          onChange={handleChange}
+          required
+        />
+
         <div className='password-box'>
           <input
             type={showPasswordA ? "text" : "password"}
@@ -106,53 +114,26 @@ export const SignUp = () => {
           <Visibility className="visibility" onClick={toggleShowPasswordB} />
         </div>
 
-        <input type="text"
-          name="city"
-          placeholder="Ciudad..."
-          value={data.city}
-          onChange={handleChange}
-          required
-        />
-
         <div className='gender'>
           <RadioGroup
+            style={{flexDirection:"row"}}
             onChange={handleChange}
             value={data.gender}
             name="gender">
+              <div>
+              <img src="https://cdn-icons-png.flaticon.com/128/6833/6833595.png" style={{width:"50px", marginRight:"10px"}}/>
               <FormControlLabel
                 value="female"
-                control={<Radio />}
-                label="Soy mujer" />
+                control={<Radio />}/>
+              </div>
+              <div>
+              <img src="https://cdn-icons-png.flaticon.com/512/236/236831.png" style={{width:"50px", marginRight:"10px"}}/>
               <FormControlLabel
                 value="male"
-                control={<Radio />}
-                label="Soy hombre" />
-              <FormControlLabel
-                value="male"
-                control={<Radio />}
-                label="Prefiero no decirlo" />
+                control={<Radio />}/>
+              </div>
           </RadioGroup>
         </div>
-
-        <div className='profile-picture'>
-          {store.userProfilePicture && <img src={store.userProfilePicture}
-            alt="Perfil"
-            style={{ width: "90px", height: "90px", cursor: "pointer" }}
-            onClick={handleDeletePicture}
-          />}
-
-          <div className="file-loader" id='file-loader'>
-            <input
-              name='file-loader'
-              type="file"
-              className='file-loader'
-              accept="image/*"
-              onChange={handleImageUpload}
-            />
-          </div>
-
-        </div>
-
         <button className="signup-submit-button" type="submit">Registrarse</button>
       </form>
     </div>
