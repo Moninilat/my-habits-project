@@ -5,8 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userProfilePicture: [],
 			ranking: [],
 			habits: [],
-			user_habits: []
-
+			user_habits: [],
+			
+			
 			// user: null,
 			// ranking: [],
 			// habits: [],
@@ -85,11 +86,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const store = getStore();
 							const rankingList = respJson.ranking;
 							setStore({ ranking: rankingList });
-							console.log(rankingList)
+						
 						})
 				} catch {
 					(err => console.error(err))
 				}
+				
 
 
 			},
