@@ -35,3 +35,17 @@
     cursor: pointer;
     border: 1px solid #666;
   }
+
+.delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.x{
+    font-size: 15px;
+    color: #d01212;
+    margin-right: 10px;
+}

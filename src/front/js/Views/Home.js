@@ -18,11 +18,11 @@ export const Home = () => {
     }
     if (!fetched) {
 
-      Promise.all([actions.getHabits(),
+      Promise.all([
+      actions.getHabits(),
       actions.getUser(),
       actions.getUserHabits(),
-      actions.getRanking(),
-      actions.filterHabits()])
+      actions.getRanking()])
         .then(() => {
           setFetched(true);
         })
@@ -53,7 +53,6 @@ export const Home = () => {
           </div>
         </section>
 
-
         {/* Sección Habits*/}
         <section className="carousel-section">
           <h2>Recomendaciones</h2>
@@ -67,19 +66,17 @@ export const Home = () => {
         {/* Sección user_habits */}
         <section className="carousel-section">
           <h2>Mis Hábitos</h2>
+          <div className="habit">
+            {store.user_habits && store.user_habits.length > 0 ? (
+              store.user_habits.map((user_habit, index) => (
+                <HabitCard key={index} user_habit={user_habit} />
+              ))
+            ) : (
+              <div className="no-habits">¡Empieza a añadir tus hábitos!</div>
+            )}
+          </div>
         </section>
-
-        <div class="habit">
-          {store.user_habits && store.user_habits.length > 0 ? (
-            store.user_habits.map((user_habit, index) => (
-              <HabitCard key={index} user_habit={user_habit} />
-            ))
-          ) : (
-            <div className="no-habits">¡Empieza a añadir tus hábitos!</div>
-          )}
-        </div>
       </div>
     </div>
   );
-
 }
