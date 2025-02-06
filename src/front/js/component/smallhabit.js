@@ -4,7 +4,9 @@ import { Context } from "../store/appContext";
 
 export const SmallHabit = ({ habit }) => {
     const { store, actions } = useContext(Context);
-
+    if (store.user_habits.some(user_habit => user_habit.habit.id === habit.id)) {
+        return null;
+    }
     return (
         <div className="small_habit_component">
             <div className="small_habit_title">{habit.name}</div>

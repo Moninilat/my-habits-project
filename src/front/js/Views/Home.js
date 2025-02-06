@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { SmallHabit } from "../component/smallhabit";
 import { HabitCard } from "../component/habitcard";
@@ -11,16 +11,28 @@ import "../../styles/home.css";
 export const Home = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate()
+  const [fetched, setFetched] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/")
     }
-    actions.getHabits();
-    actions.getUser();
-    actions.getUserHabits();
-    actions.getRanking();
-    actions.filterHabits();
+    if (!fetched) {
+
+      Promise.all([actions.getHabits(),
+      actions.getUser(),
+      actions.getUserHabits(),
+      actions.getRanking(),
+      actions.filterHabits()])
+        .then(() => {
+          setFetched(true);
+        })
+        .catch((error) => {
+          console.error("Error fetching data", error);
+        });
+    }
+
   }, []);
+  if (!fetched) return null;
 
   return (
     <div className="home">
@@ -42,7 +54,6 @@ export const Home = () => {
         </section>
 
 
-
         {/* Sección Habits*/}
         <section className="carousel-section">
           <h2>Recomendaciones</h2>
@@ -59,14 +70,14 @@ export const Home = () => {
         </section>
 
         <div class="habit">
-            {store.user_habits && store.user_habits.length > 0 ? (
-              store.user_habits.map((user_habit, index) => (
-                <HabitCard key={index} user_habit={user_habit} />
-              ))
-            ) : (
-              <div className="no-habits">¡Empieza a añadir tus hábitos!</div>
-            )}
-          </div>
+          {store.user_habits && store.user_habits.length > 0 ? (
+            store.user_habits.map((user_habit, index) => (
+              <HabitCard key={index} user_habit={user_habit} />
+            ))
+          ) : (
+            <div className="no-habits">¡Empieza a añadir tus hábitos!</div>
+          )}
+        </div>
       </div>
     </div>
   );
