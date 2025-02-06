@@ -49,3 +49,20 @@
     color: #d01212;
     margin-right: 10px;
 }
+
+.remove_habit_button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color:#FB7676;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button_delete {
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
