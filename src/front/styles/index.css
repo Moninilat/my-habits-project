@@ -3,6 +3,13 @@
     --body_color: #FB7676;
     --body_badge: white;
     --body_badge_text:#2c2c2c;
+    --body_input_background:white;
+    --body_sumbit_button:#FB7676;
+    --body_sumbit_button_text:white;
+    --body_sumbit_button_hover:#2c2c2c;
+    --secondary_background:#FB7676;
+
+
 }
 [data-theme="dark"]{
 
@@ -10,6 +17,10 @@
     --body_color: white;
     --body_badge: #111418;
     --body_badge_text: white;
+    --body_input_background:#111418;
+    --body_sumbit_button:white;
+    --body_sumbit_button_text:#FB7676;
+    --secondary_background:#111418;
 
 }
 /* * {

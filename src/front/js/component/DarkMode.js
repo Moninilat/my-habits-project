@@ -13,9 +13,11 @@ export const DarkMode = () => {
         localStorage.setItem("selectedTheme", "ligth")
     }
 
-    const selectedTheme = localStorage.getItem("selectedThem");
+    const selectedTheme = localStorage.getItem("selectedTheme");
     if (selectedTheme === "dark"){
         setDarkMode();
+    }else{
+        setLightMode();
     }
 
     const toggleTheme = (e) => {
@@ -29,7 +31,7 @@ export const DarkMode = () => {
                 type='checkbox'
                 id='darkmode-toggle'
                 onChange={toggleTheme}
-                defaultChecked={selectedTheme === "ligth"}
+                defaultChecked={selectedTheme === "dark"}
             />
             <label className='dark_mode_label' for='darkmode-toggle'>
                 <LightModeIcon className="sun"/>
