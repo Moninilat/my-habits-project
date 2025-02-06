@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
 import { Modal } from "../component/modal";
 import { FormsImg } from "../../img/FormsImg.png"
+import { support } from "../../img/support.png"
 import "../../styles/userProfile.css";
 
 export const UserProfile = () => {
@@ -136,9 +137,16 @@ export const UserProfile = () => {
 
             {/* --------Modal para soporte-------- */}
             <Modal
-                className="modalUser"
+                
+                className="support"
                 isOpen={modalSupport} close={() => { setModalSupport(false) }}
-                title="Si necesitas ayuda, envíanos un correo a ermomageeks@gmail.com y te responderemos lo antes posible.">
+                title= "Si necesitas ayuda, envíanos un correo a ermomageeks@gmail.com y te responderemos lo antes posible.">
+                
+                <img 
+                src="support.png" 
+                style={{width:"180px", height:"180px"}}
+                loading="lazy"
+                />
 
             </Modal>
 
@@ -200,7 +208,13 @@ export const UserProfile = () => {
                     <LogoutIcon /> Cerrar sesión 
                     </div>
                 </div>
-                <div className="profile-img"><img src="FormsImg.png" style={{width: "350px"}}/></div>
+                <div className="profile-img">
+                    <img 
+                    src="FormsImg.png" 
+                    style={{width: "280px"}}
+                    loading="lazy"
+                    />
+                </div>
             </div>
         </div>
     );

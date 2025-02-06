@@ -2,7 +2,7 @@
 
     display: flex;
     top: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--body_badge);
     border-bottom: solid 0.3px #FB7676;
     padding: 25px;
     width: 100%;
@@ -16,7 +16,7 @@
 .s-title {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #FB7676;
+    color:var(--body_color);
     margin: auto;
     text-align: center;
 }
@@ -128,7 +128,7 @@
 .complete-menu-title{
 
     font-size: 1.2rem;
-    color:#FB7676;
+    color:var(--body_color);
     font-weight: bold;
     padding-left: 30px;
 
@@ -144,7 +144,7 @@
 }
 
 .menu > a {
-    color: #FB7676;
+    color: var(--body_color);
     font-weight: bold;
     text-decoration: none;
     padding-left: 20px;
@@ -153,13 +153,13 @@
 .logout-button{
 
     width: 100px;
-    background-color: #FB7676;
+    background-color: var(--body_sumbit_button);
     border-radius: 30px;
     padding: 10px;
     border: none;
     margin-left: 20px;
     font-weight: bold;
-    color: white;
+    color: var(--body_sumbit_button_text);
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: bold;

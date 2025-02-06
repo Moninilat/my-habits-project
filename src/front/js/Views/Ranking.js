@@ -19,7 +19,11 @@ export const Ranking = () => {
   return (
     <div className="ranking-wrap">
       <div className='ranking-img-header'>
-        <img src="Winners_cuate.png" style={{ width:'150px' }}/>        
+        <img 
+        src="Winners_cuate.png" 
+        style={{ width:'150px' }}
+        loading="lazy"
+        />        
       </div>
       <div className="ranking-box-cont">
       <div className='ranking-box'>

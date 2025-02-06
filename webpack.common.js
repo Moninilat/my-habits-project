@@ -14,6 +14,8 @@ module.exports = {
   },
   module: {
     rules: [
+        
+
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
@@ -29,9 +31,12 @@ module.exports = {
         {
           test: /\.(png|svg|jpg|gif|jpeg|webp)$/, use: {
             loader: 'file-loader',
+            use: ["@svgr/webpack"],
             options: { name: '[name].[ext]' }
           }
-        }, //for images
+         
+        },
+        //for images
         { test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, use: ['file-loader'] } //for fonts
     ]
   },
