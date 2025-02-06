@@ -228,6 +228,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			removeHabit: (habit) => {
+				const token = localStorage.getItem('token');
+				const store = getStore();
+				const userHabits = store.user_habits || [];
+			
+				fetch(`${process.env.BACKEND_URL}api/user/habits/${habit.id}`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						'Authorization': `Bearer ${token}`
+					}
+				}).then(() => {
+					const updatedUserHabits = userHabits.filter(user_habit => user_habit.habit.id !== habit.id);
+					setStore({ user_habits: updatedUserHabits });
+					actions.getHabits();
+				}).catch(error => console.error("Error al eliminar el hábito:", error));
+			},
+			
 			logout: () => {
 				localStorage.removeItem("token")
 
@@ -317,11 +335,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			filterHabits: () => {
+			removeHabit: (habit) => {
+				const token = localStorage.getItem('token');
 				const store = getStore();
-				const newHabits = store.habits.filter(habit => !store.user_habits.some(user_habit => user_habit.habit.id === habit.id));
-				setStore({ habits: [...newHabits] });
+				const userHabits = store.user_habits || [];
+
+				fetch(`${process.env.BACKEND_URL}api/user/habits`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						'Authorization': `Bearer ${token}`
+					},
+					body: JSON.stringify({ habit_id: habit.id })
+				})
+				.then(response => {
+					if (response.ok) {
+						const updatedUserHabits = userHabits.filter(user_habit => user_habit.habit.id !== habit.id);
+						const updatedHabits = store.habits.some(h => h.id === habit.id) ? store.habits : [...store.habits, habit];
+						setStore({ user_habits: updatedUserHabits, habits: updatedHabits });
+					} else {
+						console.error("Error al eliminar el hábito del usuario");
+					}
+				})
+				.catch(error => console.error("Error al eliminar el hábito del usuario:", error));
 			}
+
+		
 		}
 	};
 
