@@ -30,8 +30,10 @@
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    position: relative;
+    width: 100%;
 
 }
 
@@ -46,6 +48,7 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
+    color: #2c2c2c;
 
 }
 
@@ -56,39 +59,72 @@
 
 }
 
+.signup-header > h5 {
+
+    margin-bottom: 0px;
+    margin-right: 3px;
+    text-align: center;
+    text-wrap-style: balance;
+
+}
 
 
 /* ---------- Modals -----------*/
 
-.modalUser {
+.modalUser, 
+.support {
     display: flex;
-    align-items: center;
     justify-content: center;
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
     z-index: 1000;
     padding-inline: 25px;
 }
 
-
-
 .modalUser .wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 90%;
-    max-width: 400px; /* Ajusta el ancho máximo */
-    height: auto;
-    max-height: 300px; /* Ajusta la altura para que no sea tan grande */
-    padding: 20px;
+    align-self: center;
+    width: 550px;
+    height: 410px;
+    position: relative;
     background-color: white;
+    z-index: 1001;
     border-radius: 15px;
-    text-align: center;
+    padding: 5%;
+    justify-content: center;
+}
+
+.support > .wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    align-self: center;
+    width: 550px;
+    height: 410px;
+    position: relative;
+    background-color: white;
+    z-index: 1000;
+    border-radius: 15px;
+    padding: 5%;
+    justify-content: center;
+}
+
+#delete-form {
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-top: 30px;
+
 }
 
 
@@ -105,30 +141,27 @@
 }
 
 
-@media (min-width: 1000px) {
-
-        .modalUser > .wrapper {
-
-        width: 50%;
-
-    }
-
-  }
-
-  @media (min-width: 600px) {
-
-    .modalUser > .wrapper {
-
-        max-width: 500px;
-
-    }
-
-  }
-
   @media (max-width: 700px) {
 
     .profile-img{
         display: none;
     }
 
+    .profile-options{
+
+        width: 90%;
+
+    }
+
+
+    .profile-items{
+
+        width: 100%;
+
+    }
+    
+    .modalUser > .wrapper {
+
+        width: 90%;
+    }
   }

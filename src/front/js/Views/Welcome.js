@@ -25,7 +25,11 @@ export const Welcome = () => {
 
     <div className="welcome-cont">
       <div className="Hero-img">
-        <img src="Calendar.png"/>
+        <img 
+        src="Calendar.png"
+        loading="lazy"
+        />
+        
       </div>
       <div className='access-control'>
         <h1>Bienvenid@ a tu rastreador de hábitos</h1>
@@ -41,7 +45,7 @@ export const Welcome = () => {
         </div>
         </div>
         <div className="acceso-google">
-        {/* <GoogleLogin
+        <GoogleLogin
           onSuccess={credentialResponse => {
             console.log(credentialResponse);
             fetch(`${process.env.BACKEND_URL}api/signup/google`, {
@@ -54,7 +58,7 @@ export const Welcome = () => {
               .catch(error => console.error('Error al enviar los datos al backend:', error));
           }}
           onError={() => console.log('Login Failed')}
-        /> */}
+        />
         </div>
       </div>
 

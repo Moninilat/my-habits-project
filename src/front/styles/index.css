@@ -1,8 +1,27 @@
+:root{
+    --body_background : white;
+    --body_color: #FB7676;
+    --body_badge: white;
+    --body_badge_text:#2c2c2c;
+}
+[data-theme="dark"]{
+
+    --body_background :#000;
+    --body_color: white;
+    --body_badge: #111418;
+    --body_badge_text: white;
+
+}
+/* * {
+
+    transition: all 0.05s ease-in-out;
+} */
+
 
 .main-container {
 
     height: 100vh;
-    background-color: white;
+    background-color: var(--body_background);
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-rows: 90px 1fr 50px;
