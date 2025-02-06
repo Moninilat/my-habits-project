@@ -12,19 +12,20 @@ input {
 
     width: 250px;
     height: 60px;
-    border: 1px solid #fb7676;
+    border: 1px solid var(--body_color);
+    background-color: var(--body_input_background);
     border-radius: 30px;
     padding-left: 30px;
     margin-inline: 15px;
     margin-block: 10px;
     font-weight: bold;
     font-style: italic;
-    color: #fb7676;
+    color: var(--body_color);
 }
 
 input::placeholder{
 
-    color: #fb7676;
+    color:var(--body_color);
     font-weight: bold;
     font-style: italic;
 }
@@ -40,8 +41,8 @@ input:focus{
     height: 60px;
     border: none;
     border-radius: 30px;
-    background-color: #fb7676;
-    color: white;
+    background-color: var( --body_sumbit_button);
+    color: var(--body_sumbit_button_text);
     margin: 15px;
     font-weight: bold ;
 }

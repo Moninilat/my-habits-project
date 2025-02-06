@@ -9,7 +9,9 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
 
 export const Home = () => {
+
   const { store, actions } = useContext(Context);
+  const [searchTerm, setSearchTerm] = useState("")
   const navigate = useNavigate()
   const [fetched, setFetched] = useState(false);
   useEffect(() => {
@@ -33,6 +35,11 @@ export const Home = () => {
 
   }, []);
   if (!fetched) return null;
+  
+  const filteredHabits = store.habits.filter((habit) =>
+    habit.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+ 
 
   return (
     <div className="home">
@@ -53,13 +60,30 @@ export const Home = () => {
           </div>
         </section>
 
-        {/* Sección Habits*/}
+
+        {/* Sección Habits con Buscador */}
         <section className="carousel-section">
-          <h2>Recomendaciones</h2>
+          <div className="carousel-header">
+            <h2>Recomendaciones</h2>
+          
+              {/* Input de búsqueda */}
+              <input 
+                type="text"
+                placeholder="Buscar hábito..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-bar"
+              />
+          </div>
+
           <div className="carousel small-habits-carousel">
-            {store.habits.map((habit, index) => (
-              <SmallHabit key={index} habit={habit} />
-            ))}
+            {filteredHabits.length > 0 ? (
+              filteredHabits.map((habit, index) => (
+                <SmallHabit key={index} habit={habit} />
+              ))
+            ) : (
+              <p>No se encontraron hábitos</p>
+            )}
           </div>
         </section>
 

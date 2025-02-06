@@ -14,7 +14,10 @@ useEffect(() => {
     return (
         <div className="user_score_component">
             <div className="user_score_box">
-                <img className={`user_score_circle_${genderClass}`}></img>
+                <img 
+                className={`user_score_circle_${genderClass}`}
+                loading="lazy"
+                />
                 <div className="user_text">                                  
                     <div className="user_score_name">{props.name}</div>
                     <div className="user_score_city">{props.city}</div>

@@ -15,7 +15,7 @@
     width: 100%;
     height: fit-content;
     overflow: hidden;
-    background-color: white;
+    background-color:var(--body_background);
 }
 
 .welcome-body {
@@ -44,7 +44,7 @@
 
 h1 {
     font-size: 2rem;
-    color: #FB7676;
+    color: var(--body_color);
     font-weight: bold;
 }
 
@@ -52,11 +52,11 @@ h1 {
 
     width: 145px;
     height: 60px;
-    border: solid 1px #FB7676;
+    border: solid 1px var(--body_color);
     border-radius: 30px;
-    background-color: white;
+    background-color: var(--body_input_background);
     font-weight: bold;
-    color: #FB7676;
+    color: var(--body_input_text);
     margin: 15px;
 
 }
@@ -74,7 +74,7 @@ h1 {
     
     width: 1px;
     height: 60px;
-    background-color: #FB7676;
+    background-color: var(--body_color);
     margin: 15px;
 }
 
@@ -120,7 +120,7 @@ h1 {
     max-width: 90%;
     height: 580px;
     position: relative;
-    background-color: white;
+    background-color: var(--body_badge);
     z-index: 1001;
     border-radius: 15px;
     padding: 10%;
@@ -136,7 +136,7 @@ h1 {
     width: 90%;
     max-height: 580px;
     position: relative;
-    background-color: white;
+    background-color: var(--body_badge);
     z-index: 1001;
     border-radius: 15px;
     overflow: scroll;
@@ -160,7 +160,7 @@ h1 {
     top: 15px;
     right: 15px;
     font-size: 1.5rem;
-    color: #FB7676;
+    color: var(--body_color);
     cursor: pointer;
     z-index: 1002;
 
@@ -181,7 +181,7 @@ h1 {
         width: 100%;
         height: fit-content;
         overflow: hidden;
-        background-color: white;
+        background-color: var(--body_background);
     }
 
     .welcome-body {

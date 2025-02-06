@@ -8,6 +8,8 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
 import { Context } from "../store/appContext";
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { DarkMode } from "./DarkMode.js";
 
 export const Navbar = () => {
     const { store, actions } = useContext(Context);
@@ -61,6 +63,9 @@ export const Navbar = () => {
                                         <li>
                                             <AccountCircleOutlinedIcon /><Link to="/perfil" onClick={handleClose}>Perfil</Link>
                                         </li>
+                                        <li>
+                                            
+                                        </li>
                                     </ul>
                                     <div className="logout-menu">
                                         <button className="logout-button" onClick={handleLogout}>Logout</button>
@@ -86,7 +91,9 @@ export const Navbar = () => {
                         <div className="menu">
                             <Link to="/ranking">Ranking</Link>
                             <Link to="/perfil">Perfil</Link>
+                            <DarkMode />
                             <button className="logout-button" onClick={handleLogout}>Logout</button>
+                            
                         </div>
                     ) : null} {/* Si no hay usuario, no muestra los enlaces */}
                 </div>

@@ -4,7 +4,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 15px 20px;
-    background-color: #f9f9f9;
+    background-color: var(--body_badge);
     border-radius: 15px; 
     font-family: Arial, sans-serif;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -15,7 +15,7 @@
 .habit_title {
     font-size: 16px;
     font-weight: bold;
-    color: #333;
+    color: var(--body_badge_text);
   }
   
 .habit_box {
@@ -24,7 +24,7 @@
 
 .habit_status {
     font-size: 14px;
-    color: #666; 
+    color: var(var(--body_badge_text)); 
     margin-right: 5px;
   }
   
