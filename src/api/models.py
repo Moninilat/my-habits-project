@@ -41,10 +41,10 @@ class Habits(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(1000), unique=True, nullable=False)
-    description = db.Column(db.String(1000), unique=True, nullable=False)
+    name = db.Column(db.String(1024), unique=True, nullable=False)
+    description = db.Column(db.String(1024), unique=True, nullable=False)
     score = db.Column(db.Integer, unique=False)
-
+    image= db.Column(db.String(1024), unique=True, nullable=False)
     
 
     def __repr__(self):
@@ -55,7 +55,8 @@ class Habits(db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
-            "score": self.score
+            "score": self.score,
+            "image":self.image
         }
     
 class Habit_records(db.Model):
