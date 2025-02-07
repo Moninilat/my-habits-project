@@ -275,15 +275,11 @@ def complete_habit():
     
     return jsonify({"message": "Hábito completado con éxito", "habit_record": habit_record.serialize() }), 201
 
-
-#endpoint para agregar el hábito
 @api.route("/new/habit", methods=["POST"])
 def new_habit():
     request_body = request.get_json()
-    
     if not isinstance(request_body, list):
         return jsonify({"error": "Se esperaba una lista de hábitos"}), 400
-    
     for habit_data in request_body:
         # Validar campos mínimos (name, description, score)
         if not all(key in habit_data for key in ["name", "description", "score"]):
@@ -306,4 +302,3 @@ def new_habit():
     # Realizamos el commit una sola vez al final
     db.session.commit()
     return jsonify({"message": "Hábitos agregados exitosamente"}), 200
-        

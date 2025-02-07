@@ -77,7 +77,6 @@ export const UserProfile = () => {
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
 
->>>>>>> d1be3cf0866b66848956e4c11de7f8eb8c13420b
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
 
             {/* --------Modal para modificar los datos de perfil del usuario-------- */}
@@ -106,7 +105,7 @@ export const UserProfile = () => {
                         name="city"
                         value={user.city}
                         type="text"
-                        placeholder="City"
+                        placeholder="Ciudad"
                         onChange={handleChange}
                         requiered
                     />

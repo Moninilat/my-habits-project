@@ -46,7 +46,7 @@ const { store, actions} = useContext(Context)
         <Visibility className='visibility' onClick={toggleShowPassword} />
         </div>
 
-        <button className="submit-button" type="submit">Login</button>
+        <button className="submit-button" type="submit">Inicia sesión</button>
     </form>
   </div>
 
