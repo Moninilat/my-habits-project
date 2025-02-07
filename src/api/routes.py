@@ -275,3 +275,30 @@ def complete_habit():
     
     return jsonify({"message": "Hábito completado con éxito", "habit_record": habit_record.serialize() }), 201
 
+@api.route("/new/habit", methods=["POST"])
+def new_habit():
+    request_body = request.get_json()
+    if not isinstance(request_body, list):
+        return jsonify({"error": "Se esperaba una lista de hábitos"}), 400
+    for habit_data in request_body:
+        # Validar campos mínimos (name, description, score)
+        if not all(key in habit_data for key in ["name", "description", "score"]):
+            return jsonify({"error": "Formato de hábito inválido"}), 400
+        # Extraemos la info
+        name = habit_data["name"]
+        description = habit_data["description"]
+        score = habit_data["score"]
+        # Comprobamos si ya existe un hábito con el mismo nombre
+        existing_habit = Habits.query.filter_by(name=name).first()
+        if existing_habit:
+            return jsonify({"error": f"El hábito '{name}' ya existe"}), 400
+        # Si no existe, creamos y agregamos a la sesión
+        new_habit = Habits(
+            name=name,
+            description=description,
+            score=score
+        )
+        db.session.add(new_habit)
+    # Realizamos el commit una sola vez al final
+    db.session.commit()
+    return jsonify({"message": "Hábitos agregados exitosamente"}), 200

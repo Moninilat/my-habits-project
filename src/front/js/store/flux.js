@@ -358,7 +358,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 				.catch(error => console.error("Error al eliminar el hábito del usuario:", error));
-			}
+			},
+
+			completeHabit: async (habitId) => {
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}api/complete_habit`, {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${localStorage.getItem("token")}`,
+						},
+						body: JSON.stringify({ habit_id: habitId }),
+					});
+			
+					if (!response.ok) {
+						throw new Error("No se pudo completar el hábito");
+					}
+			
+					const data = await response.json();
+					return true; // Devuelve éxito
+				} catch (error) {
+					console.error("Error al completar hábito:", error);
+					return false; // Devuelve fallo
+				}
+			},
 
 		
 		}
