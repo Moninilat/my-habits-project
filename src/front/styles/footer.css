@@ -1,6 +1,6 @@
 .footer {
 
-    background-color: #fb7676;
+    background-color: var(--secondary_background);
     position: fixed;
     bottom: 0;
     height: 50px;

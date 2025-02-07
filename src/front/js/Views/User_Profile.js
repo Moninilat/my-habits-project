@@ -16,6 +16,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
 import { Modal } from "../component/modal";
+import { FormsImg } from "../../img/FormsImg.png"
+import { support } from "../../img/support.png"
 import "../../styles/userProfile.css";
 
 export const UserProfile = () => {
@@ -25,18 +27,23 @@ export const UserProfile = () => {
             navigate("/")
         }
     }, [])
+
     const [user, setUser] = useState({
         first_name: "",
         last_name: "",
         city: ""
     })
-    // const user = store.user;
+
+    useEffect(() => {
+        setUser(store.user)
+    }, [])
+
     const navigate = useNavigate()
-    console.log(user);
     const [modalChangeData, setModalChangeData] = useState(false)
     const [modalSupport, setModalSupport] = useState(false)
     const [modalDelete, setmodalDelete] = useState(false)
     const [modalChangePasword, setModalChangePasword] = useState(false)
+
     if (!user) return null;
     const handleLogout = () => {
         actions.logout()
@@ -65,15 +72,10 @@ export const UserProfile = () => {
         })
     }
 
-    useEffect(() => {
-        setUser(store.user)
-    }, [])
+    
 
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
-            <img src={store.userProfilePicture} />
-<<<<<<< HEAD
-=======
 
 >>>>>>> d1be3cf0866b66848956e4c11de7f8eb8c13420b
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
@@ -138,9 +140,16 @@ export const UserProfile = () => {
 
             {/* --------Modal para soporte-------- */}
             <Modal
-                className="modalUser"
+                
+                className="support"
                 isOpen={modalSupport} close={() => { setModalSupport(false) }}
-                title="Si necesitas ayuda, envíanos un correo a ermomageeks@gmail.com y te responderemos lo antes posible.">
+                title= "Si necesitas ayuda, envíanos un correo a ermomageeks@gmail.com y te responderemos lo antes posible.">
+                
+                <img 
+                src="support.png" 
+                style={{width:"180px", height:"180px"}}
+                loading="lazy"
+                />
 
             </Modal>
 
@@ -169,47 +178,47 @@ export const UserProfile = () => {
                         <h5 className="profile-phrase">“Frase de perfil”</h5>
                     </div>
                 </div>
-
-<<<<<<< HEAD
-
             </div>
+            <div className="profile-elements">
+                <div className="profile-options">
 
-            <div className="profile-options" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                <Button onClick={() => setModalChangeData(true)} className="profile-option">
-                    Datos de perfil <AssignmentIndIcon sx={{ marginLeft: 1 }} />
-                </Button>
-=======
-                <div className="profile-options" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                <Button onClick={() => setModalChangeData(true)} className="profile-option">
-                    Datos de perfil <AssignmentIndIcon sx={{ marginLeft: 1 }} />
-                </Button>
+                    <div 
+                        className="profile-items" 
+                        onClick={() => setModalChangeData(true)}>
+                        <AssignmentIndIcon  /> Datos de perfil 
+                    </div>
 
-                <Button onClick={() => setModalChangePasword(true)} className="profile-option">
-                    Cambiar contraseña <LockResetIcon sx={{ marginLeft: 1 }} />
-                </Button>
+                    <div 
+                        onClick={() => setModalChangePasword(true)} 
+                        className="profile-items">
+                        <LockResetIcon />Cambiar contraseña 
+                    </div>
 
-                <Button onClick={() => setModalSupport(true)}>
-                    Soporte <SupportAgentIcon sx={{ marginLeft: 1 }} />
-                </Button>
+                    <div 
+                        className="profile-items" 
+                        onClick={() => setModalSupport(true)}>
+                        <SupportAgentIcon /> Soporte 
+                    </div>
 
->>>>>>> d1be3cf0866b66848956e4c11de7f8eb8c13420b
+                    <div 
+                        className="profile-items" 
+                        onClick={() => setmodalDelete(true)}>
+                    <HeartBrokenIcon /> Eliminar cuenta 
+                    </div>
 
-                <Button onClick={() => setModalChangePasword(true)} className="profile-option">
-                    Cambiar contraseña <LockResetIcon sx={{ marginLeft: 1 }} />
-                </Button>
-
-                <Button onClick={() => setModalSupport(true)}>
-                    Soporte <SupportAgentIcon sx={{ marginLeft: 1 }} />
-                </Button>
-
-                <Button onClick={() => setmodalDelete(true)}>
-                    Eliminar cuenta <HeartBrokenIcon sx={{ marginLeft: 1 }} />
-                </Button>
-
-                <Button onClick={handleLogout}>
-                    Cerrar sesión <LogoutIcon sx={{ marginLeft: 1 }} />
-                </Button>
-
+                    <div 
+                        className="profile-items" 
+                        onClick={handleLogout}>
+                    <LogoutIcon /> Cerrar sesión 
+                    </div>
+                </div>
+                <div className="profile-img">
+                    <img 
+                    src="FormsImg.png" 
+                    style={{width: "280px"}}
+                    loading="lazy"
+                    />
+                </div>
             </div>
         </div>
     );

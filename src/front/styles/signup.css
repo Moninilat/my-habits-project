@@ -42,10 +42,7 @@
 
 }
 
-.css-1umw9bq-MuiSvgIcon-root {
 
-    color: #fb7676;
-}
 
 .terms {
 
@@ -69,8 +66,8 @@
     height: 60px;
     border: none;
     border-radius: 30px;
-    background-color: #fb7676;
-    color: white;
+    background-color: var(--body_sumbit_button);
+    color:var(--body_sumbit_button_text);
     margin: 15px;
     font-weight: bold;
 }
@@ -99,40 +96,7 @@
     margin-right: 10px;
 }
 
-.file-loader {
-    display: flex;
-    justify-self: end;
-    border: none;
-    border-radius: 0;
-    font-weight: 400;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 
-}
-
-.file-loader::before {
-    color: #FB7676;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 60px;
-    border: 1px solid #fb7676;
-    border-radius: 30px;
-    border-radius: 30px;
-    content: 'Carga tu foto';
-}
-
-.file-loader input[type="file"] {
-    opacity: 0;
-    width: 150px;
-    height: 60px;
-    position: fixed;
-}
 
 
 .active {
@@ -143,19 +107,13 @@
     display: none;
 }
 
-.css-1mac7pt-MuiFormGroup-root {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+.css-1qiat4j{
+
+    fill: var(--body_color);
+
 }
+
+
 
 
 

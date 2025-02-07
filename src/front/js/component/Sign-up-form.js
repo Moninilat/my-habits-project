@@ -22,7 +22,6 @@ export const SignUp = () => {
   const [showPasswordA, setShowPasswordA] = useState(false);
   const [showPasswordB, setShowPasswordB] = useState(false);
   const { store, actions } = useContext(Context);
-  const [userProfilePicture, setUserProfilePicture] = useState("")
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -32,20 +31,7 @@ export const SignUp = () => {
   const toggleShowPasswordA = () => setShowPasswordA(!showPasswordA);
   const toggleShowPasswordB = () => setShowPasswordB(!showPasswordB);
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setUserProfilePicture(file);
-      actions.handleImageUpload(file);
-    }
-  };
 
-  const handleDeletePicture = () => {
-    actions.handleDeletePicture();
-    setUserProfilePicture("");
-    const fileInput = document.querySelector("input[name='file-loader']");
-    if (fileInput) fileInput.value = "";
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

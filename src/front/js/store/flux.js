@@ -5,13 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userProfilePicture: [],
 			ranking: [],
 			habits: [],
-			user_habits: [],
-			
-			
-			// user: null,
-			// ranking: [],
-			// habits: [],
-			// user_habits: []
+			user_habits: []
 		},
 		actions: {
 			login: async (email, password, navigate) => {
@@ -230,12 +224,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 						},
 						body: JSON.stringify({ habit_id: habit.id })
 					});
-				const newHabits = store.habits.filter(h => h.id !== habit.id)
-				setStore({ habits: [...newHabits] });
 					setStore({ user_habits: [...userHabits, {habit}] });
 				}
 			},
 
+			removeHabit: (habit) => {
+				const token = localStorage.getItem('token');
+				const store = getStore();
+				const userHabits = store.user_habits || [];
+			
+				fetch(`${process.env.BACKEND_URL}api/user/habits/${habit.id}`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						'Authorization': `Bearer ${token}`
+					}
+				}).then(() => {
+					const updatedUserHabits = userHabits.filter(user_habit => user_habit.habit.id !== habit.id);
+					setStore({ user_habits: updatedUserHabits });
+					actions.getHabits();
+				}).catch(error => console.error("Error al eliminar el hábito:", error));
+			},
+			
 			logout: () => {
 				localStorage.removeItem("token")
 
@@ -325,27 +335,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-
-			handleImageUpload: (file) => {
-				const imageUrl = URL.createObjectURL(file);
-
-				// Almacenar la imagen en el store
-				setStore({ userProfilePicture: imageUrl });
-
-				// Guardar en localStorage
-				localStorage.setItem("image", imageUrl);
-			},
-
-			handleDeletePicture: () => {
-				// Eliminar la imagen del store y localStorage
-				setStore({ userProfilePicture: "" });
-				localStorage.removeItem("image");
-			},
-			filterHabits: () => {
+			removeHabit: (habit) => {
+				const token = localStorage.getItem('token');
 				const store = getStore();
-				const newHabits = store.habits.filter(habit => !store.user_habits.some(user_habit => user_habit.habit.id === habit.id));
-				setStore({ habits: [...newHabits] });
+				const userHabits = store.user_habits || [];
+
+				fetch(`${process.env.BACKEND_URL}api/user/habits`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						'Authorization': `Bearer ${token}`
+					},
+					body: JSON.stringify({ habit_id: habit.id })
+				})
+				.then(response => {
+					if (response.ok) {
+						const updatedUserHabits = userHabits.filter(user_habit => user_habit.habit.id !== habit.id);
+						const updatedHabits = store.habits.some(h => h.id === habit.id) ? store.habits : [...store.habits, habit];
+						setStore({ user_habits: updatedUserHabits, habits: updatedHabits });
+					} else {
+						console.error("Error al eliminar el hábito del usuario");
+					}
+				})
+				.catch(error => console.error("Error al eliminar el hábito del usuario:", error));
 			}
+
+		
 		}
 	};
 
