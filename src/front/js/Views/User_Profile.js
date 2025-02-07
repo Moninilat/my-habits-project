@@ -72,6 +72,10 @@ export const UserProfile = () => {
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
             <img src={store.userProfilePicture} />
+<<<<<<< HEAD
+=======
+
+>>>>>>> d1be3cf0866b66848956e4c11de7f8eb8c13420b
             <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
 
             {/* --------Modal para modificar los datos de perfil del usuario-------- */}
@@ -166,6 +170,7 @@ export const UserProfile = () => {
                     </div>
                 </div>
 
+<<<<<<< HEAD
 
             </div>
 
@@ -173,6 +178,21 @@ export const UserProfile = () => {
                 <Button onClick={() => setModalChangeData(true)} className="profile-option">
                     Datos de perfil <AssignmentIndIcon sx={{ marginLeft: 1 }} />
                 </Button>
+=======
+                <div className="profile-options" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <Button onClick={() => setModalChangeData(true)} className="profile-option">
+                    Datos de perfil <AssignmentIndIcon sx={{ marginLeft: 1 }} />
+                </Button>
+
+                <Button onClick={() => setModalChangePasword(true)} className="profile-option">
+                    Cambiar contraseña <LockResetIcon sx={{ marginLeft: 1 }} />
+                </Button>
+
+                <Button onClick={() => setModalSupport(true)}>
+                    Soporte <SupportAgentIcon sx={{ marginLeft: 1 }} />
+                </Button>
+
+>>>>>>> d1be3cf0866b66848956e4c11de7f8eb8c13420b
 
                 <Button onClick={() => setModalChangePasword(true)} className="profile-option">
                     Cambiar contraseña <LockResetIcon sx={{ marginLeft: 1 }} />
