@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import "../../styles/darkMode.css";
 
 export const DarkMode = () => {
+    const [active, setActive] = useState("False")
+
     const setDarkMode = () => {
         document.querySelector("body").setAttribute("data-theme", "dark")
         localStorage.setItem("selectedTheme", "dark")
@@ -20,23 +22,27 @@ export const DarkMode = () => {
         setLightMode();
     }
 
-    const toggleTheme = (e) => {
-        if (e.target.checked) setDarkMode();
+    const toggleTheme = () => {
+        if (active == true) setDarkMode();
         else setLightMode()
     }
     return (
         <div className='dark_mode'>
-            <input
-                className='dark_mode_input'
-                type='checkbox'
-                id='darkmode-toggle'
-                onChange={toggleTheme}
-                defaultChecked={selectedTheme === "dark"}
+            
+            <LightModeIcon 
+            className="sun"
+            onClick={() => {
+                setActive(true);
+                toggleTheme();
+              }}
             />
-            <label className='dark_mode_label' for='darkmode-toggle'>
-                <LightModeIcon className="sun"/>
-                <DarkModeIcon className="moon"/>
-            </label>
+            <DarkModeIcon 
+            className="moon"
+            onClick={() => {
+                setActive(false);
+                toggleTheme();
+              }}
+            />
         </div>
     );
 };
