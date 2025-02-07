@@ -1,7 +1,14 @@
 :root{
-    
-    
-
+    --body_background : white;
+    --body_color: #FB7676;
+    --body_badge: white;
+    --body_badge_text:#2c2c2c;
+    --body_input_background:white;
+    --body_sumbit_button:#FB7676;
+    --body_sumbit_button_text:white;
+    --body_sumbit_button_hover:#2c2c2c;
+    --secondary_background:#FB7676;
+    --burguer_menu_items: #2c2c2c;
 
 }
 [data-theme="dark"]{
@@ -14,6 +21,7 @@
     --body_sumbit_button:white;
     --body_sumbit_button_text:#FB7676;
     --secondary_background:#111418;
+    --burguer_menu_items: white;
 
 }
 /* * {

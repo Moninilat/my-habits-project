@@ -49,9 +49,12 @@ export const Navbar = () => {
                                 <MenuIcon />
                             </button>
                             <div className="burger-content-container" style={{ display: isOpen ? "block" : "none" }}>
-                                <button className="close-button" onClick={() => setIsOpen(false)}>
-                                    <CloseIcon />
-                                </button>
+                                <div className="head-handlres-burguer">
+                                    <button className="close-button" onClick={() => setIsOpen(false)}>
+                                        <CloseIcon />
+                                    </button>
+                                    <DarkMode /> 
+                                </div>
                                 <div className="burger-content">
                                     <ul>
                                         <li >
@@ -91,11 +94,13 @@ export const Navbar = () => {
                         <div className="menu">
                             <Link to="/ranking">Ranking</Link>
                             <Link to="/perfil">Perfil</Link>
-                            <DarkMode />
+                            
                             <button className="logout-button" onClick={handleLogout}>Logout</button>
                             
                         </div>
-                    ) : null} {/* Si no hay usuario, no muestra los enlaces */}
+                    ) : null}
+                    <DarkMode /> 
+                    {/* Si no hay usuario, no muestra los enlaces */}
                 </div>
             )}
         </nav>
