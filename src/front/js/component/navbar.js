@@ -71,7 +71,7 @@ export const Navbar = () => {
                                         </li>
                                     </ul>
                                     <div className="logout-menu">
-                                        <button className="logout-button" onClick={handleLogout}>Logout</button>
+                                        <button className="logout-button" onClick={handleLogout}>Cerrar sesión</button>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ export const Navbar = () => {
                             <Link to="/ranking">Ranking</Link>
                             <Link to="/perfil">Perfil</Link>
                             
-                            <button className="logout-button" onClick={handleLogout}>Logout</button>
+                            <button className="logout-button" onClick={handleLogout}>Cerrar sesión</button>
                             
                         </div>
                     ) : null}

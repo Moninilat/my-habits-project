@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from "react-router-dom";
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
+import Button from '@mui/material/Button';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
@@ -103,7 +105,7 @@ export const UserProfile = () => {
                         name="city"
                         value={user.city}
                         type="text"
-                        placeholder="City"
+                        placeholder="Ciudad"
                         onChange={handleChange}
                         requiered
                     />
@@ -169,6 +171,7 @@ export const UserProfile = () => {
 
             <div className="profile-card">
                 <div className="profile-header">
+                    <div className="profile-image"></div>
                     <div className="profile-info">
 
                         <h5 className="profile-phrase">“Frase de perfil”</h5>
