@@ -1,11 +1,15 @@
 import "../../styles/habitcard.css";
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+// import { Modal } from "./modal.js";
+// import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+// import "../../styles/userProfile.css";
 
 export const HabitCard = ({ user_habit }) => {
     const { actions } = useContext(Context);
     const [isCompleted, setIsCompleted] = useState();
     const [handleComplete, setHandlecomplete] = useState(false);
+    // const [isActive, setActive] = useState(false);
 
     // Verifica si el hábito ya fue completado hoy al cargar el componente
 
@@ -31,12 +35,14 @@ export const HabitCard = ({ user_habit }) => {
     };
 
     return (
+        <>
         <div className={`habit_component${handleComplete ? "_completed" : ""}`}>
             <div className="button_delete"> 
                 <button className="remove_habit_button" onClick={handleRemoveHabit}>
                     <i className="fa-solid fa-x"></i>
                 </button>
                 <div className="habit_title">{user_habit.habit.name}</div>
+                {/* <HelpOutlineIcon onClick={() => setActive(true)} style={{marginRight:"40px"}} /> */}
             </div>
             <div className="habit_box">
                 <div className="habit_status">{handleComplete ? "Completado" : "Completar"}</div>
@@ -47,5 +53,14 @@ export const HabitCard = ({ user_habit }) => {
                 > {handleComplete ? "✔" : ""}</button>
             </div> 
         </div>
+            {/* <Modal className="modalUser"
+                isOpen={isActive}
+                title={user_habit.habit.name}
+                close={() => setActive(false)}
+            >
+                <img src="Dog_walk.gif" alt="Habit illustration" />
+                <div className="modal-content"><p>{user_habit.habit.description}</p></div>
+            </Modal> */}
+        </>
     );
 };

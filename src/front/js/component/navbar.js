@@ -59,7 +59,7 @@ export const Navbar = () => {
                                 <div className="burger-content">
                                     <ul>
                                         <li >
-                                            <CottageOutlinedIcon style={{color:"var(--burguer_icon)"}} /><Link to="/home" onClick={handleClose}>Home</Link>
+                                            <CottageOutlinedIcon style={{color:"var(--burguer_icon)"}} /><Link to="/home" onClick={handleClose}>Mi tablero</Link>
                                         </li>
                                         <li>
                                             <InsertChartOutlinedIcon /><Link to="/ranking" onClick={handleClose}>Ranking</Link>
@@ -72,14 +72,14 @@ export const Navbar = () => {
                                         </li>
                                     </ul>
                                     <div className="logout-menu">
-                                        <button className="logout-button" onClick={handleLogout}>Logout</button>
+                                        <button className="logout-button" onClick={handleLogout}>Cerrar sesión</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ) : null} 
                     <div className="s-title">
-                        Proyecto Ninja
+                        My habits
                     </div>
                 </>
             ) : (
@@ -89,14 +89,15 @@ export const Navbar = () => {
                             onClick={() => navigate("/home")}
                             style={{ cursor: "pointer", width: "30px"}}>
                         </img>
-                        <span className="complete-menu-title">Proyecto Ninja</span>
+                        <span className="complete-menu-title">My habits</span>
                     </div>
                     {user ? ( // Si el usuario está loggeado, muestra los enlaces
                         <div className="menu">
+                            <Link to="/home">Mi tablero</Link>
                             <Link to="/ranking">Ranking</Link>
                             <Link to="/perfil">Perfil</Link>
                             
-                            <button className="logout-button" onClick={handleLogout}>Logout</button>
+                            <button className="logout-button" onClick={handleLogout}>Cerrar sesión</button>
                             
                         </div>
                     ) : null}
