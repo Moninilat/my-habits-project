@@ -12,7 +12,8 @@ body {
 
 .containerr {
   width: 90%;
-  margin: 0 auto;
+  margin-inline: auto;
+  margin-top: 25px;
   padding: 20px;
 }
 
@@ -34,8 +35,9 @@ header {
   display: flex;
   gap: 15px;
   overflow-x: auto;
-  padding-bottom: 10px;
-  white-space: nowrap;   
+  padding-bottom: 20px;
+  white-space: nowrap;
+  position: inherit;   
   
 
   scrollbar-width: none;
@@ -83,6 +85,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 25px;
 
 }
 
@@ -110,24 +113,31 @@ header {
 
 .habit {
   
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
-    gap: 20px; /* Espacio entre los elementos */
-    width: 100%;
-    margin: 0 auto; /* Centrar la sección */
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  white-space: nowrap; 
 
+    @media (max-width:800px){
+      display: flex;      
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      }
 }
 
-.carousel-header > .search-bar{
+.search-bar{
 
-  width: 200px;
+  width: 150px;
     height: 45px;
-    border: 1px solid #2c2c2c;
-    border-radius: 30px;
+    border: 1px solid #2c2c2c30;
+    border-radius: 15px;
     padding-inline: 20px;
     padding-block: 5px;
     font-weight: bold;
     font-style: italic;
     color: #2c2c2c;
+    margin:0;
 
 }

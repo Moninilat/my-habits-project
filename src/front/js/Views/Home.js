@@ -64,7 +64,7 @@ export const Home = () => {
         {/* Sección Habits con Buscador */}
         <section className="carousel-section">
           <div className="carousel-header">
-            <h2>Recomendaciones</h2>
+            <h2>Hábitos</h2>
           
               {/* Input de búsqueda */}
               <input 

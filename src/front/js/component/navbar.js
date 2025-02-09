@@ -10,6 +10,7 @@ import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
 import { Context } from "../store/appContext";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import { DarkMode } from "./DarkMode.js";
+import habitLogo from "../../img/habitLogo.png";
 
 export const Navbar = () => {
     const { store, actions } = useContext(Context);
@@ -46,7 +47,7 @@ export const Navbar = () => {
                     {user ? ( // Si hay usuario, muestra el menú
                         <div className="burger-menu">
                             <button className="burger-button" onClick={() => setIsOpen(true)}>
-                                <MenuIcon />
+                                <MenuIcon className="burger-icon"/>
                             </button>
                             <div className="burger-content-container" style={{ display: isOpen ? "block" : "none" }}>
                                 <div className="head-handlres-burguer">
@@ -58,7 +59,7 @@ export const Navbar = () => {
                                 <div className="burger-content">
                                     <ul>
                                         <li >
-                                            <CottageOutlinedIcon /><Link to="/home" onClick={handleClose}>Home</Link>
+                                            <CottageOutlinedIcon style={{color:"var(--burguer_icon)"}} /><Link to="/home" onClick={handleClose}>Home</Link>
                                         </li>
                                         <li>
                                             <InsertChartOutlinedIcon /><Link to="/ranking" onClick={handleClose}>Ranking</Link>
@@ -71,7 +72,7 @@ export const Navbar = () => {
                                         </li>
                                     </ul>
                                     <div className="logout-menu">
-                                        <button className="logout-button" onClick={handleLogout}>Cerrar sesión</button>
+                                        <button className="logout-button" onClick={handleLogout}>Logout</button>
                                     </div>
                                 </div>
                             </div>
@@ -84,10 +85,10 @@ export const Navbar = () => {
             ) : (
                 <div className="complete-menu">
                     <div className="logo">
-                        <i className="fa-brands fa-google"
+                        <img src={habitLogo}
                             onClick={() => navigate("/home")}
-                            style={{ cursor: "pointer" }}
-                        ></i>
+                            style={{ cursor: "pointer", width: "30px"}}>
+                        </img>
                         <span className="complete-menu-title">Proyecto Ninja</span>
                     </div>
                     {user ? ( // Si el usuario está loggeado, muestra los enlaces
@@ -95,7 +96,7 @@ export const Navbar = () => {
                             <Link to="/ranking">Ranking</Link>
                             <Link to="/perfil">Perfil</Link>
                             
-                            <button className="logout-button" onClick={handleLogout}>Cerrar sesión</button>
+                            <button className="logout-button" onClick={handleLogout}>Logout</button>
                             
                         </div>
                     ) : null}

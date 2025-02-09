@@ -371,17 +371,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify({ habit_id: habitId }),
 					});
 			
-					if (!response.ok) {
-						throw new Error("No se pudo completar el hábito");
-					}
-			
 					const data = await response.json();
-					return true; // Devuelve éxito
+			
+					if (response.ok) {
+						alert("Hábito completado con éxito.");
+						return true; // Devuelve éxito
+					} else {
+						alert("Hábito completado por hoy.");
+						return false; // Devuelve fallo
+					}
 				} catch (error) {
 					console.error("Error al completar hábito:", error);
+					alert("Error de conexión con el servidor.");
 					return false; // Devuelve fallo
 				}
 			},
+			
 
 		
 		}
