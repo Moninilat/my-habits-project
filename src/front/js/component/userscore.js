@@ -1,5 +1,6 @@
 import "../../styles/userscore.css";
 import React, { useState, useEffect } from "react";
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export const UserScore = (props) => {
 
@@ -27,7 +28,10 @@ useEffect(() => {
             <div className="user_score_space">
                 <div className="user_score_pill">
                     <h5>{props.score}</h5>
-                    <p>puntos</p>
+                    <div style={{color:"#FB7676"}}>
+                        <EmojiEventsIcon />
+                    </div>
+                    
                 </div>
             </div>
         </div>

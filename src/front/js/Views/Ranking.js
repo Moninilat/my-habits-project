@@ -1,3 +1,5 @@
+Ranking
+
 import React, { useContext, useEffect } from "react";
 import { UserScore } from '../component/userscore'
 import "../../styles/Ranking.css"
@@ -42,12 +44,6 @@ export const Ranking = () => {
         
         })
         }
-        
-        <UserScore/>
-        <UserScore/>
-        <UserScore/>
-        <UserScore/>
-        <UserScore/>
         </div>
     </div>
   </div>

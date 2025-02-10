@@ -9,6 +9,10 @@
     --body_sumbit_button_hover:#2c2c2c;
     --secondary_background:#FB7676;
     --burguer_menu_items: #2c2c2c;
+    --body_badge_task: white;
+    --burguer_icon: #fb7676;
+    --burguer_bg:white;
+    --burguer_icon:#fb7676;
 
 }
 [data-theme="dark"]{
@@ -22,6 +26,10 @@
     --body_sumbit_button_text:#FB7676;
     --secondary_background:#111418;
     --burguer_menu_items: white;
+    --body_badge_task: rgb(0 0 0 / 50%);
+    --burguer_icon: white;
+    --burguer_bg:none;
+    --burguer_icon:white;
 
 }
 /* * {
@@ -38,3 +46,5 @@
     display: grid;
     grid-template-rows: 90px 1fr 50px;
 }
+
+

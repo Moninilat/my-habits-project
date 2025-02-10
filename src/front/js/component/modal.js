@@ -6,7 +6,7 @@ export const Modal = (props) => {
   if (!props.isOpen) return null; // No renderiza el modal si `isOpen` es falso
 
   return (
-    <div className={props.className} style={{ display: "flex" }}>
+    <div className={props.className}>
       <div className='wrapper'>
         <div className="signup-header">
           <CloseIcon className="close" onClick={props.close} />
