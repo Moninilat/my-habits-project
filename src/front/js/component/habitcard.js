@@ -6,37 +6,48 @@ import { Context } from "../store/appContext";
 // import "../../styles/userProfile.css";
 
 export const HabitCard = ({ user_habit }) => {
-    const { actions } = useContext(Context);
-    const [isCompleted, setIsCompleted] = useState();
-    const [handleComplete, setHandlecomplete] = useState(false);
+    const { store, actions } = useContext(Context);
+    const [isCompleted, setIsCompleted] = useState(null);
     // const [isActive, setActive] = useState(false);
 
     // Verifica si el hábito ya fue completado hoy al cargar el componente
-
+console.log(store.user_records)
     useEffect(() => {
-    const today = new Date().toDateString();
-    const completedToday = user_habit.records?.some(record => new Date(record.date).toDateString() === today);
-    setIsCompleted(completedToday);
-    
-}, [user_habit.records]);
-    
-    const handleRemoveHabit = () => {
-        actions.removeHabit(user_habit.habit);
-    };
-
-    const handleCompleteHabit = async () => {
-        if (!isCompleted) {
-            const success = actions.completeHabit(user_habit.habit.id);
-            
-            if (success) {
-                setHandlecomplete(true); // Marcar como completado en frontend
-            }
+        
+        const today = new Date().toDateString();
+        
+        if (store.user_records.length && store.user) {
+            const completedToday = store.user_records.some(record => 
+                new Date(record.date).toDateString() === today && 
+                record.user_id === store.user.id &&
+                record.habit_id === user_habit.habit.id
+                
+            );            
+            setIsCompleted(completedToday);   
         }
-    };
+         
+    }, [store.user_records, store.user, user_habit.habit.id]); 
+    
+    
+
+    
+    const handleCompleteHabit = async () => {
+    if (!isCompleted) {
+        const success = await actions.completeHabit(user_habit.habit.id);
+            if (success){
+                setIsCompleted(true)
+    }
+};
+}
+
+const handleRemoveHabit = () => {
+    actions.removeHabit(user_habit.habit);
+};
 
     return (
+        
         <>
-        <div className={`habit_component${handleComplete ? "_completed" : ""}`}>
+        <div className={`habit_component${isCompleted ? "_completed" : ""}`}>
             <div className="button_delete"> 
                 <button className="remove_habit_button" onClick={handleRemoveHabit}>
                     <i className="fa-solid fa-x"></i>
@@ -45,12 +56,12 @@ export const HabitCard = ({ user_habit }) => {
                 {/* <HelpOutlineIcon onClick={() => setActive(true)} style={{marginRight:"40px"}} /> */}
             </div>
             <div className="habit_box">
-                <div className="habit_status">{handleComplete ? "Completado" : "Completar"}</div>
+                <div className="habit_status">{isCompleted ? "Completado" : "Completar"}</div>
                 <button 
-                    className={`habit_button${handleComplete ? "_completed" : ""}`}
+                    className={`habit_button${isCompleted ? "_completed" : ""}`}
                     onClick={handleCompleteHabit}
                     disabled={isCompleted} // Deshabilitar si ya está completado
-                > {handleComplete ? "✔" : ""}</button>
+                > {isCompleted ? "✔" : ""}</button>
             </div> 
         </div>
             {/* <Modal className="modalUser"
@@ -62,5 +73,6 @@ export const HabitCard = ({ user_habit }) => {
                 <div className="modal-content"><p>{user_habit.habit.description}</p></div>
             </Modal> */}
         </>
+
     );
 };
