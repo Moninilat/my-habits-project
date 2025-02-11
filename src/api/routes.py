@@ -266,6 +266,7 @@ def complete_habit():
         user_id=user.id,
         habits_id=habit.id,
         date=date.today()
+        
     )
     serialize_user=user.serialize()
     serialize_habit=habit.serialize()
@@ -302,3 +303,18 @@ def new_habit():
     # Realizamos el commit una sola vez al final
     db.session.commit()
     return jsonify({"message": "Hábitos agregados exitosamente"}), 200
+
+@api.route('/habit_records', methods=['GET'])
+@jwt_required()
+def get_records():
+    token_email = get_jwt_identity()
+    user=User.query.filter_by(email = token_email).first()
+    if user is None:
+         return jsonify({"msg":"user not found"}),404
+    
+    habit_records = Habit_records.query.filter_by(user_id=user.id).all()
+    if not habit_records:
+        return jsonify({"msg": "No hay registros de hábitos"}), 400
+    return jsonify([record.serialize() for record in habit_records]), 200
+
+    

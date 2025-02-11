@@ -24,7 +24,10 @@ export const Home = () => {
       actions.getHabits(),
       actions.getUser(),
       actions.getUserHabits(),
-      actions.getRanking()])
+      actions.getRanking(),
+      actions.getHabitRecord()
+       
+    ])
         .then(() => {
           setFetched(true);
         })

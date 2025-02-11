@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userProfilePicture: [],
 			ranking: [],
 			habits: [],
-			user_habits: []
+			user_habits: [],
+			user_records: []
 		},
 		actions: {
 			login: async (email, password, navigate) => {
@@ -374,6 +375,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json();
 			
 					if (response.ok) {
+						console.log(data)
 						alert("Hábito completado con éxito.");
 						return true; // Devuelve éxito
 					} else {
@@ -386,7 +388,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false; // Devuelve fallo
 				}
 			},
+			getHabitRecord: async () => {
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}api/habit_records`, {
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${localStorage.getItem("token")}`,
+						}
+					});
 			
+					const data = await response.json();
+					console.log(data)
+			
+					if (response.ok) {
+						setStore({ user_records: data });
+						
+						return true; // Devuelve éxito
+					} else {
+						return false; // Devuelve fallo
+					}
+				} catch (error) {
+					console.error("Error al completar hábito:", error);
+					alert("Error de conexión con el servidor.");
+					return false; // Devuelve fallo
+				}
+			},
 
 		
 		}
