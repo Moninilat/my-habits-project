@@ -44,7 +44,7 @@ class Habits(db.Model):
     name = db.Column(db.String(1024), unique=True, nullable=False)
     description = db.Column(db.String(1024), unique=True, nullable=False)
     score = db.Column(db.Integer, unique=False)
-    # image= db.Column(db.String(1024), unique=True, nullable=True)
+    image= db.Column(db.String(1024), unique=True, nullable=True)
     
 
     def __repr__(self):
@@ -56,7 +56,7 @@ class Habits(db.Model):
             "name": self.name,
             "description": self.description,
             "score": self.score,
-            # "image":self.image
+            "image": self.image
         }
     
 class Habit_records(db.Model):
