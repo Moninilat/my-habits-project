@@ -46,6 +46,7 @@ const handleRemoveHabit = () => {
 
     return (
         
+        !isCompleted ? 
         <>
         <div className={`habit_component${isCompleted ? "_completed" : ""}`}>
             <div className="button_delete"> 
@@ -73,6 +74,28 @@ const handleRemoveHabit = () => {
                 <div className="modal-content"><p>{user_habit.habit.description}</p></div>
             </Modal> */}
         </>
+
+        :
+
+<>
+<div className="habit_component_completed">
+    <div className="button_delete"> 
+        <button className="remove_habit_button" onClick={handleRemoveHabit}>
+            <i className="fa-solid fa-x"></i>
+        </button>
+        <div className="habit_title">{user_habit.habit.name}</div>
+        {/* <HelpOutlineIcon onClick={() => setActive(true)} style={{marginRight:"40px"}} /> */}
+    </div>
+    <div className="habit_box">
+        <div className="habit_status">"Completado"</div>
+        <button 
+            className="habit_button_completed"
+            onClick={handleCompleteHabit}
+            disabled={isCompleted} // Deshabilitar si ya está completado
+        > {isCompleted ? "✔" : ""}</button>
+    </div> 
+</div>
+</>
 
     );
 };
