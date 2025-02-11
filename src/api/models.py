@@ -76,7 +76,8 @@ class Habit_records(db.Model):
         return {
             "id": self.id,
             "date": self.date,
-                       
+            "user_id" : self.user_id,
+            "habits_id": self.habits_id,           
         }
 
 

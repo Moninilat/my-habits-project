@@ -375,6 +375,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json();
 			
 					if (response.ok) {
+						console.log(data)
 						alert("Hábito completado con éxito.");
 						return true; // Devuelve éxito
 					} else {

@@ -266,6 +266,7 @@ def complete_habit():
         user_id=user.id,
         habits_id=habit.id,
         date=date.today()
+        
     )
     serialize_user=user.serialize()
     serialize_habit=habit.serialize()
