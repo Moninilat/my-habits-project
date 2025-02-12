@@ -66,7 +66,7 @@ class Habit_records(db.Model):
     date = db.Column(db.Date, default=date.today)
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"))   
     habits_id = db.Column(db.Integer, db.ForeignKey("Habits.id"))
-    habits=db.relationship("Habits")
+    habits = db.relationship("Habits")
     
 
     def __repr__(self):
