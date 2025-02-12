@@ -68,7 +68,7 @@ const handleRemoveHabit = () => {
                 title={user_habit.habit.name}
                 close={() => setActive(false)}
             >
-                <img src={user_habit.habit.image} alt="Habit illustration" />
+                <img src={user_habit.habit.image} alt="Habit illustration" style={{ width: "210px", marginTop: "20px", borderRadius: "15px"}} />
                 <div className="modal-content-habit"><p>{user_habit.habit.description}</p></div>
             </Modal>
         </>
