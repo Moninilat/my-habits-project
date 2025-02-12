@@ -14,7 +14,7 @@ class User(db.Model):
     gender = db.Column(db.String(15), nullable=True)
     password = db.Column(db.String(1000), unique=False, nullable=True)
     user_habit_list = db.relationship("User_habit_list", backref="user")
-    habit_records = db.relationship("Habit_records", backref="user_records")
+    habit_records = db.relationship("Habit_records", backref="habit_records")
     google_id = db.Column(db.String, nullable=True)
     score = db.Column(db.Integer, unique=False, default=0)
 
@@ -66,7 +66,7 @@ class Habit_records(db.Model):
     date = db.Column(db.Date, default=date.today)
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"))   
     habits_id = db.Column(db.Integer, db.ForeignKey("Habits.id"))
-    habits=db.relationship("Habits", backref="habit_records")
+    habits=db.relationship("Habits")
     
 
     def __repr__(self):
@@ -77,7 +77,7 @@ class Habit_records(db.Model):
             "id": self.id,
             "date": self.date,
             "user_id" : self.user_id,
-            "habits_id": self.habits_id,           
+            "habits_id": self.habits_id           
         }
 
 
