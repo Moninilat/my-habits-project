@@ -14,7 +14,7 @@ class User(db.Model):
     gender = db.Column(db.String(15), nullable=True)
     password = db.Column(db.String(1000), unique=False, nullable=True)
     user_habit_list = db.relationship("User_habit_list", backref="user")
-    habit_records = db.relationship("Habit_records", backref="habit_records")
+    habit_records = db.relationship("Habit_records", backref="user")
     google_id = db.Column(db.String, nullable=True)
     score = db.Column(db.Integer, unique=False, default=0)
 
