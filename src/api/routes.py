@@ -283,12 +283,13 @@ def new_habit():
         return jsonify({"error": "Se esperaba una lista de hábitos"}), 400
     for habit_data in request_body:
         # Validar campos mínimos (name, description, score)
-        if not all(key in habit_data for key in ["name", "description", "score"]):
+        if not all(key in habit_data for key in ["name", "description", "score", "image"]):
             return jsonify({"error": "Formato de hábito inválido"}), 400
         # Extraemos la info
         name = habit_data["name"]
         description = habit_data["description"]
         score = habit_data["score"]
+        image = habit_data["image"]
         # Comprobamos si ya existe un hábito con el mismo nombre
         existing_habit = Habits.query.filter_by(name=name).first()
         if existing_habit:
@@ -297,7 +298,8 @@ def new_habit():
         new_habit = Habits(
             name=name,
             description=description,
-            score=score
+            score=score,
+            image=image
         )
         db.session.add(new_habit)
     # Realizamos el commit una sola vez al final
