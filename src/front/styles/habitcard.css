@@ -91,3 +91,13 @@ justify-content: center;
 align-items: center;
 
 }
+
+.modal-content-habit > p{
+
+  font-size: 1rem;
+  text-align: center;
+  word-break: break-word;
+  text-wrap: auto;
+  margin-top: 25px;
+
+}

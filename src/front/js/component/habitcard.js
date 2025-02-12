@@ -52,7 +52,7 @@ const handleRemoveHabit = () => {
                     <i className="fa-solid fa-x"></i>
                 </button>
                 <div className="habit_title">{user_habit.habit.name}</div>
-                <HelpOutlineIcon onClick={() => setActive(true)} style={{marginRight:"40px"}} />
+                <HelpOutlineIcon onClick={() => setActive(true)} style={{marginRight:"40px", cursor:"pointer"}} />
             </div>
             <div className="habit_box">
                 <div className="habit_status">Completar</div>
@@ -69,7 +69,7 @@ const handleRemoveHabit = () => {
                 close={() => setActive(false)}
             >
                 <img src={user_habit.habit.image} alt="Habit illustration" />
-                <div className="modal-content"><p>{user_habit.habit.description}</p></div>
+                <div className="modal-content-habit"><p>{user_habit.habit.description}</p></div>
             </Modal>
         </>
 
@@ -82,14 +82,14 @@ const handleRemoveHabit = () => {
             <i className="fa-solid fa-x"></i>
         </button>
         <div className="habit_title">{user_habit.habit.name}</div>
-        {/* <HelpOutlineIcon onClick={() => setActive(true)} style={{marginRight:"40px"}} /> */}
+        <HelpOutlineIcon onClick={() => setActive(true)} style={{marginRight:"40px", cursor:"pointer"}} />
     </div>
     <div className="habit_box">
         <div className="habit_status">Completado</div>
         <button 
             className="habit_button_completed"
             onClick={handleCompleteHabit}
-            disabled={isCompleted} // Deshabilitar si ya está completado
+            disabled={isCompleted} 
         > {isCompleted ? "✔" : ""}</button>
     </div> 
 </div>
@@ -98,8 +98,9 @@ const handleRemoveHabit = () => {
                 title={user_habit.habit.name}
                 close={() => setActive(false)}
             >
-                <img src={user_habit.habit.image} alt="Habit illustration" />
-                <div className="modal-content"><p>{user_habit.habit.description}</p></div>
+                <img src={user_habit.habit.image} alt="Habit illustration" style={{ width: "210px", marginTop: "20px", borderRadius: "15px"}}
+     />
+                <div className="modal-content-habit"><p>{user_habit.habit.description}</p></div>
             </Modal>
 </>
 
