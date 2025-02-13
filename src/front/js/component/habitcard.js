@@ -72,6 +72,5 @@ export const HabitCard = ({ user_habit }) => {
                 <div className="modal-content-habit" style={{padding:"20px"}}><p>{user_habit.habit.description}</p></div>
             </Modal>
         </div>
-
     );
 };
