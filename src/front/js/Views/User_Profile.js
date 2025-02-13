@@ -77,7 +77,7 @@ export const UserProfile = () => {
     return (
         <div className="profile-container" style={{ display: "flex", flexDirection: "column" }}>
 
-            <h1 className="profile-title">Hola {user.first_name} {user.last_name}</h1>
+            <h1 className="profile-title" style={{marginTop:"25px", marginBottom:"0"}}>Hola {user.first_name} {user.last_name}</h1>
 
             {/* --------Modal para modificar los datos de perfil del usuario-------- */}
 
@@ -168,16 +168,6 @@ export const UserProfile = () => {
                 </form>
             </Modal>
 
-
-            <div className="profile-card">
-                <div className="profile-header">
-                    <div className="profile-image"></div>
-                    <div className="profile-info">
-
-                        <h5 className="profile-phrase">“Frase de perfil”</h5>
-                    </div>
-                </div>
-            </div>
             <div className="profile-elements">
                 <div className="profile-options">
 

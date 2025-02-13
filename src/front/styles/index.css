@@ -6,13 +6,17 @@
     --body_input_background:white;
     --body_sumbit_button:#FB7676;
     --body_sumbit_button_text:white;
-    --body_sumbit_button_hover:#2c2c2c;
+    --body_sumbit_button_hover:rgb(44, 44, 44);
     --secondary_background:#FB7676;
     --burguer_menu_items: #2c2c2c;
     --body_badge_task: white;
-    --burguer_icon: #fb7676;
+    --burguer_icon: rgb(251, 118, 118);
     --burguer_bg:white;
     --burguer_icon:#fb7676;
+    --remove_habit_button_completed:rgb(251 118 118 / 25%);
+    --remove_habit_button_completed_cross:rgba(251, 181, 181, 25%);
+    --habit_button_completed:rgba(177, 255, 207, 0.414);
+    
 
 }
 [data-theme="dark"]{
@@ -27,9 +31,13 @@
     --secondary_background:#111418;
     --burguer_menu_items: white;
     --body_badge_task: rgb(0 0 0 / 50%);
+    --body_badge_task_completed: rgb(0 0 0 / 20%);
     --burguer_icon: white;
     --burguer_bg:none;
     --burguer_icon:white;
+    --remove_habit_button_completed:rgb(251 118 118 / 15%);
+    --remove_habit_button_completed_cross:rgba(255, 255, 255, 0.2);
+    --habit_button_completed:rgba(177, 255, 207, 0.2);
 
 }
 /* * {

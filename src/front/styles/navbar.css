@@ -30,7 +30,7 @@
     width: 250px;
     height: 100vh;
     background-color: var(--body_background);
-    z-index: 1000;
+    z-index: 1000 !important;
     justify-content: left;
     align-items: left;
     padding: 25px;
