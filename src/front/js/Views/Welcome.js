@@ -46,6 +46,7 @@ export const Welcome = () => {
         </div>
         </div>
         <div className="acceso-google">
+        <p>o accede con:</p>
         <GoogleLogin
           onSuccess={credentialResponse => {
             console.log(credentialResponse);

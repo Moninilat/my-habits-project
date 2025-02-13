@@ -13,13 +13,44 @@
   .habit_component_completed {
     display: flex;
     align-items: center;
-    background-color: var(--body_badge_task);
+    background-color: var(--body_badge_task_completed);
     justify-content: space-between;
     padding: 15px 20px;
-    opacity: 0.3;
     border-radius: 15px; 
     font-family: Arial, sans-serif;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .habit_component_completed .remove_habit_button {
+    background-color: var(--remove_habit_button_completed);
+  }
+
+  .habit_component_completed
+  svg
+  {
+      color: var(--remove_habit_button_completed_cross);
+  }
+
+  .habit_component_completed
+  .habit_button_completed{
+    background-color: var(--habit_button_completed);
+
+  }
+
+  .habit_component_completed
+  .habit_status{
+    color: var(--remove_habit_button_completed_cross);
+
+  }
+
+  .habit_component_completed .habit_title{
+    color: var(--remove_habit_button_completed_cross);
+  }
+
+  .habit_component_completed .fa-solid {
+
+    color: var(--remove_habit_button_completed_cross)
+
   }
   
   
