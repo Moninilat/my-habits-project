@@ -1,5 +1,5 @@
 import "../../styles/userscore.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export const UserScore = (props) => {
