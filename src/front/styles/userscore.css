@@ -80,3 +80,8 @@ h5 {
     margin-bottom:0px;
     margin-right: 3px;
 }
+
+
+.current_user{
+  border:1px solid #fb7676;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../../styles/welcome.css";
 import { Login } from '../component/Login-form';
 import { SignUp } from '../component/Sign-up-form';
-import { GoogleLogin } from "../component/googlelogin.js";
+// import { GoogleLogin } from "../component/googlelogin.js";
 import { Modal } from "../component/modal.js";
 
 import  { Calendar } from "../../img/Calendar.png";
@@ -47,7 +47,7 @@ export const Welcome = () => {
         </div>
         <div className="acceso-google">
         <p>o accede con:</p>
-        <GoogleLogin
+        {/* <GoogleLogin
           onSuccess={credentialResponse => {
             console.log(credentialResponse);
             fetch(`${process.env.BACKEND_URL}api/signup/google`, {
@@ -60,7 +60,7 @@ export const Welcome = () => {
               .catch(error => console.error('Error al enviar los datos al backend:', error));
           }}
           onError={() => console.log('Login Failed')}
-        />
+        /> */}
         </div>
       </div>
 

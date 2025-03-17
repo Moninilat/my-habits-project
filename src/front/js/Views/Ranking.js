@@ -38,6 +38,7 @@ export const Ranking = () => {
               city={user.city}
               score={user.score}
               gender={user.gender}
+              email={user.email}
             />
             
           )
