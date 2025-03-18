@@ -58,6 +58,7 @@ export const Home = () => {
                 city={user.city}
                 score={user.score}
                 gender={user.gender}
+                email={user.email}
               />
             ))}
           </div>
